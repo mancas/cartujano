@@ -393,8 +393,9 @@ span.error {
     font-weight: bold; }
 
 .related-items .item-thumbnail {
-  display: inline-block;
-  width: 120px; }
+  float: left;
+  width: 120px;
+  margin-left: 10px; }
   .related-items .item-thumbnail a:hover {
     text-decoration: none; }
   .related-items .item-thumbnail .thumbnail-img {
@@ -407,6 +408,8 @@ span.error {
     .related-items .item-thumbnail .thumb-info .price {
       color: #f12b63;
       font-size: 16px; }
+.related-items .item-thumbnail:first-child {
+  margin-left: 0px; }
 
 /** LOGIN **/
 .small-box {
@@ -580,7 +583,7 @@ span.error {
   z-index: 999; }
 
 .ribbon-wrapper-offer.t-3 {
-  top: -3; }
+  top: -3px; }
 
 .ribbon-pink {
   font: bold 15px Sans-Serif;

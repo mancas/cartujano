@@ -72,6 +72,7 @@
 
     <div class="related-items">
         {% for thumb in relatedItems %}
+        {% if thumb.imageMain is not null %}
         <div class="item-thumbnail">
             <a title="{{ thumb }}" href="{{ path('item_details', {'slug': thumb.slug}) }}">
                 <div class="thumbnail-img">
@@ -83,6 +84,7 @@
                 </div>
             </a>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
     {% endif %}

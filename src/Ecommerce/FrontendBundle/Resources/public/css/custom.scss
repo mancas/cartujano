@@ -557,8 +557,9 @@ span.error {
 
 .related-items {
   .item-thumbnail {
-    display: inline-block;
+    float: left;
     width: 120px;
+    margin-left: 10px;
 
     a {
       &:hover {
@@ -585,6 +586,10 @@ span.error {
         font-size: 16px;
       }
     }
+  }
+
+  .item-thumbnail:first-child {
+    margin-left: 0px;
   }
 }
 
