@@ -25,7 +25,7 @@ class ItemRepository extends CustomEntityRepository
     public function findRecentItemsDQL($limit = null)
     {
         $qb = $this->createQueryBuilder('p');
-        $qb->select('p','i');
+        $qb->select('p');
 
         $qb->leftJoin('p.images', 'i');
         $qb->addOrderBy('p.updated','DESC');
@@ -34,7 +34,7 @@ class ItemRepository extends CustomEntityRepository
 
         $and->add($qb->expr()->isNull('p.deleted'));
 
-        //$qb->where($and);
+        $qb->where($and);
 
         if (isset($limit)) {
             $qb->setMaxResults($limit);
