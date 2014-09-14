@@ -27,7 +27,6 @@ class ItemRepository extends CustomEntityRepository
         $qb = $this->createQueryBuilder('p');
         $qb->select('p');
 
-        $qb->leftJoin('p.images', 'i');
         $qb->addOrderBy('p.updated','DESC');
 
         $and = $qb->expr()->andx();
