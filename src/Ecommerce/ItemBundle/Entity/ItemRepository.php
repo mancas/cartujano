@@ -45,7 +45,7 @@ class ItemRepository extends CustomEntityRepository
     public function findCategorySEOItemsDQL($category, $limit = null)
     {
         $qb = $this->createQueryBuilder('p');
-        $qb->select('p','i', 's', 'c');
+        $qb->select('p');
 
         $qb->leftJoin('p.images', 'i');
         $qb->leftJoin('p.subcategory', 's');
