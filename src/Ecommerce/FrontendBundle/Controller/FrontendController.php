@@ -13,7 +13,7 @@ class FrontendController extends CustomController
     {
         $em = $this->getEntityManager();
 
-        $recentItems = $em->getRepository('ItemBundle:Item')->findRecentItemsDQL(self::ITEMS_LIMIT_DQL);
+        $recentItems = $em->getRepository('ItemBundle:Item')->findRecentItemsDQL();
         $seoCategories = $em->getRepository('CategoryBundle:Category')->findSEOCategories(self::CATEGORIES_IN_INDEX);
         $indexCategories = array();
 ldd($recentItems);
