@@ -10,5 +10,5 @@
 /bin/
 /composer.phar
 /web/uploads/*
-/app/session/*
 /app/session
+/app/session/*

@@ -16,7 +16,7 @@ class FrontendController extends CustomController
         $recentItems = $em->getRepository('ItemBundle:Item')->findRecentItemsDQL(self::ITEMS_LIMIT_DQL);
         $seoCategories = $em->getRepository('CategoryBundle:Category')->findSEOCategories(self::CATEGORIES_IN_INDEX);
         $indexCategories = array();
-
+ldd($recentItems);
         foreach ($seoCategories as $seoCategory) {
             $indexCategories[$seoCategory->getName()] = $em->getRepository('ItemBundle:Item')->findCategorySEOItemsDQL($seoCategory, self::ITEMS_LIMIT_DQL);
         }
