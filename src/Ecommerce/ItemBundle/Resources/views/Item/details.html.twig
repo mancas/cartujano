@@ -75,7 +75,7 @@
         <div class="item-thumbnail">
             <a title="{{ thumb }}" href="{{ path('item_details', {'slug': thumb.slug}) }}">
                 <div class="thumbnail-img">
-                    <img src="{{ asset(thumb.imageMain.ImageThumbnail.getWebFilePath) }}">
+                    <img src="{{ asset(thumb.imageMain.ImageItemCarouselThumbnail.getWebFilePath ~ '?' ~ random()) }}">
                 </div>
                 <div class="thumb-info">
                     <span>{{ thumb.name|length > 30 ? thumb.name|slice(0, 30) ~ '...' : thumb.name  }}</span><br>
