@@ -34,7 +34,7 @@ class ItemRepository extends CustomEntityRepository
 
         $and->add($qb->expr()->isNull('p.deleted'));
 
-        $qb->where($and);
+        //$qb->where($and);
 
         if (isset($limit)) {
             $qb->setMaxResults($limit);
