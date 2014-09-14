@@ -50,6 +50,11 @@ class SubcategoryController extends CustomController
     public function deleteAction(Subcategory $subcategory)
     {
         $em = $this->getEntityManager();
+        $items = $subcategory->getItems();
+        foreach ($items as $item) {
+            $item->setSubcategory(null);
+            $em->persist($item);
+        }
         $em->remove($subcategory);
         $em->flush();
 

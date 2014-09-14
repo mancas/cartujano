@@ -28,6 +28,7 @@
     </div>
 
     {% for key, items in seoCategories %}
+        {% if items | length > 0 %}
         <div class="row mt50">
             <div class="col-md-12">
                 <div class="line-block">
@@ -38,6 +39,7 @@
                 {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
             {% endfor %}
         </div>
+        {% endif %}
     {% endfor %}
 {% endblock %}
 

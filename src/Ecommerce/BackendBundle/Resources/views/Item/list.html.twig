@@ -69,7 +69,7 @@
                             <td>{{ item.description|length > 100 ? item.description|slice(0, 100) ~ '...' : item.description }}</td>
                             <td>{{ item.price }} <i class="fa fa-euro"></i></td>
                             <td>{% if item.offer %}{{ item.offerPrice }} <i class="fa fa-euro"></i> {% else %} -- {% endif %}</td>
-                            <td>{{ item.subcategory }}</td>
+                            <td>{% if item.subcategory %}{{ item.subcategory }}{% else %} -- {% endif %}</td>
                             <td>{{ item.stock }}</td>
                             <td class="text-center">
                                 <a title="Modificar" class="btn btn-primary btn-xs" href="{{ path('admin_item_edit', { 'slug': item.slug }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>

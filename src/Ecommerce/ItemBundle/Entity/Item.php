@@ -58,7 +58,7 @@ class Item
     protected $subcategory;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, updatable=false)
+     * @Gedmo\Slug(fields={"name"}, updatable=true)
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      */
     protected $slug;
