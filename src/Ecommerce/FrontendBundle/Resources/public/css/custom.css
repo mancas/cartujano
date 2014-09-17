@@ -168,10 +168,10 @@ a {
 
 /** SLIDER **/
 .slider {
-  background: url(../img/intro_texture.png) no-repeat center center;
+  background: url(../img/clop_local.JPG) no-repeat top center;
   background-color: #e6f6fa;
   width: 100%;
-  min-height: 380px;
+  min-height: 500px;
   margin-bottom: 40px; }
 
 /** PRODUCTS **/
