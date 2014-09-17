@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class FrontendController extends CustomController
 {
-    const ITEMS_LIMIT_DQL = 6;
+    const ITEMS_LIMIT_DQL = 12;
     const CATEGORIES_IN_INDEX = 3;
 
     public function indexAction()
