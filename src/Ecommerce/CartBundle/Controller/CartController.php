@@ -86,8 +86,13 @@ class CartController extends CustomController
         $this->setCurrentCartIfNeeded();
         $cartStorageManager = $this->getCartStorageManager();
         $cart = $cartStorageManager->getCurrentCart();
+        $shipments = $this->getEntityManager()->getRepository('ItemBundle:Shipment')->findAllShipmentOptions();
+        $shipment = null;
+        if (count($shipments) > 0) {
+            $shipment = $shipments[0];
+        }
 
-        return $this->render("FrontendBundle:Pages:cart.html.twig", array('cart' => $cart));
+        return $this->render("FrontendBundle:Pages:cart.html.twig", array('cart' => $cart, 'shipment' => $shipment));
     }
 
     public function deleteItemAction($id)

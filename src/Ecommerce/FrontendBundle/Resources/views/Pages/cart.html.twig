@@ -58,7 +58,7 @@
                                     {{ 'Gastos de envío' | trans }}
                                 </td>
                                 <td>
-                                    2.99€
+                                    {% if shipment is not null %}{{ shipment.cost }} <i class="fa fa-euro"></i>{% else %}{{ '--' | trans }}{% endif %}
                                 </td>
                             </tr>
                             <tr class="no-lines">
@@ -66,7 +66,11 @@
                                     {{ 'Total' | trans }}
                                 </td>
                                 <td>
-                                    {{ cart.cartTotal }} <i class="fa fa-euro"></i>
+                                    {% if shipment is not null %}
+                                        {{ cart.cartTotal + shipment.cost }} <i class="fa fa-euro"></i>
+                                    {% else %}
+                                        {{ cart.cartTotal }} <i class="fa fa-euro"></i>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% else %}
