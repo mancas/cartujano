@@ -38,6 +38,12 @@ class Item
     protected $name;
 
     /**
+     * @ORM\Column(type="number")
+     * @Assert\NotBlank()
+     */
+    protected $reference;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $description;
@@ -46,6 +52,11 @@ class Item
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2)
      */
     protected $price;
+
+    /**
+     * @ORM\Column(name="weight", type="decimal", precision=10, scale=2)
+     */
+    protected $weight;
 
     /**
      * @ORM\Column(name="offerPrice", type="decimal", precision=10, scale=2, nullable=true)
@@ -106,6 +117,11 @@ class Item
      * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\Tax", inversedBy="items")
      */
     protected $tax;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\ItemType", inversedBy="items")
+     */
+    protected $type;
 
     public function __construct()
     {
@@ -397,5 +413,69 @@ class Item
     public function getOfferPrice()
     {
         return $this->offerPrice;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * @param mixed $reference
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param mixed $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+
+    /**
+     * @param mixed $tax
+     */
+    public function setTax($tax)
+    {
+        $this->tax = $tax;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }

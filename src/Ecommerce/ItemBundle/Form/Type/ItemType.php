@@ -15,8 +15,10 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text', array('required' => true))
+                ->add('reference', 'number', array('required' => true))
                 ->add('description', 'textarea', array('required' => true))
                 ->add('price', 'number', array('required' => true))
+                ->add('weight', 'number', array('required' => false))
                 ->add('subcategory', 'entity',
                         array(
                             'class' => 'CategoryBundle:Subcategory',
@@ -36,7 +38,16 @@ class ItemType extends AbstractType
                         'required' => false
                     )
                 )
-                ->add('stock', 'number', array('required' => false));
+                ->add('stock', 'number', array('required' => false))
+                ->add('type', 'entity',
+                    array(
+                        'class' => 'ItemBundle:ItemType',
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('it')->orderBy('it.name', 'ASC');
+                        }, 'expanded' => false,
+                        'required' => true
+                    )
+                );
     }
 
     /**

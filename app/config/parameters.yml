@@ -3,24 +3,12 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: clop
+    database_name: ecommerce
     database_user: root
-    database_password: C10PS3v1Ll4
+    database_password: root
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
     locale: en
     secret: 7a6d5e633cddaead7bd4b4e075c2818c
-    noreply_email: noreply@clop.com
-    paypal.api_name: mcragea_api1.gmail.com
-    paypal.api_key: 8N5A38NKEQX9RJ22
-    paypal.api_certificate: AfGmjxaAp1YqsYPwHJR-ySaLwGHkALlV28iXk7d776dEabOIQVDnowKn
-    paypal.environment: paypal
-    paypal.moneda: EUR
-    paypal.tipo_pago: Sale
-    paypal.envio: 1
-    paypal.version: 74.0
-    paypal.pago_tarjeta: Sole
-    paypal.locale_code: ES
-    taxes_es: 21
