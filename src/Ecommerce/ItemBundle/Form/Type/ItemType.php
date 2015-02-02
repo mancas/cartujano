@@ -39,7 +39,7 @@ class ItemType extends AbstractType
                     )
                 )
                 ->add('stock', 'number', array('required' => false))
-                ->add('type', 'entity',
+                ->add('package', 'entity',
                     array(
                         'class' => 'ItemBundle:ItemType',
                         'query_builder' => function (EntityRepository $er) {

@@ -38,7 +38,7 @@ class Item
     protected $name;
 
     /**
-     * @ORM\Column(type="number")
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
     protected $reference;
@@ -119,9 +119,9 @@ class Item
     protected $tax;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\ItemType", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\ItemPackage", inversedBy="items")
      */
-    protected $type;
+    protected $package;
 
     public function __construct()
     {
@@ -466,16 +466,16 @@ class Item
     /**
      * @return mixed
      */
-    public function getType()
+    public function getPackage()
     {
-        return $this->type;
+        return $this->package;
     }
 
     /**
-     * @param mixed $type
+     * @param mixed $package
      */
-    public function setType($type)
+    public function setPackage($package)
     {
-        $this->type = $type;
+        $this->package = $package;
     }
 }

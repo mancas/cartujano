@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @DoctrineAssert\UniqueEntity("id")
  * @UniqueEntity("id")
  */
-class ItemType
+class ItemPackage
 {
     /**
      * @ORM\Id
@@ -32,7 +32,7 @@ class ItemType
     protected $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ecommerce\ItemBundle\Entity\Item", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="Ecommerce\ItemBundle\Entity\Item", mappedBy="package")
      */
     protected $items;
 
