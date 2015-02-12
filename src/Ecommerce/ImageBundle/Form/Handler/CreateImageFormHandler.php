@@ -18,6 +18,7 @@ class CreateImageFormHandler
     public function __construct(ImageManager $imageManager, Validator $validator)
     {
         $this->imageManager = $imageManager;
+        // TODO: new custom validator
         $this->validator = $validator;
     }
 

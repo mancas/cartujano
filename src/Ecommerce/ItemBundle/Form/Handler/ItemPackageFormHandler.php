@@ -5,6 +5,7 @@ namespace Ecommerce\ItemBundle\Form\Handler;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
+use Ecommerce\ItemBundle\Entity\ItemPackage;
 
 class ItemPackageFormHandler
 {

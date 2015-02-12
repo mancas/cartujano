@@ -1,0 +1,56 @@
+{% extends "BackendBundle:Layouts:2columns.html.twig" %}
+{%  set edit = "Edición de Tipo de paquete"|trans %}
+{%  set create = "Creación de Tipo de paquete"|trans %}
+{% block title_section %}
+    {% if edition is defined %}
+        {{ edit }}
+    {% else %}
+        {{ create }}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+{% endblock %}
+
+{% block buttons_section %}
+    <div class="btn-group">
+        <a href="{{ path('admin_item_package_index') }}" title="{{"Listar tipo de paquetes" | trans}}" class="btn"><i class="fa fa-align-justify"></i></a>
+        <a href="{{ path('admin_item_package_create') }}" title="{{"Añadir tipo de paquete" | trans}}" class="btn"><i class="fa fa-plus"></i></a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon">
+                <i class="fa fa-pencil"></i>
+            </span>
+            {% if edition is defined %}
+                <h5>{{ edit }}</h5>
+            {% else %}
+                <h5>{{ create }}</h5>
+            {% endif %}
+        </div>
+        <div class="widget-content nopadding">
+            <form class="form-horizontal" role="form"
+                  action="{% if edition is defined %}{{ path('admin_item_pacakge_edit',{'slug':package.slug}) }} {% else %} {{ path('admin_item_package_create') }} {% endif %}"
+                  method="post" xmlns="http://www.w3.org/1999/html">
+
+                <div class="tab-content">
+                    <div id="product" class="tab-pane active">
+                        {% include 'BackendBundle:ItemPackage:form-item-package.html.twig' %}
+                    </div>
+                </div>
+
+                {{ form_rest(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

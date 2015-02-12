@@ -34,7 +34,7 @@
             {% endif %}
 
             <ul class="nav nav-tabs pull-right">
-                <li class="active"><a href="#product" data-toggle="tab"><i class="fa fa-puzzle-piece"></i>{{ 'Producto' | trans }}</a></li>
+                <li class="active"><a href="#product" data-toggle="tab"><i class="fa fa-cube"></i>{{ 'Producto' | trans }}</a></li>
                 {% if item is defined %}
                 <li><a href="#images" data-toggle="tab"><i class="fa fa-picture-o"></i>{{ 'Imágenes' | trans }}</a></li>
                 {% endif %}
@@ -43,7 +43,7 @@
         <div class="widget-content nopadding">
             <form class="form-horizontal" role="form"
                   action="{% if edition is defined %}{{ path('admin_item_edit',{'slug':item.slug}) }} {% else %} {{ path('admin_item_create') }} {% endif %}"
-                  method="post" {{ form_enctype(formImage) }} xmlns="http://www.w3.org/1999/html">
+                  method="post" {% if edition is defined %}{{ form_enctype(formImage) }}{% endif %} xmlns="http://www.w3.org/1999/html">
 
                 <div class="tab-content">
                     <div id="product" class="tab-pane active">

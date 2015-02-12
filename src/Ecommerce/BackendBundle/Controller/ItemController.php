@@ -72,18 +72,15 @@ class ItemController extends CustomController
     {
         $item = new Item();
         $form = $this->createForm(new ItemType(), $item);
-        $imageForm = $this->createForm(new MultipleImageType());
         $handler = $this->get('item.item_form_handler');
-        $imagesHandler = $this->get('image.form_handler');
 
         if ($handler->handle($form, $request)) {
-            $imagesHandler->handleMultiple($imageForm, $request, $item);
             $this->setTranslatedFlashMessage('Se ha creado el producto correctamente. ¡Ahora puede subir las imágenes!');
 
             return $this->redirect($this->generateUrl('admin_item_edit', array('slug' => $item->getSlug())));
         }
 
-        return $this->render('BackendBundle:Item:create.html.twig', array('form' => $form->createView(), 'formImage' => $imageForm->createView()));
+        return $this->render('BackendBundle:Item:create.html.twig', array('form' => $form->createView()));
     }
 
     /**

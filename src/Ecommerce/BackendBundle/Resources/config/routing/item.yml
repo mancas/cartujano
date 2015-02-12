@@ -21,3 +21,19 @@ admin_item_create:
 admin_item_upload_images:
     pattern: /upload-images/{id}
     defaults: { _controller: BackendBundle:Item:uploadImages }
+
+admin_item_package_index:
+    pattern: /packages
+    defaults: { _controller: BackendBundle:ItemPackage:list }
+
+admin_item_package_edit:
+    pattern: /packages/edit/{slug}
+    defaults: { _controller: BackendBundle:ItemPackage:edit }
+
+admin_item_package_delete:
+    pattern: /packages/delete/{slug}
+    defaults: { _controller: BackendBundle:ItemPackage:delete }
+
+admin_item_package_create:
+    pattern: /packages/create
+    defaults: { _controller: BackendBundle:ItemPackage:create }

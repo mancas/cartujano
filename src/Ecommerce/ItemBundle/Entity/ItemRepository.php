@@ -140,4 +140,26 @@ class ItemRepository extends CustomEntityRepository
 
         return $qb->getQuery();
     }
+
+    public function findItemsByPackageDQL($package, $limit = null)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p');
+
+        $qb->leftJoin('p.package', 'pa');
+        $qb->addOrderBy('p.updated','DESC');
+
+        $and = $qb->expr()->andx();
+
+        $and->add($qb->expr()->eq('pa.id', $package));
+        $and->add($qb->expr()->isNull('p.deleted'));
+
+        $qb->where($and);
+
+        if (isset($limit)) {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery();
+    }
 }

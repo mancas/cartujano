@@ -32,8 +32,11 @@
     <label for="item_description" class="col-sm-2 control-label">
         {{ 'Peso'|trans }}
     </label>
-    <div class="col-sm-10">
-        {{ form_widget(form.weight, { 'attr': { 'class': 'form-control'} }) }}
+    <div class="col-sm-2">
+        <div class="input-group">
+            {{ form_widget(form.weight, { 'attr': { 'class': 'form-control'} }) }}
+            <span class="input-group-addon"><b>Kg</b></span>
+        </div>
     </div>
 </div>
 

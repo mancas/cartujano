@@ -39,10 +39,10 @@
             </a>
             <ul>
                 <li class="{% if action == 'admin_item_index' or action == 'admin_item_create' or action == 'admin_item_edit' %}active open{% endif %}">
-                    <a href="{{ path('admin_item_index') }}"><i class="fa fa-puzzle-piece"></i> <span>{{ "Mis Productos"|trans }}</span></a>
+                    <a href="{{ path('admin_item_index') }}"><i class="fa fa-cube"></i> <span>{{ "Mis Productos"|trans }}</span></a>
                 </li>
-                <li class="{% if action == 'admin_item_index' or action == 'admin_item_create' or action == 'admin_item_edit' %}active open{% endif %}">
-                    <a href="{{ path('admin_item_index') }}"><i class="fa fa-archive"></i> <span>{{ "Tipos de paquete"|trans }}</span></a>
+                <li class="{% if action == 'admin_item_package_index' or action == 'admin_item_package_create' or action == 'admin_item_package_edit' %}active open{% endif %}">
+                    <a href="{{ path('admin_item_package_index') }}"><i class="fa fa-archive"></i> <span>{{ "Tipos de paquete"|trans }}</span></a>
                 </li>
             </ul>
         </li>

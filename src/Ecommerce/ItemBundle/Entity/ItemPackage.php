@@ -32,6 +32,12 @@ class ItemPackage
     protected $name;
 
     /**
+     * @Gedmo\Slug(fields={"name"}, updatable=true)
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    protected $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity="Ecommerce\ItemBundle\Entity\Item", mappedBy="package")
      */
     protected $items;
@@ -101,5 +107,26 @@ class ItemPackage
         if ($this->items->contains($item)) {
             $this->items->remove($item);
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    function __toString()
+    {
+        return ucfirst($this->name);
     }
 }
