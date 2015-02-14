@@ -9,11 +9,11 @@ class BankAccountType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('iban', 'number', array('required' => false, 'attr' => array('placeholder' => 'IBAN', 'maxLength' => 4)))
-                ->add('bankCode', 'number', array('required' => true, 'attr' => array('maxLength' => 4)))
-                ->add('branchCode', 'number', array('required' => true, 'attr' => array('maxLength' => 4)))
-                ->add('checkDigits', 'number', array('required' => true, 'attr' => array('maxLength' => 2)))
-                ->add('accountNumber', 'number', array('required' => true, 'attr' => array('maxLength' => 10)));
+        $builder->add('iban', 'text', array('required' => true, 'attr' => array('maxLength' => 4)))
+                ->add('bankCode', 'text', array('required' => true, 'attr' => array('maxLength' => 4)))
+                ->add('branchCode', 'text', array('required' => true, 'attr' => array('maxLength' => 4)))
+                ->add('checkDigits', 'text', array('required' => true, 'attr' => array('maxLength' => 2)))
+                ->add('accountNumber', 'text', array('required' => true, 'attr' => array('maxLength' => 10)));
     }
 
     public function getDefaultOptions(array $options)

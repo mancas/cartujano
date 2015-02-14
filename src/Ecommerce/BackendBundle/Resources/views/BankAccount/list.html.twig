@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block content %}
-    {% if account is defined %}
+    {% if account %}
         <div class="widget-box">
             <div class="widget-title">
             <span class="icon">
@@ -50,7 +50,7 @@
 
         <div class="alert alert-info mt">
             <strong>{{"Información!" | trans }}</strong>
-            {{"No se ha encontrado ninguna cuenta bancaria. Añade una para que los clientes puedan tener acceso a esta forma de pago." | trans }}
+            {{"No se ha encontrado ninguna cuenta bancaria. Añade una para que los clientes puedan realizar pagos mediante transferencia bancaria." | trans }}
         </div>
     {% endif %}
 {% endblock %}

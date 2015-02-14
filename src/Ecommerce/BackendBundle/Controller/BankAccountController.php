@@ -34,6 +34,8 @@ class BankAccountController extends CustomController
             $this->setTranslatedFlashMessage('Se ha añadido correctamente la cuenta bancaria');
 
             return $this->redirect($this->generateUrl('admin_bank_account_index'));
+        } else {
+            $this->setTranslatedFlashMessage('La cuenta bancaria introducida no es válida', 'error');
         }
 
         return $this->render('BackendBundle:BankAccount:create.html.twig', array('form' => $form->createView()));
@@ -51,6 +53,8 @@ class BankAccountController extends CustomController
             $this->setTranslatedFlashMessage('Se ha editado correctamente la cuenta bancaria');
 
             return $this->redirect($this->generateUrl('admin_bank_account_index'));
+        } else {
+            $this->setTranslatedFlashMessage('La cuenta bancaria introducida no es válida', 'error');
         }
 
         return $this->render('BackendBundle:BankAccount:create.html.twig', array('edition' => true, 'account' => $account, 'form' => $form->createView()));

@@ -1,7 +1,6 @@
 <?php
 namespace Ecommerce\PaymentBundle\Entity;
 
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -19,27 +18,27 @@ class BankAccount
     protected $id;
 
     /**
-     * @ORM\Column(name="iban", type="integer", nullable=true)
+     * @ORM\Column(name="iban", type="string", length=4)
      */
     private $iban;
 
     /**
-     * @ORM\Column(name="bankCode", type="integer")
+     * @ORM\Column(name="bankCode", type="string", length=4)
      */
     private $bankCode;
 
     /**
-     * @ORM\Column(name="branchCode", type="integer")
+     * @ORM\Column(name="branchCode", type="string", length=4)
      */
     private $branchCode;
 
     /**
-     * @ORM\Column(name="checkDigits", type="integer")
+     * @ORM\Column(name="checkDigits", type="string", length=2)
      */
     private $checkDigits;
 
     /**
-     * @ORM\Column(name="accountNumber", type="integer")
+     * @ORM\Column(name="accountNumber", type="string", length=10)
      */
     private $accountNumber;
 
@@ -133,20 +132,14 @@ class BankAccount
 
     function __toString()
     {
-        $ccc = $this->bankCode + ' ' + $this->branchCode + ' ' + $this->checkDigits + ' ' + $this->accountNumber;
+        $ccc = $this->bankCode . ' ' . $this->branchCode . ' ' . $this->checkDigits . ' ' . $this->accountNumber;
         if (isset($this->iban)) {
-            $ccc = $this->iban + ' ' + $ccc;
+            $ccc = $this->iban . ' ' . $ccc;
         }
         return $ccc;
     }
 
     public function getBankAccount() {
         return str_replace(' ', '', $this->__toString());
-    }
-
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('bankAccount', new NotBlank());
-        $metadata->addPropertyConstraint('name', new ContainsAlphanumeric());
     }
 }

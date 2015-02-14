@@ -3,15 +3,15 @@
         <span class="red">*</span>
         {{ 'Cuenta bancaria'|trans }}
     </label>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         {{ form_widget(form.iban, { 'attr': { 'class': 'form-control', 'placeholder': 'IBAN'} }) }}
     </div>
 
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         {{ form_widget(form.bankCode, { 'attr': { 'class': 'form-control', 'placeholder': 'Entidad'} }) }}
     </div>
 
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         {{ form_widget(form.branchCode, { 'attr': { 'class': 'form-control', 'placeholder': 'Oficina'} }) }}
     </div>
 
