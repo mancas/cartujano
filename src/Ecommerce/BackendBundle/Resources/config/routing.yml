@@ -43,10 +43,6 @@ admin_orders:
     resource: "@BackendBundle/Resources/config/routing/order.yml"
     prefix: /order/
 
-admin_manufacturers:
-    resource: "@BackendBundle/Resources/config/routing/manufacturer.yml"
-    prefix: /manufacturer/
-
 admin_shipment_options:
     resource: "@BackendBundle/Resources/config/routing/shipment.yml"
     prefix: /shipment/

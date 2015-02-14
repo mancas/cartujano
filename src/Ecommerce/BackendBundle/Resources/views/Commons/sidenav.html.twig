@@ -27,9 +27,6 @@
                 </li>
             </ul>
         </li>
-        {#<li class="{% if action == 'admin_manufacturer_index' or action == 'admin_manufacturer_create' or action == 'admin_manufacturer_edit' %}active open{% endif %}">
-            <a href="{{ path('admin_manufacturer_index') }}"><i class="fa fa-briefcase"></i> <span>{{ "Fabricantes"|trans }}</span></a>
-        </li>#}
         <li class="submenu {% if action == 'admin_item_index' or action == 'admin_item_create' or action == 'admin_item_edit' or action == 'admin_item_view'
         or action == 'admin_item_package_index' or action == 'admin_item_package_create' or action == 'admin_item_package_edit' or action == 'admin_item_package_view' %}open{% endif %}">
             <a href="#">

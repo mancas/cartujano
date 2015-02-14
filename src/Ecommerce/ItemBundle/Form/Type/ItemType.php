@@ -28,7 +28,7 @@ class ItemType extends AbstractType
                             'required' => true
                         )
                     )
-                ->add('manufacturers', 'entity',
+                /*->add('manufacturers', 'entity',
                     array(
                         'class' => 'ItemBundle:Manufacturer',
                         'query_builder' => function (EntityRepository $er) {
@@ -38,7 +38,7 @@ class ItemType extends AbstractType
                         'required' => false
                     )
                 )
-                ->add('stock', 'number', array('required' => false))
+                ->add('stock', 'number', array('required' => false))*/
                 ->add('package', 'entity',
                     array(
                         'class' => 'ItemBundle:ItemPackage',

@@ -7,7 +7,6 @@ use Ecommerce\ItemBundle\Form\Type\ShipmentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Ecommerce\FrontendBundle\Controller\CustomController;
-use Ecommerce\ItemBundle\Entity\Manufacturer;
 use Symfony\Component\HttpFoundation\Request;
 
 class ShipmentController extends CustomController

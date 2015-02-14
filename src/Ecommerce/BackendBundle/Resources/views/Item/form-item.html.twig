@@ -45,7 +45,7 @@
         <span class="red">*</span>
         {{ 'Tipo de embalaje'|trans }}
     </label>
-    <div class="col-sm-10">
+    <div class="col-sm-3">
         {{ form_widget(form.package, { 'attr': { 'class': 'form-control required'} }) }}
     </div>
 </div>
@@ -71,30 +71,6 @@
 </div>
 
 <div class="form-group">
-    <label for="item_offer" class="col-sm-2 control-label">
-    </label>
-    <div class="col-sm-10">
-        <input type="checkbox" id="item_offer" name="item_offer" {% if edition is defined and item.isOffer %}checked="checked"{% endif %}>
-        <span>{{ '¿Es una oferta?'|trans }}</span>
-    </div>
-</div>
-
-<div id="offer" class="form-group {% if edition is defined and not item.isOffer %}hidden{% endif %}">
-    <label for="item_offer_price" class="col-sm-2 control-label">
-        {{ 'Precio de oferta'|trans }}
-    </label>
-    <div class="col-sm-2">
-        <div class="input-group">
-            <input type="text" class="form-control"Ite name="item_offer_price" id="item_offer_price" value="{% if edition is defined and item.isOffer %}{{ item.offerPrice }}{% endif %}">
-            <span class="input-group-addon"><i class="fa fa-euro"></i></span>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <span id="tax-included" class="alert alert-info alert-inline">{{ 'IVA incluido' | trans }}</span>
-    </div>
-</div>
-
-<div class="form-group">
     <label for="item_category" class="col-sm-2 control-label">
         <span class="red">*</span>
         {{ 'Subcategoría'|trans }}
@@ -103,17 +79,7 @@
         {{ form_widget(form.subcategory, { 'attr': { 'class': 'form-control required'} }) }}
     </div>
 </div>
-
-<div class="form-group">
-    <label for="item_manufacturers" class="col-sm-2 control-label">
-        {{ 'Fabricantes'|trans }}
-        <a href="#" data-placement="right" class="bo-tooltip" data-toggle="tooltip" title="{{ "Fabricantes del producto"|trans }}"><span class="fa fa-question"></span></a>
-    </label>
-    <div class="col-sm-3">
-        {{ form_widget(form.manufacturers, { 'attr': { 'class': 'form-control select2'} }) }}
-    </div>
-</div>
-
+{#
 <div class="form-group">
     <label for="item_stock" class="col-sm-2 control-label">
         <span class="red">*</span>
@@ -124,7 +90,7 @@
         {{ form_widget(form.stock, { 'attr': { 'class': 'form-control required'} }) }}
     </div>
 </div>
-
+#}
 <div class="form-group">
     <div class="col-md-offset-2 col-sm-10">
         <button id="register" type="submit" class="btn btn-primary">

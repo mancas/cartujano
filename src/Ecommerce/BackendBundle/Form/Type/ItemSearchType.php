@@ -21,11 +21,11 @@ class ItemSearchType extends AbstractType
                     'required' => false
                 )
             )
-            ->add('manufacturer', 'entity',
+            ->add('package', 'entity',
                 array(
-                    'class' => 'ItemBundle:Manufacturer',
+                    'class' => 'ItemBundle:ItemPackage',
                     'query_builder' => function (EntityRepository $er) {
-                            return $er->createQueryBuilder('m')->orderBy('m.name', 'ASC');
+                            return $er->createQueryBuilder('it')->orderBy('it.name', 'ASC');
                         },
                     'expanded' => false,
                     'required' => false

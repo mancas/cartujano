@@ -98,12 +98,6 @@ class Item
     protected $deleted;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ecommerce\ItemBundle\Entity\Manufacturer", inversedBy="items")
-     * @ORM\JoinTable(name="item_manufacturer")
-     */
-    protected $manufacturers;
-
-    /**
      * @ORM\Column(type="integer")
      */
     protected $stock = 1;
@@ -126,7 +120,6 @@ class Item
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        $this->manufacturers = new ArrayCollection();
     }
 
     /**
@@ -310,36 +303,6 @@ class Item
         }
 
         return false;
-    }
-
-    /**
-     * @param mixed $manufacturers
-     */
-    public function setManufacturers($manufacturers)
-    {
-        $this->manufacturers = $manufacturers;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getManufacturers()
-    {
-        return $this->manufacturers;
-    }
-
-    public function addManufacturer(\Ecommerce\ItemBundle\Entity\Manufacturer $manufacturer)
-    {
-        if (!$this->manufacturers->contains($manufacturer)) {
-            $this->manufacturers->add($manufacturer);
-        }
-    }
-
-    public function removeManufacturer(\Ecommerce\ItemBundle\Entity\Manufacturer $manufacturer)
-    {
-        if ($this->manufacturers->contains($manufacturer)) {
-            $this->manufacturers->remove($manufacturer);
-        }
     }
 
     /**
