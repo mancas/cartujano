@@ -22,20 +22,6 @@ class ItemFormHandler
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $item = $form->getData();
-                // Uncomment to get offers
-                /*$isOffer = $request->request->get('item_offer');
-                $offerPrice = floatval($request->request->get('item_offer_price'));
-
-                if ($isOffer === 'on' && $offerPrice > 0.0) {
-                    $item->setOffer(true);
-                    $item->setOfferPrice($offerPrice);
-                } else {
-                    $item->setOffer(false);
-                    $item->setOfferPrice(null);
-                }*/
-
-                $item->setOffer(false);
-                $item->setOfferPrice(null);
 
                 $this->em->persist($item);
                 $this->em->flush();

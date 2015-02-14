@@ -30,10 +30,7 @@ class CartController extends CustomController
             if (!$quantity)
                 $quantity = 1;
 
-            if ($item->isOffer())
-                $price = $item->getOfferPrice();
-            else
-                $price = $item->getPrice();
+            $price = $item->getPrice();
 
             $path = $item->getImageMain()->getImageItemCart()->getWebFilePath();
             $path = $this->container->get('templating.helper.assets')->getUrl($path);

@@ -90,34 +90,6 @@ class ItemRepository extends CustomEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findOffersDQL($limit = null)
-    {
-        $qb = $this->createQueryBuilder('p');
-        $qb->select('p','i', 's');
-
-        $qb->leftJoin('p.images', 'i');
-        $qb->leftJoin('p.subcategory', 's');
-        $qb->addOrderBy('p.updated','DESC');
-
-        $and = $qb->expr()->andx();
-
-        $and->add($qb->expr()->isNull('p.deleted'));
-        $and->add($qb->expr()->eq('p.offer', true));
-
-        $qb->where($and);
-
-        if (isset($limit)) {
-            $qb->setMaxResults($limit);
-        }
-
-        return $qb->getQuery();
-    }
-
-    public function findOffers($limit = null)
-    {
-        return $this->findOffersDQL($limit)->getResult();
-    }
-
     public function findItemsBySubcategoryDQL($subcategory, $limit = null)
     {
         $qb = $this->createQueryBuilder('p');

@@ -59,11 +59,6 @@ class Item
     protected $weight;
 
     /**
-     * @ORM\Column(name="offerPrice", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    protected $offerPrice;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Ecommerce\CategoryBundle\Entity\Subcategory", inversedBy="items")
      */
     protected $subcategory;
@@ -101,11 +96,6 @@ class Item
      * @ORM\Column(type="integer")
      */
     protected $stock = 1;
-
-    /**
-     * @ORM\Column(name="offer", type="boolean", nullable=true, options={"default" = 0})
-     */
-    protected $offer = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\Tax", inversedBy="items")
@@ -344,38 +334,6 @@ class Item
     public function __toString()
     {
         return $this->getName();
-    }
-
-    /**
-     * @param mixed $offer
-     */
-    public function setOffer($offer)
-    {
-        $this->offer = $offer;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function isOffer()
-    {
-        return $this->offer;
-    }
-
-    /**
-     * @param mixed $offerPrice
-     */
-    public function setOfferPrice($offerPrice)
-    {
-        $this->offerPrice = $offerPrice;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOfferPrice()
-    {
-        return $this->offerPrice;
     }
 
     /**
