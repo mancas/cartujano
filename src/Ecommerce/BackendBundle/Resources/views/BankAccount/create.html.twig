@@ -1,0 +1,47 @@
+{% extends "BackendBundle:Layouts:2columns.html.twig" %}
+{%  set edit = "Edición de la cuenta bancaria"|trans %}
+{%  set create = "Creación de nueva cuenta bancaria"|trans %}
+{% block title_section %}
+    {% if edition is defined %}
+        {{ edit }}
+    {% else %}
+        {{ create }}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+{% endblock %}
+
+{% block buttons_section %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon">
+                <i class="fa fa-pencil"></i>
+            </span>
+            {% if edition is defined %}
+                <h5>{{ edit }}</h5>
+            {% else %}
+                <h5>{{ create }}</h5>
+            {% endif %}
+        </div>
+        <div class="widget-content nopadding">
+            <form class="form-horizontal" role="form"
+                  action="{% if edition is defined %}{{ path('admin_bank_account_edit',{'id':account.id}) }} {% else %} {{ path('admin_bank_account_create') }} {% endif %}"
+                  method="post" xmlns="http://www.w3.org/1999/html">
+                {% include 'BackendBundle:BankAccount:form-bank-account.html.twig' %}
+                {{ form_rest(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

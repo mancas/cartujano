@@ -1,6 +1,7 @@
 parameters:
     payment.databillingformhandler.class: Ecommerce\PaymentBundle\Form\Handler\DataBillingFormHandler
     payment.databillingmanager.class: Ecommerce\PaymentBundle\Form\Handler\DataBillingManager
+    payment.bankaccountformhandler.class: Ecommerce\PaymentBundle\Form\Handler\BankAccountFormHandler
 
 services:
     payment.databilling_manager:
@@ -9,3 +10,6 @@ services:
     payment.databilling_form_handler:
         class: %payment.databillingformhandler.class%
         arguments: [@payment.databilling_manager, @doctrine.orm.entity_manager]
+    payment.bankaccount_form_handler:
+        class: %payment.bankaccountformhandler.class%
+        arguments: [@doctrine.orm.entity_manager, @validator]

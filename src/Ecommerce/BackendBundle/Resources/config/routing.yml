@@ -58,3 +58,7 @@ admin_recent_orders:
 admin_billing_settings_index:
     pattern: /data-billing
     defaults: { _controller: BackendBundle:DataBilling:index }
+
+admin_bank_account:
+    resource: "@BackendBundle/Resources/config/routing/bankaccount.yml"
+    prefix: /bank-account/

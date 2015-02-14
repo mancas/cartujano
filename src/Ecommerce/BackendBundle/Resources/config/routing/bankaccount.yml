@@ -1,0 +1,11 @@
+admin_bank_account_index:
+    pattern: /
+    defaults: { _controller: BackendBundle:BankAccount:list }
+
+admin_bank_account_edit:
+    pattern: /edit/{id}
+    defaults: { _controller: BackendBundle:BankAccount:edit }
+
+admin_bank_account_create:
+    pattern: /create
+    defaults: { _controller: BackendBundle:BankAccount:create }
