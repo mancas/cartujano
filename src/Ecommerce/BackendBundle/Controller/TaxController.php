@@ -63,7 +63,7 @@ class TaxController extends CustomController
     public function deleteAction(Tax $tax)
     {
         $em = $this->getEntityManager();
-        $items = $em->getRepository('ItemBundle:Item')->findBy(array('tax_id' => $tax->getId()));
+        $items = $em->getRepository('ItemBundle:Item')->findBy(array('tax' => $tax->getId()));
         foreach ($items as $item) {
             $item->setTax(null);
             $em->persist($item);

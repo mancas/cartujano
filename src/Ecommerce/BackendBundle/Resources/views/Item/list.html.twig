@@ -56,6 +56,8 @@
                         <th>{{ "Nombre"|trans }}</th>
                         <th>{{ "Descripción"|trans }}</th>
                         <th>{{ "Precio"|trans }}</th>
+                        <th>{{ "Impuesto"|trans }}</th>
+                        <th>{{ "Precio con impuestos"|trans }}</th>
                         <th>{{ "Categoría"|trans }}</th>
                         <th>{{ "Stock"|trans }}</th>
                         <th>{{ "Acciones"|trans }}</th>
@@ -67,6 +69,8 @@
                             <td><a title="Modificar" href="{{ path('admin_item_edit', { 'slug': item.slug }) }}">{{ item.name }}</a></td>
                             <td>{{ item.description|length > 100 ? item.description|slice(0, 100) ~ '...' : item.description }}</td>
                             <td>{{ item.price }} <i class="fa fa-euro"></i></td>
+                            <td>{% if item.tax %}{{ item.tax }} -- {{ item.tax.taxes }} %{% else %} -- {% endif %}</td>
+                            <td>{% if item.tax %}{{ item.tax.getTaxedPrice(item.price) }} <i class="fa fa-euro"></i>{% else %} -- {% endif %}</td>
                             <td>{% if item.subcategory %}{{ item.subcategory }}{% else %} -- {% endif %}</td>
                             <td>{{ item.stock }}</td>
                             <td class="text-center">

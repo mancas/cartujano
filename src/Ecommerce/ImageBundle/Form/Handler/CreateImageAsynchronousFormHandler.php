@@ -8,9 +8,9 @@ use Ecommerce\ImageBundle\Form\Handler\ImageManager;
 use Ecommerce\ImageBundle\Entity\Image;
 use Ecommerce\ItemBundle\Entity\Item;
 use Ecommerce\ImageBundle\Entity\ImageItem;
-use Symfony\Component\Validator\Validator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 class CreateImageAsynchronousFormHandler
 {
@@ -18,7 +18,7 @@ class CreateImageAsynchronousFormHandler
     private $validator;
     private $container;
 
-    public function __construct(ImageManager $imageManager, Validator $validator, ContainerInterface $container)
+    public function __construct(ImageManager $imageManager, RecursiveValidator $validator, ContainerInterface $container)
     {
         $this->imageManager = $imageManager;
         $this->validator = $validator;

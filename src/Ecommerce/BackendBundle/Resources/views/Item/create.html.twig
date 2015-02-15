@@ -160,33 +160,36 @@
                 this.infoElement = document.getElementById('tax-price');
                 this.taxElement = document.getElementById('item_tax');
                 this.addEventListeners();
+                this.updatePrice();
             },
 
             addEventListeners: function taxPrice_addEventListeners() {
-                this.itemPriceElement.addEventListener('keyup', function(evt) {
-                    var price = parseFloat(evt.target.value);
-                    var tax = this.taxElement.options[this.taxElement.selectedIndex].textContent;
+                this.itemPriceElement.addEventListener('keyup', this.updatePrice.bind(this));
+                this.taxElement.addEventListener('change', this.updatePrice.bind(this));
+            },
 
-                    var calculateTaxedPrice = function() {
-                        if (isNaN(price) || !this.taxValues[tax]) {
-                            this.infoElement.textContent = this.taxNotIncluded;
-                        } else {
-                            var taxValue = parseInt(this.taxValues[tax]) /100;
-                            console.info(taxValue);
-                            this.infoElement.innerHTML = (price + (price * taxValue)).toFixed(2) + '<i class="fa fa-euro"></i> ' + this.taxIncluded;
-                        }
-                    }.bind(this);
+            updatePrice: function taxPrice_updatePrice(evt) {
+                var price = parseFloat(this.itemPriceElement.value);
+                var tax = this.taxElement.options[this.taxElement.selectedIndex].textContent;
 
-                    if (!this.taxValues) {
-                        var self = this;
-                        Utilities.getJSON('{{ path('admin_tax_values_json') }}').then(function(json) {
-                            self.taxValues = json;
-                            calculateTaxedPrice();
-                        });
+                var calculateTaxedPrice = function() {
+                    if (isNaN(price) || !this.taxValues[tax]) {
+                        this.infoElement.textContent = this.taxNotIncluded;
                     } else {
-                        calculateTaxedPrice();
+                        var taxValue = parseInt(this.taxValues[tax]) /100;
+                        this.infoElement.innerHTML = (price + (price * taxValue)).toFixed(2) + '<i class="fa fa-euro"></i> ' + this.taxIncluded;
                     }
-                }.bind(this))
+                }.bind(this);
+
+                if (!this.taxValues) {
+                    var self = this;
+                    Utilities.getJSON('{{ path('admin_tax_values_json') }}').then(function(json) {
+                        self.taxValues = json;
+                        calculateTaxedPrice();
+                    });
+                } else {
+                    calculateTaxedPrice();
+                }
             }
         };
 

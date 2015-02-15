@@ -54,7 +54,7 @@ class Item
     protected $price;
 
     /**
-     * @ORM\Column(name="weight", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="weight", type="decimal", precision=10, scale=2, nullable=true)
      */
     protected $weight;
 

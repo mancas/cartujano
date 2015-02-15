@@ -8,14 +8,14 @@ use Ecommerce\ImageBundle\Form\Handler\ImageManager;
 use Ecommerce\ImageBundle\Entity\Image;
 use Ecommerce\ItemBundle\Entity\Item;
 use Ecommerce\ImageBundle\Entity\ImageItem;
-use Symfony\Component\Validator\Validator;
+use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 class CreateImageFormHandler
 {
     private $imageManager;
     private $validator;
 
-    public function __construct(ImageManager $imageManager, Validator $validator)
+    public function __construct(ImageManager $imageManager, RecursiveValidator $validator)
     {
         $this->imageManager = $imageManager;
         // TODO: new custom validator
