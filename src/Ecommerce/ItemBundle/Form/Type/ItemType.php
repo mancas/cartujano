@@ -38,6 +38,15 @@ class ItemType extends AbstractType
                         }, 'expanded' => false,
                         'required' => true
                     )
+                )
+                ->add('tax', 'entity',
+                    array(
+                        'class' => 'ItemBundle:Tax',
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('t')->orderBy('t.name', 'ASC');
+                        }, 'expanded' => false,
+                        'required' => true
+                    )
                 );
     }
 

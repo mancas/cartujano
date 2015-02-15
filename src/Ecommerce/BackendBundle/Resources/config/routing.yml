@@ -62,3 +62,7 @@ admin_billing_settings_index:
 admin_bank_account:
     resource: "@BackendBundle/Resources/config/routing/bankaccount.yml"
     prefix: /bank-account/
+
+admin_tax_account:
+    resource: "@BackendBundle/Resources/config/routing/tax.yml"
+    prefix: /taxes/

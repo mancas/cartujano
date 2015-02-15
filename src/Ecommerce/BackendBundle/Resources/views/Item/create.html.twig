@@ -110,9 +110,6 @@
 
     <script>
         $(document).ready(function() {
-            var taxNotIncluded = '{{ 'IVA no incluido' | trans }}';
-            var taxIncluded = '{{ 'IVA incluido' | trans }}';
-
             $('body').delegate('.upload-image', 'click', function (event) {
                 event.preventDefault();
                 $('input[type=file]').click();
@@ -148,19 +145,51 @@
             });
 
             $('.select2').select2();
-
-            $('#item_price').on('keyup', function(evt) {
-                var price = parseFloat($(this).val());
-                var tax = 0.21;
-                var info_element = $('#tax-price');
-
-                if (isNaN(price)) {
-                    info_element.text(taxNotIncluded);
-                } else {
-                    info_element.html((price + (price * tax)).toFixed(2) + '<i class="fa fa-euro"></i> ' + taxIncluded);
-                }
-            });
-
         });
+
+        var TaxPrice = {
+            infoElement: null,
+            taxElement: null,
+            itemPriceElement: null,
+            taxNotIncluded: '{{ 'Impuesto no incluido' | trans }}',
+            taxIncluded: '{{ 'Impuesto incluido' | trans }}',
+            taxValues: null,
+
+            init: function taxPrice_init() {
+                this.itemPriceElement = document.getElementById('item_price');
+                this.infoElement = document.getElementById('tax-price');
+                this.taxElement = document.getElementById('item_tax');
+                this.addEventListeners();
+            },
+
+            addEventListeners: function taxPrice_addEventListeners() {
+                this.itemPriceElement.addEventListener('keyup', function(evt) {
+                    var price = parseFloat(evt.target.value);
+                    var tax = this.taxElement.options[this.taxElement.selectedIndex].textContent;
+
+                    var calculateTaxedPrice = function() {
+                        if (isNaN(price) || !this.taxValues[tax]) {
+                            this.infoElement.textContent = this.taxNotIncluded;
+                        } else {
+                            var taxValue = parseInt(this.taxValues[tax]) /100;
+                            console.info(taxValue);
+                            this.infoElement.innerHTML = (price + (price * taxValue)).toFixed(2) + '<i class="fa fa-euro"></i> ' + this.taxIncluded;
+                        }
+                    }.bind(this);
+
+                    if (!this.taxValues) {
+                        var self = this;
+                        Utilities.getJSON('{{ path('admin_tax_values_json') }}').then(function(json) {
+                            self.taxValues = json;
+                            calculateTaxedPrice();
+                        });
+                    } else {
+                        calculateTaxedPrice();
+                    }
+                }.bind(this))
+            }
+        };
+
+        TaxPrice.init();
     </script>
 {% endblock %}

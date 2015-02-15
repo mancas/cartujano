@@ -1,0 +1,19 @@
+admin_tax_index:
+    pattern: /
+    defaults: { _controller: BackendBundle:Tax:list }
+
+admin_tax_edit:
+    pattern: /edit/{slug}
+    defaults: { _controller: BackendBundle:Tax:edit }
+
+admin_tax_delete:
+    pattern: /delete/{slug}
+    defaults: { _controller: BackendBundle:Tax:delete }
+
+admin_tax_create:
+    pattern: /create
+    defaults: { _controller: BackendBundle:Tax:create }
+
+admin_tax_values_json:
+    pattern: /taxes-values-json
+    defaults: { _controller: BackendBundle:Tax:getTaxesJSON }

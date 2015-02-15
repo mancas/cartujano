@@ -67,6 +67,9 @@
         <li class="{% if action == 'admin_bank_account_index' or action == 'admin_bank_account_create' or action == 'admin_bank_account_edit' %}active open{% endif %}">
             <a href="{{ path('admin_bank_account_index') }}"><i class="fa fa-cc"></i> <span>{{ "Cuenta bancaria"|trans }}</span></a>
         </li>
+        <li class="{% if action == 'admin_tax_index' or action == 'admin_tax_create' or action == 'admin_tax_edit' %}active open{% endif %}">
+            <a href="{{ path('admin_tax_index') }}"><i class="fa fa-gavel"></i> <span>{{ "Impuestos"|trans }}</span></a>
+        </li>
         {#<li class="{% if action == 'admin_billing_settings_index' %}active open{% endif %}">
             <a href="{{ path('admin_billing_settings_index') }}"><i class="fa fa-cogs"></i> <span>{{ "Datos de facturación"|trans }}</span></a>
         </li>#}

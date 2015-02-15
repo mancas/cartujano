@@ -2,6 +2,7 @@ parameters:
     item.item_form_handler.class: Ecommerce\ItemBundle\Form\Handler\ItemFormHandler
     item.item_package_form_handler.class: Ecommerce\ItemBundle\Form\Handler\ItemPackageFormHandler
     shipment.shipment_form_handler.class: Ecommerce\ItemBundle\Form\Handler\ShipmentFormHandler
+    tax.tax_form_handler.class: Ecommerce\ItemBundle\Form\Handler\TaxFormHandler
 
 services:
     item.item_form_handler:
@@ -12,4 +13,7 @@ services:
         arguments: [@doctrine.orm.entity_manager]
     shipment.shipment_form_handler:
         class: %shipment.shipment_form_handler.class%
+        arguments: [@doctrine.orm.entity_manager]
+    tax.tax_form_handler:
+        class: %tax.tax_form_handler.class%
         arguments: [@doctrine.orm.entity_manager]

@@ -1,0 +1,64 @@
+{% extends "BackendBundle:Layouts:2columns.html.twig" %}
+
+{% block title_section %}
+    {{ "Listado de impuestos aplicables" | trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <a href="{{ path('admin_tax_create') }}" class="btn btn-success">
+            <i class="fa fa-plus"></i> {{ "Añadir impuesto" | trans }}
+        </a>
+    </div>
+    {% if taxes | length > 0 %}
+        <div class="widget-box">
+            <div class="widget-title">
+            <span class="icon">
+                <i class="fa fa-th"></i>
+            </span>
+                <h5>{{ "Impuestos"|trans }}</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>{{ "Nombre"|trans }}</th>
+                        <th>{{ "Impuesto"|trans }}</th>
+                        <th>{{ "Acciones"|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tax in taxes %}
+                        <tr>
+                            <td>{{ tax }}</td>
+                            <td>{{ tax.taxes }} %</td>
+                            <td class="text-center">
+                                <a title="{{ 'Editar impuesto' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_tax_edit', {'slug': tax.slug}) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
+                                <a title="{{ 'Eliminar impuesto' | trans }}" class="delete btn btn-danger btn-xs" href="{{ path('admin_tax_delete', {'slug': tax.slug}) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="alert alert-info mt">
+            <strong>{{"Información!" | trans }}</strong>
+            {{"No se ha encontrado ningún registro." | trans }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

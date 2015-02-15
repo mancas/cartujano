@@ -29,7 +29,13 @@ class Tax
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
-    protected $type;
+    protected $name;
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, updatable=true)
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     */
+    protected $slug;
 
     /**
      * @ORM\Column(type="integer")
@@ -105,23 +111,39 @@ class Tax
      */
     public function getTaxes()
     {
-        return $this->taxes/100;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
+        return $this->taxes;
     }
 
     /**
      * @return mixed
      */
-    public function getType()
+    public function getName()
     {
-        return $this->type;
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     /**
@@ -162,4 +184,10 @@ class Tax
     {
         return $this->items;
     }
+
+    function __toString()
+    {
+        return $this->name;
+    }
+
 }
