@@ -17,63 +17,20 @@ class OrderController extends CustomController
         $user = $this->getCurrentUser();
         $cartStorageManager = $this->getCartStorageManager();
         $cart = $cartStorageManager->getCurrentCart();
-        $deliveryCost = Order::DELIVERY_COST;
-        $deliveryHome = Order::DELIVERY_HOME;
-        $takeInPlace = Order::TAKE_IN_PLACE;
 
         $shipmentOptions = $em->getRepository('ItemBundle:Shipment')->findAllShipmentOptions();
 
         if ($request->isMethod('POST')) {
-            $data = $request->request;
-            $address = null;
-            if ($request->get('delivery_options') == $deliveryHome) {
-                $address = $em->getRepository('LocationBundle:Address')->findOneById($data->get('delivery_address'));
-                $shipmentOption = $em->getRepository('ItemBundle:Shipment')->findOneById($data->get('shipment_option'));
-            } else {
-                $shipmentOption = $em->getRepository('ItemBundle:Shipment')->findNotShipment();
-                $shipmentOption = $shipmentOption[0];
+            $handler = $this->get('order.new_order_form_handler');
+            $handleResult = $handler->handle($user, $cart, $request);
+            if ($handleResult['result']) {
+                // TODO: paypal or transference
+                return $this->redirect($this->generateUrl('pay_paypal', array('id' => $handleResult['order'])));
             }
-
-            $order = new Order();
-            $order->setAddress($address);
-            $order->setShipment($shipmentOption);
-            $shipmentOption->addOrder($order);
-            if ($data->get('present'))
-                $order->setIsPresent(true);
-
-            $cartItems = $cart->getCartItems();
-
-            foreach ($cartItems as $cartItem) {
-                $item = $em->getRepository('ItemBundle:Item')->findOneBy(array('id' => $cartItem->getId()));
-                $orderItem = new OrderItem();
-                $orderItem->setItem($item);
-                $orderItem->setOrder($order);
-                $orderItem->setQuantity($cartItem->getQuantity());
-                $orderItem->setPrice($item->getPrice());
-                $order->addItem($orderItem);
-                $item->setStock($item->getStock() - $cartItem->getQuantity());
-                $em->persist($orderItem);
-                $em->persist($item);
-            }
-
-            $order->setCustomer($user);
-            $order->setDate(new \DateTime('now'));
-            $order->setStatus(Order::STATUS_IN_PROCESS);
-
-            $em->persist($order);
-            $em->flush();
-
-            $cartEvent = new CartEvent($this->getCartStorageManager()->getCurrentCart());
-            $dispatcher = $this->get('event_dispatcher');
-            $dispatcher->dispatch(CartEvents::CLEAR_CART, $cartEvent);
-
-            return $this->redirect($this->generateUrl('pay_paypal', array('id' => $order->getId())));
+            $this->setTranslatedFlashMessage('Por favor, revisa la información introducida y asegurate de seleccionar una forma de pago y una dirección de envío.', 'error');
         }
         return $this->render('OrderBundle:Order:new-order.html.twig', array('cart' => $cart,
                                                                             'user' => $user,
-                                                                            'delivery_cost' => $deliveryCost,
-                                                                            'take_in_place' => $takeInPlace,
-                                                                            'delivery_home' => $deliveryHome,
                                                                             'shipmentOptions' => $shipmentOptions));
     }
 }

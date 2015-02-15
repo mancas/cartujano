@@ -32,3 +32,34 @@ $(document).ready(function() {
         $('.upload-image').find('i').addClass('hidden');//icon plus
     })
 });
+
+var Utilities = {
+    /**
+     * Retrieves content of JSON file.
+     *
+     * @param {String} file Path to JSON file
+     * @return {Promise} A promise that resolves to the JSON content
+     * or null in case of invalid path. Rejects if an error occurs.
+     */
+    getJSON: function(file) {
+        return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', file, true);
+            xhr.responseType = 'json';
+
+            xhr.onerror = function(error) {
+                reject(error);
+            };
+            xhr.onload = function() {
+                if (xhr.response !== null) {
+                    resolve(xhr.response);
+                } else {
+                    reject(new Error('No valid JSON object was found (' +
+                    xhr.status + ' ' + xhr.statusText + ')'));
+                }
+            };
+
+            xhr.send();
+        });
+    }
+};

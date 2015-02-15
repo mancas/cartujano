@@ -9,3 +9,11 @@ admin_bank_account_edit:
 admin_bank_account_create:
     pattern: /create
     defaults: { _controller: BackendBundle:BankAccount:create }
+
+admin_bank_account_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: BackendBundle:BankAccount:delete }
+
+admin_bank_account_bank_codes_json:
+    pattern: /bank-codes-json
+    defaults: { _controller: BackendBundle:BankAccount:getBankCodesJSON }

@@ -43,6 +43,11 @@ class BankAccount
     private $accountNumber;
 
     /**
+     * @ORM\Column(name="bankName", type="string", nullable=true)
+     */
+    private $bankName;
+
+    /**
      * @return mixed
      */
     public function getIban()
@@ -137,6 +142,22 @@ class BankAccount
             $ccc = $this->iban . ' ' . $ccc;
         }
         return $ccc;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBankName()
+    {
+        return $this->bankName;
+    }
+
+    /**
+     * @param mixed $bankName
+     */
+    public function setBankName($bankName)
+    {
+        $this->bankName = $bankName;
     }
 
     public function getBankAccount() {

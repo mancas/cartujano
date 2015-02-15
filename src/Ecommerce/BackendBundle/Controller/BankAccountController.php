@@ -35,7 +35,8 @@ class BankAccountController extends CustomController
 
             return $this->redirect($this->generateUrl('admin_bank_account_index'));
         } else {
-            $this->setTranslatedFlashMessage('La cuenta bancaria introducida no es válida', 'error');
+            if ($request->isMethod('POST'))
+                $this->setTranslatedFlashMessage('La cuenta bancaria introducida no es válida', 'error');
         }
 
         return $this->render('BackendBundle:BankAccount:create.html.twig', array('form' => $form->createView()));
@@ -54,7 +55,8 @@ class BankAccountController extends CustomController
 
             return $this->redirect($this->generateUrl('admin_bank_account_index'));
         } else {
-            $this->setTranslatedFlashMessage('La cuenta bancaria introducida no es válida', 'error');
+            if ($request->isMethod('POST'))
+                $this->setTranslatedFlashMessage('La cuenta bancaria introducida no es válida', 'error');
         }
 
         return $this->render('BackendBundle:BankAccount:create.html.twig', array('edition' => true, 'account' => $account, 'form' => $form->createView()));
@@ -66,11 +68,21 @@ class BankAccountController extends CustomController
     public function deleteAction(BankAccount $account)
     {
         $em = $this->getEntityManager();
-        $em->delete($account);
+        $em->remove($account);
         $em->flush();
         $this->setTranslatedFlashMessage('Se ha eliminado la cuenta bancaria. Recuerda que tus clientes no podrán utilizar la transferencia bancaria como método de pago.');
 
         return $this->redirect($this->generateUrl('admin_bank_account_index'));
+    }
+
+    public function getBankCodesJSONAction()
+    {
+        $kernel = $this->container->get('kernel');
+        $path = $kernel->locateResource('@PaymentBundle/Resources/bank_codes.json');
+
+        $jsonResponse = json_encode(file_get_contents($path));
+
+        return $this->getHttpJsonResponse($jsonResponse);
     }
 
 }

@@ -44,4 +44,20 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('bundles/backend/js/util.js') }}"></script>
+    <script>
+        var bankCodeElement = document.getElementById('bankAccount_bankCode');
+        bankCodeElement.addEventListener('blur', function(evt) {
+            var code = evt.target.value;
+            Utilities.getJSON('{{ path('admin_bank_account_bank_codes_json') }}').then(function (json) {
+                var bankCodes = JSON.parse(json);
+                if (bankCodes[code]) {
+                    var container = document.getElementById('bankName');
+                    var formInput = document.getElementById('bankAccount_bank_name');
+                    container.textContent = bankCodes[code];
+                    formInput.value = bankCodes[code];
+                }
+            });
+        });
+    </script>
 {% endblock %}

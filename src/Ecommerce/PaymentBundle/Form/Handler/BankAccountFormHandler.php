@@ -27,6 +27,8 @@ class BankAccountFormHandler
 
             if ($form->isValid()) {
                 $bankAccount = $form->getData();
+                $bankName = $request->request->get('bankAccount_bankName');
+                $bankAccount->setBankName($bankName);
                 $errorList = $this->validator->validateValue($bankAccount->getBankAccount(), $ibanConstraint);
                 if (count($errorList) === 0) {
                     $this->em->persist($bankAccount);

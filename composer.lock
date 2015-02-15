@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "928847d7fe4f464e7e8a89d9369162ff",
+    "hash": "9f24373f7ae67109a47997cec976141c",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -790,12 +790,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "acbf585de09e1ec44b3e362291b9db4eb6cfca6c"
+                "reference": "61a13a7d5febaae676519c595b6caeda1e23ff4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/acbf585de09e1ec44b3e362291b9db4eb6cfca6c",
-                "reference": "acbf585de09e1ec44b3e362291b9db4eb6cfca6c",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/61a13a7d5febaae676519c595b6caeda1e23ff4c",
+                "reference": "61a13a7d5febaae676519c595b6caeda1e23ff4c",
                 "shasum": ""
             },
             "require": {
@@ -860,7 +860,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-01-29 15:01:49"
+            "time": "2015-02-10 16:59:37"
         },
         {
             "name": "ideup/simple-paginator-bundle",
@@ -1635,17 +1635,17 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd"
+                "reference": "4b09746520a826a7bf34a466ba31c7d8740fef7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/9e23fc3de265ae013690d84aab98e7a84f46edcd",
-                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/4b09746520a826a7bf34a466ba31c7d8740fef7e",
+                "reference": "4b09746520a826a7bf34a466ba31c7d8740fef7e",
                 "shasum": ""
             },
             "require": {
@@ -1679,7 +1679,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2015-01-13 07:33:46"
+            "time": "2015-02-11 07:21:23"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -1858,6 +1858,53 @@
                 "minification"
             ],
             "time": "2015-01-27 12:45:16"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Finder",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Finder.git",
+                "reference": "1484169590582e2da76ab2b97a973b4212b2052e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/1484169590582e2da76ab2b97a973b4212b2052e",
+                "reference": "1484169590582e2da76ab2b97a973b4212b2052e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Finder\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-02-12 08:47:54"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2208,7 +2255,8 @@
         "stof/doctrine-extensions-bundle": 20,
         "gedmo/doctrine-extensions": 20,
         "beberlei/doctrineextensions": 20,
-        "ideup/simple-paginator-bundle": 20
+        "ideup/simple-paginator-bundle": 20,
+        "symfony/finder": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -1,5 +1,6 @@
 parameters:
     order.order_event_listener.class: Ecommerce\OrderBundle\EventListener\OrderEventListener
+    order.new_order_form_handler.class: Ecommerce\OrderBundle\Form\Handler\NewOrderFormHandler
 
 services:
     order.order_event_listener:
@@ -7,3 +8,6 @@ services:
         arguments: [@mailer, @templating, @router, %noreply_email%]
         tags:
             - { name: kernel.event_subscriber }
+    order.new_order_form_handler:
+        class: %order.new_order_form_handler.class%
+        arguments: [@doctrine.orm.entity_manager]

@@ -31,9 +31,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ account }}</td>
+                            <td><b>{{ account.bankName }}</b> -- {{ account }}</td>
                             <td class="text-center">
                                 <a title="{{ 'Editar cuenta bancaria' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_bank_account_edit', {'id': account.id}) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
+                                <a title="{{ 'Eliminar cuenta bancaria' | trans }}" class="delete btn btn-danger btn-xs" href="{{ path('admin_bank_account_delete', {'id': account.id}) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
                             </td>
                         </tr>
                     </tbody>
