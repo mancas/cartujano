@@ -1,7 +1,7 @@
 {% extends 'FrontendBundle::base.html.twig' %}
 
 {% block header %}
-    {% include 'FrontendBundle:Commons:nav-top.html.twig' %}
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -15,16 +15,16 @@
         {% endblock %}
 
         <div class="row">
-            <div class="col-md-3">
-                {% block sidebar %}{% endblock %}
-            </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 {% block content %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+                {% block sidebar %}{% endblock %}
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block footer %}
-    {% include 'FrontendBundle:Commons:footer.html.twig' %}
+    {{ parent() }}
 {% endblock %}

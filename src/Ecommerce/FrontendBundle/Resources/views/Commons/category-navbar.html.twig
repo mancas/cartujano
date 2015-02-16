@@ -1,20 +1,23 @@
-<div class="container">
+<div class="container category-nav-container">
     <div class="row">
         <div class="col-md-12">
+            <div class="red-box">
+                <span>{{ 'Vea nuestro' | trans }} <b>{{ 'Catálogo' | trans }}</b> {{ 'de productos' | trans }}</span>
+            </div>
             <ul id="categories" class="nav nav-tabs clearfix">
-                <li class="home">
-                    <a title="{{ 'Inicio' | trans }}" href="{{ path('frontend_homepage') }}"><i class="fa fa-home"></i></a>
-                </li>
                 {% for category in categories %}
-                    <li>
-                        <a class="dropdown-toggle" title="{{ 'Ver categoría' | trans }} {{ category }}" href="">{{ category }}</a>
+                    <li data-slug="{{ category.slug }}">
+                        <a class="dropdown-toggle" title="{{ 'Ver categoría' | trans }} {{ category }}" href="">
+                            <img id="{{ category.slug }}" src="{{ asset('bundles/frontend/img/' ~ category.slug ~ '.png') }}" alt="{{ category.slug }}">
+                            {{ category }}
+                        </a>
                         <div class="sub-menu dropdown-menu">
                             <div class="sub-menu-items">
                                 <ul class="list-unstyled subcategories-list">
                                     {% for subcategory in category.subcategories %}
-                                        {% if subcategory.items | length > 0 %}
-                                        <li><i class="fa fa-angle-right"></i><a title="{{ subcategory }}" href="{{ path('view_subcategory', {'slug' : subcategory.slug}) }}">{{ subcategory }}</a></li>
-                                        {% endif %}
+                                        {#{% if subcategory.items | length > 0 %}#}
+                                        <li><a title="{{ subcategory }}" href="{{ path('view_subcategory', {'slug' : subcategory.slug}) }}">{{ subcategory }}</a></li>
+                                        {#{% endif %}#}
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -24,4 +27,6 @@
             </ul>
         </div><!-- .col-md-12 -->
     </div>
+
+    <div class="separator"></div>
 </div>

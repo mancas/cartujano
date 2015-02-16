@@ -1,8 +1,7 @@
 {% extends 'FrontendBundle::base.html.twig' %}
 
 {% block header %}
-    {% include 'FrontendBundle:Commons:nav-top.html.twig' %}
-    {% include 'CartBundle:Commons:cart-alert.html.twig' %}
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -28,5 +27,5 @@
 {% endblock %}
 
 {% block footer %}
-    {% include 'FrontendBundle:Commons:footer.html.twig' %}
+    {{ parent() }}
 {% endblock %}

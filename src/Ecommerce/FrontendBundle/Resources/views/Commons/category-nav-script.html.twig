@@ -1,0 +1,56 @@
+<script>
+    var CategoryNavbar = {
+        hoverImages: [],
+        originalImages: [],
+        init: function init() {
+            var navElements = document.querySelectorAll('#categories li > a.dropdown-toggle');
+            Array.prototype.forEach.call(navElements, function(elem) {
+                var img = elem.querySelector('img');
+                var src = img.src;
+                this.originalImages[img.id] = src;
+                var split = src.split('.');
+                this.hoverImages[img.id] = split[0] + '-hover.' + split[1];
+
+                var li = elem.parentNode;
+                var dropdownMenuElement = li.querySelector('.dropdown-menu');
+
+                elem.addEventListener('mouseenter', this.onMouseEnterHandler.bind(this));
+                elem.addEventListener('mouseleave', this.onMouseLeaveHandler.bind(this));
+                dropdownMenuElement.addEventListener('mouseenter', this.onMouseEnterHandler.bind(this));
+                dropdownMenuElement.addEventListener('mouseleave', this.onMouseLeaveHandler.bind(this));
+            }.bind(this));
+        },
+        onMouseEnterHandler: function (evt) {
+            if (evt.target) {
+                var img;
+                switch (evt.target.tagName) {
+                    case 'A':
+                        img = evt.target.querySelector('img');
+                        break;
+                    case 'DIV':
+                        var parent = evt.target.parentNode;
+                        img = parent.querySelector('#categories li > a > img');
+                        break;
+                }
+                img.src = this.hoverImages[img.id];
+            }
+        },
+        onMouseLeaveHandler: function(evt) {
+            if (evt.target) {
+                var img;
+                switch (evt.target.tagName) {
+                    case 'A':
+                        img = evt.target.querySelector('img');
+                        break;
+                    case 'DIV':
+                        var parent = evt.target.parentNode;
+                        img = parent.querySelector('#categories li > a > img');
+                        break;
+                }
+                img.src = this.originalImages[img.id];
+            }
+        }
+    };
+
+    CategoryNavbar.init();
+</script>

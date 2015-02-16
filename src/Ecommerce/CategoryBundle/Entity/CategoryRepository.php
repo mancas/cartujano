@@ -18,7 +18,7 @@ class CategoryRepository extends CustomEntityRepository
         $qb->select('c','s');
 
         $qb->leftJoin('c.subcategories', 's');
-        $qb->addOrderBy('c.name','ASC');
+        $qb->addOrderBy('c.id','ASC');
 
         if (isset($limit)) {
             $qb->setMaxResults($limit);

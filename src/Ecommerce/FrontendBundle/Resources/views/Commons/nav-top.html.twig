@@ -1,5 +1,5 @@
 {% set action = app.request.attributes.get('_route') %}
-<div class="navbar navbar-static-top">
+{#<div class="navbar navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,10 +31,39 @@
                     <li><a href="{{ path('login') }}" class="">{{"Acceder" | trans}}</a></li>
                 {% endif  %}
                 {#<li><a href="" {% if action == 'contact' %}class="current"{% endif %}>{{"Contacto" | trans}}</a></li>#}
-                <li class="shopping-cart">
+               {# <li class="shopping-cart">
                     {{ render(controller("CartBundle:Cart:cart")) }}
                 </li>
             </ul>
         </div>
     </div>
-</div>
+</div>#}
+
+<header>
+    <a class="brand" href="{{ path('frontend_homepage') }}" title="{{ 'Inicio' | trans }}">
+        <img src="{{ asset('bundles/frontend/img/el-cartujano-logo.png') }}" alt="{{ 'Logo de El Cartujano' | trans }}">
+    </a>
+</header>
+
+<nav class="navbar cartujano-nav">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li {% if action == 'frontend_homepage' %}class="active"{% endif %}>
+                <a title="{{ 'Nosotros' | trans }}" href="{{ path('frontend_homepage') }}">{{ 'Nosotros' | trans }}</a>
+            </li>
+            <li>
+                <a href="">{{ 'Productos' | trans }}</a>
+            </li>
+            <li>
+                <a href="">{{ 'Tienda' | trans }}</a>
+            </li>
+            <li>
+                <a href="">{{ 'Contacta' | trans }}</a>
+            </li>
+        </ul>
+
+        <form class="navbar-form navbar-right" role="search" action="" method="post">
+            <input type="text" name="search" placeholder="{{ 'Buscador...' | trans }}">
+        </form>
+    </div>
+</nav>

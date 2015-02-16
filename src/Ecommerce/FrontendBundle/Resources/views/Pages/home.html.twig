@@ -1,4 +1,4 @@
-{% extends "FrontendBundle:Layouts:1column.html.twig" %}
+{% extends "FrontendBundle:Layouts:2columns.html.twig" %}
 
 {% block title %}{{ "Clop Sevilla"|trans }}{% endblock %}
 {% block description %}{{"Una tienda que vende pulseras"|trans}}{% endblock %}
@@ -10,13 +10,12 @@
 
 {% block header %}
     {{ parent() }}
-    {{ render(controller("FrontendBundle:Frontend:categoryNav")) }}
-    {% include 'FrontendBundle:Commons:banner-top.html.twig' %}
+    {#{% include 'FrontendBundle:Commons:banner-top.html.twig' %}#}
     {# include 'FrontendBundle:Commons:search.html.twig' #}
 {% endblock %}
 
 {% block content %}
-    <div class="row">
+    {#<div class="row">
         <div class="col-md-12">
             <div class="line-block mb10">
                 <h2 class="line-title">{{ 'Productos recientes' | trans }}</h2>
@@ -29,18 +28,18 @@
 
     {% for key, items in seoCategories %}
         {% if items | length > 0 %}
-        <div class="row mt50">
-            <div class="col-md-12">
-                <div class="line-block mb10">
-                    <h2 class="line-title">{{ key }}</h2>
-                </div>
-            </div><!-- .col-md-12 -->
-            {% for item in items %}
-                {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
-            {% endfor %}
-        </div>
+            <div class="row mt50">
+                <div class="col-md-12">
+                    <div class="line-block mb10">
+                        <h2 class="line-title">{{ key }}</h2>
+                    </div>
+                </div><!-- .col-md-12 -->
+                {% for item in items %}
+                    {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
+                {% endfor %}
+            </div>
         {% endif %}
-    {% endfor %}
+    {% endfor %}#}
 {% endblock %}
 
 {% block javascripts %}
