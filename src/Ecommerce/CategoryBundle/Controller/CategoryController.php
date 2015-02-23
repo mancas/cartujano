@@ -2,6 +2,7 @@
 
 namespace Ecommerce\CategoryBundle\Controller;
 
+use Ecommerce\CategoryBundle\Entity\Category;
 use Ecommerce\CategoryBundle\Entity\Subcategory;
 use Ecommerce\FrontendBundle\Controller\CustomController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -14,6 +15,16 @@ class CategoryController extends CustomController
         $categories = $em->getRepository('CategoryBundle:Category')->findCategoriesDQL();
 
         return $this->render('CategoryBundle:Category:list.html.twig', array('categories' => $categories));
+    }
+
+    /**
+     * @ParamConverter("category", class="CategoryBundle:Category")
+     */
+    public function viewSubcategoriesAction(Category $category)
+    {
+        return $this->render('CategoryBundle:Subcategory:list.html.twig',
+            array('subcategories' => $category->getSubcategories(),
+                  'category' => $category->getName()));
     }
 
     /**

@@ -2,6 +2,10 @@ view_categories:
     pattern:  /c/productos
     defaults: { _controller: CategoryBundle:Category:viewCategories }
 
+view_subcategories:
+    pattern:  /c/productos/{slug}
+    defaults: { _controller: CategoryBundle:Category:viewSubcategories }
+
 view_subcategory:
     pattern:  /c/{slug}
     defaults: { _controller: CategoryBundle:Category:viewSubcategory }

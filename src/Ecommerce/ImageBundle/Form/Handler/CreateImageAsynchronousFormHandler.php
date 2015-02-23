@@ -58,6 +58,7 @@ class CreateImageAsynchronousFormHandler
 
                     } catch (\Exception $e) {
                         $this->imageManager->removeImage($image);
+                        ld($e);
                         return false;
                     }
                 } else {

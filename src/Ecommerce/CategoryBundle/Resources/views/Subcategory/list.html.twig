@@ -1,8 +1,8 @@
 {% extends "FrontendBundle:Layouts:1column.html.twig" %}
 
-{% block title %}{{ 'Productos de la categoría: ' ~ subcategory ~ ' | Clop Sevilla' | trans }}{% endblock %}
-{% block description %}{{"Una tienda que vende pulseras"|trans}}{% endblock %}
-{% block sectionclass %}home page{% endblock %}
+{% block title %}{{ 'Productos de la categoría: ' ~ category ~ ' | El Cartujano' | trans }}{% endblock %}
+{% block description %}{{"Todos los productos ordenados por categoría y tipo. Siempre el mejor precio y calidad"|trans}}{% endblock %}
+{% block sectionclass %}page{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -10,22 +10,12 @@
 
 {% block header %}
     {{ parent() }}
-    {{ render(controller("FrontendBundle:Frontend:categoryNav")) }}
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="line-block mb10">
-                <h2 class="line-title">{{ subcategory }}</h2>
-            </div>
-        </div><!-- .col-md-12 -->
-        {% for item in items %}
-            {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
-        {% endfor %}
-    </div>
-
-    {{ simple_paginator_render('view_subcategory', 'items', { 'routeParams' : {'slug' : subcategory.slug}, 'container_class' : 'pagination', 'currentClass' : 'active' }, 'ItemBundle:Commons:paginator.html.twig') }}
+    {% for subcategory in subcategories %}
+        {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
+    {% endfor %}
 {% endblock %}
 
 {% block javascripts %}

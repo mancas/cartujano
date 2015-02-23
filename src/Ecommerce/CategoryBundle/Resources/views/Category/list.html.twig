@@ -10,7 +10,7 @@
         <div class="row category-block">
             <div class="col-md-3 text-center dtable">
                 <div class="wrap">
-                    <a href="" alt="{{ 'Ver categoría' | trans }} {{ category }}">
+                    <a href="{{ path('view_subcategories', {slug: category.slug}) }}" alt="{{ 'Ver categoría' | trans }} {{ category }}">
                         <img src="{{ asset('bundles/frontend/img/' ~ category.slug ~ '-hover.png') }}" alt="{{ category }}">
                         {{ category }}
                     </a>
