@@ -10,8 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ImageThumbnail extends ImageCopy
 {
-    protected $maxWidth = 120;
-    protected $maxHeight = 120;
+    protected $maxWidth = 170;
+    protected $maxHeight = 240;
     protected $sufix = "thumb";
     protected $crop = false;
 }

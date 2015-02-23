@@ -34,8 +34,9 @@ class CreateImageAsynchronousFormHandler
             $imageConstraint->minWidthMessage =  'La imagen debe tener un mínimo de ' . Image::MIN_HEIGHT . ' píxeles de alto';
             $imageConstraint->minHeight = Image::MIN_HEIGHT;
             $imageConstraint->minWidthMessage =  'La imagen debe tener un mínimo de ' . Image::MIN_HEIGHT . ' píxeles de alto';
-            $imageConstraint->maxSizeMessage = Image::ERROR_MESSAGE;
-            $imageConstraint->maxSize = Image::MAX_SIZE;
+            // TODO: fix it
+            //$imageConstraint->maxSizeMessage = Image::ERROR_MESSAGE;
+            //$imageConstraint->maxSize = Image::MAX_SIZE;
 
             $errorList = $this->validator->validateValue($img, $imageConstraint);
 

@@ -46,6 +46,7 @@
                     <tr>
                         <th>{{ "Nombre"|trans }}</th>
                         <th>{{ "Categoría a la que pertenece"|trans }}</th>
+                        <th>{{ "Número de productos"|trans }}</th>
                         <th>{{ "Acciones"|trans }}</th>
                     </tr>
                     </thead>
@@ -54,6 +55,7 @@
                         <tr>
                             <td><a title="Modificar" href="{{ path('admin_subcategory_edit', { 'slug': subcategory.slug }) }}">{{ subcategory }}</a></td>
                             <td><a title="Ver subcategorías" href="{{ path('admin_subcategory_view', {'slug':subcategory.category.slug}) }}">{{ subcategory.category }}</a></td>
+                            <td>{{ subcategory.items | length }}</td>
                             <td class="text-center">
                                 <a title="Modificar" class="btn btn-primary btn-xs" href="{{ path('admin_subcategory_edit', { 'slug': subcategory.slug }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
                                 <a title="Borrar" class="delete btn btn-danger btn-xs" href="{{ path('admin_subcategory_delete', { 'slug': subcategory.slug }) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>

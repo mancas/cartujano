@@ -17,7 +17,7 @@ class ItemType extends AbstractType
         $builder->add('name', 'text', array('required' => true))
                 ->add('reference', 'number', array('required' => true))
                 ->add('description', 'textarea', array('required' => true))
-                ->add('price', 'number', array('required' => true))
+                ->add('price', 'number', array('required' => false))
                 ->add('weight', 'number', array('required' => false))
                 ->add('subcategory', 'entity',
                         array(

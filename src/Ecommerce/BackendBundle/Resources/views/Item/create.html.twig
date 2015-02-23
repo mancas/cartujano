@@ -94,8 +94,8 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
 
                 {{ form_rest(form) }}
             </form>
@@ -193,6 +193,28 @@
             }
         };
 
+        var ItemForSale = {
+            checkboxElement: null,
+            priceContainerElement: null,
+            taxContainerElement: null,
+
+            init: function itemforsale_init() {
+                this.checkboxElement = document.querySelector('#item_for_sale');
+                this.priceContainerElement = document.querySelector('.item-price-container');
+                this.taxContainerElement = document.querySelector('.item-tax-container');
+
+                this.addEventListeners();
+            },
+
+            addEventListeners: function itemforsale_addEventListeners() {
+                this.checkboxElement.addEventListener('change', function(evt) {
+                    this.priceContainerElement.classList.toggle('hidden', !evt.target.checked);
+                    this.taxContainerElement.classList.toggle('hidden', !evt.target.checked);
+                }.bind(this));
+            }
+        }
+
         TaxPrice.init();
+        ItemForSale.init();
     </script>
 {% endblock %}

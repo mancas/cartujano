@@ -49,7 +49,7 @@ class Item
     protected $description;
 
     /**
-     * @ORM\Column(name="price", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="price", type="decimal", precision=10, scale=2, nullable=true)
      */
     protected $price;
 
@@ -106,6 +106,11 @@ class Item
      * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\ItemPackage", inversedBy="items")
      */
     protected $package;
+
+    /**
+     * @ORM\Column(type="isCommercialItem", type="boolean", nullable=true, options={"default" = 0})
+     */
+    protected $isCommercialItem = false;
 
     public function __construct()
     {
@@ -398,5 +403,21 @@ class Item
     public function setPackage($package)
     {
         $this->package = $package;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isCommercialItem()
+    {
+        return $this->isCommercialItem;
+    }
+
+    /**
+     * @param mixed $forSale
+     */
+    public function setIsCommercialItem($forSale)
+    {
+        $this->isCommercialItem = $forSale;
     }
 }

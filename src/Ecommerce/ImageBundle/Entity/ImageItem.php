@@ -38,46 +38,6 @@ class ImageItem extends Image
         return $this->item;
     }
 
-    public function createImageItemBox()
-    {
-        $thumb = $this->getImageItemBox();
-        if (!$thumb) {
-            $thumb = new ImageItemBox();
-        }
-
-        return $thumb;
-    }
-
-    public function createImageItemBoxW()
-    {
-        $thumb = $this->getImageItemBoxW();
-        if (!$thumb) {
-            $thumb = new ImageItemBoxW();
-        }
-
-        return $thumb;
-    }
-
-    public function createImageItemCarousel()
-    {
-        $thumb = $this->getImageItemCarousel();
-        if (!$thumb) {
-            $thumb = new ImageItemCarousel();
-        }
-
-        return $thumb;
-    }
-
-    public function createImageItemCarouselThumbnail()
-    {
-        $thumb = $this->getImageItemCarouselThumbnail();
-        if (!$thumb) {
-            $thumb = new ImageItemCarouselThumbnail();
-        }
-
-        return $thumb;
-    }
-
     public function createImageItemCart()
     {
         $thumb = $this->getImageItemCart();
@@ -91,21 +51,6 @@ class ImageItem extends Image
     public function createCopies()
     {
         list($oldRoute, $copies) = parent::createCopies();
-        if ($box = $this->createImageItemBox()) {
-            $copies[] = $box;
-        }
-
-        if ($boxw = $this->createImageItemBoxW()) {
-            $copies[] = $boxw;
-        }
-
-        if ($boxw = $this->createImageItemCarousel()) {
-            $copies[] = $boxw;
-        }
-
-        if ($boxw = $this->createImageItemCarouselThumbnail()) {
-            $copies[] = $boxw;
-        }
 
         if ($cart = $this->createImageItemCart()) {
             $copies[] = $cart;

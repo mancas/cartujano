@@ -22,6 +22,13 @@ class ItemFormHandler
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $item = $form->getData();
+                $forSale = $request->request->get('item_for_sale');
+                $price = $item->getPrice();
+                $item->setIsCommercialItem($forSale === 'true' ? true : false);
+
+                if ($item->isCommercialItem() && !isset($price)) {
+                    return false;
+                }
 
                 $this->em->persist($item);
                 $this->em->flush();

@@ -19,14 +19,14 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 abstract class Image
 {
     const WEB_PATH = 'bundles/frontend/img/';
-    const UPLOAD_PATH = '/var/www/clop/web/uploads/';
+    const UPLOAD_PATH = '/var/www/cartujano/web/uploads/';
     const ERROR_MESSAGE = "Ha ocurrido un error. Asegúrate de subir imágenes JPG o PNG de menos de 2 megas y mayores a 640x480.";
     const INFO_MESSAGE = "El formato de las imágenes ha de ser JPG o PNG, deben pesar menos de 2 megas y ser mayores a 640x480.";
     const AJAX_LOADER = 'bundles/frontend/img/ajax-loader.gif';
     const UPLOAD_DIR = 'uploads';
 
-    const MIN_WIDTH = 640;
-    const MIN_HEIGHT = 480;
+    const MIN_WIDTH = 500;
+    const MIN_HEIGHT = 400;
     const MAX_SIZE = '2M';
 
     protected $subdirectory = "images";
