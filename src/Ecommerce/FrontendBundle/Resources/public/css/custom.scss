@@ -6,7 +6,7 @@ $light-gray: #EEEEEE;
 $blue: #00409C;
 $blue-hover: #3FA9F5;
 $light-gray-c: #cccccc;
-$pink: #f12b63;
+$polaroid: #534741;
 $background-blue: #E6F6FA;
 $background-gray: #F2F2F2;
 $gray: #404040;
@@ -15,12 +15,10 @@ $footer-background: #F3F3F3;
 $disabled-gray: #DDDDDD;
 $red: #FF0000;
 $cartujano-red: #DE0000;
-$light-pink: #F9AAC1;
-$yellow: #F0AD4E;
-$yellow-hover: #ED9C28;
 
 body {
   background: url(../img/texture.png) repeat;
+  color: $blue;
 }
 
 a {
@@ -65,21 +63,6 @@ a {
 /** COLOR CLASSES **/
 .blue {
   color: $blue;
-}
-
-#wrap {
-  background-color: $background-gray;
-  /**max-width: 1170px;**/
-  max-width: 96rem;
-  /** max-width: 998px screen 1024 **/
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: auto;
-  padding-top: 20px;
-}
-
-.container {
-  background-color: $background-gray;
-  max-width: 96rem;
 }
 
 /* CARTUJANO APP */
@@ -265,12 +248,61 @@ nav.cartujano-nav {
   }
 }
 
+/** MAIN PAGE **/
+
+#wrap {
+  background-color: $background-gray;
+  /**max-width: 1170px;**/
+  max-width: 96rem;
+  /** max-width: 998px screen 1024 **/
+  margin: auto;
+
+  h1.title {
+    color: $cartujano-red;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    line-height: 2.5rem;
+    font-weight: bold;
+  }
+
+  p {
+    line-height: 2.4rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+  }
+
+  .polaroid {
+    margin-top: 2rem;
+    border: solid 0.4rem $polaroid;
+  }
+}
+
+.container {
+  background-color: $background-gray;
+  max-width: 96rem;
+}
+
+.category-block {
+  background-color: $white;
+  padding: 1rem 0;
+  a {
+    max-width: 15rem;
+    display: block;
+    margin: auto;
+    font-weight: bold;
+  }
+}
+
+.row.category-block {
+  margin: 0 0 2rem;
+}
+
 /** FOOTER **/
-.footer {
+footer.container {
   background-color: $cartujano-red;
   border-top: solid 1rem $blue;
   color: $white;
-  min-height: 20rem;
+  height: 26.5rem;
   margin-top: 5rem;
   padding-bottom: 2rem;
   font-size: 1.3rem;
@@ -280,6 +312,10 @@ nav.cartujano-nav {
     font-size: 1.6rem;
     line-height: 4rem;
     font-weight: bold;
+  }
+  
+  .row {
+    height: 100%;
   }
 
   p {
@@ -292,6 +328,16 @@ nav.cartujano-nav {
     text-decoration: none;
     &:hover {
       color: $blue-hover;
+    }
+  }
+
+  .contact {
+    height: 100%;
+    display: table;
+
+    #contact-wrap {
+      display: table-cell;
+      vertical-align: middle;
     }
   }
 

@@ -8,6 +8,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class CategoryController extends CustomController
 {
+    public function viewCategoriesAction()
+    {
+        $em = $this->getEntityManager();
+        $categories = $em->getRepository('CategoryBundle:Category')->findCategoriesDQL();
+
+        return $this->render('CategoryBundle:Category:list.html.twig', array('categories' => $categories));
+    }
+
     /**
      * @ParamConverter("subcategory", class="CategoryBundle:Subcategory")
      */

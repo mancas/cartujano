@@ -1,44 +1,4 @@
 {% set action = app.request.attributes.get('_route') %}
-{#<div class="navbar navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('frontend_homepage') }}"><img class="img-responsive" src="{{ asset('bundles/frontend/img/clop_logo.png') }}"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right main-nav">
-                <li>
-                    <a title="{{ 'Ofertas' | trans }}" href="{{ path('view_offers') }}">
-                        {{"Ofertas" | trans}}
-                    </a>
-                </li>
-                {% if is_granted('ROLE_USER') %}
-                    <li class="profile">
-                        <a href="{{ path('user_profile') }}">
-                           {{"Mi cuenta" | trans}}
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{{ 'Cerrar sesión' | trans }}" href="{{ path('logout') }}">
-                            {{"Cerrar sesión" | trans}}
-                        </a>
-                    </li>
-                {% else %}
-                    <li><a href="{{ path('login') }}" class="">{{"Acceder" | trans}}</a></li>
-                {% endif  %}
-                {#<li><a href="" {% if action == 'contact' %}class="current"{% endif %}>{{"Contacto" | trans}}</a></li>#}
-               {# <li class="shopping-cart">
-                    {{ render(controller("CartBundle:Cart:cart")) }}
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>#}
-
 <header>
     <a class="brand" href="{{ path('frontend_homepage') }}" title="{{ 'Inicio' | trans }}">
         <img src="{{ asset('bundles/frontend/img/el-cartujano-logo.png') }}" alt="{{ 'Logo de El Cartujano' | trans }}">
@@ -52,7 +12,7 @@
                 <a title="{{ 'Nosotros' | trans }}" href="{{ path('frontend_homepage') }}">{{ 'Nosotros' | trans }}</a>
             </li>
             <li>
-                <a href="">{{ 'Productos' | trans }}</a>
+                <a href="{{ path('view_categories') }}" alt="{{ 'Nuestros productos' | trans }}">{{ 'Productos' | trans }}</a>
             </li>
             <li>
                 <a href="">{{ 'Tienda' | trans }}</a>

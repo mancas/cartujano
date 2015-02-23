@@ -1,7 +1,8 @@
 /** COLORS **/
 /**$blue: #428BCA;**/
 body {
-  background: url(../img/texture.png) repeat; }
+  background: url(../img/texture.png) repeat;
+  color: #00409C; }
 
 a {
   color: #00409C;
@@ -52,19 +53,6 @@ a {
 /** COLOR CLASSES **/
 .blue {
   color: #00409C; }
-
-#wrap {
-  background-color: #F2F2F2;
-  /**max-width: 1170px;**/
-  max-width: 96rem;
-  /** max-width: 998px screen 1024 **/
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: auto;
-  padding-top: 20px; }
-
-.container {
-  background-color: #F2F2F2;
-  max-width: 96rem; }
 
 /* CARTUJANO APP */
 header {
@@ -194,37 +182,82 @@ nav.cartujano-nav {
     left: calc(50% - 1rem);
     position: absolute; }
 
+/** MAIN PAGE **/
+#wrap {
+  background-color: #F2F2F2;
+  /**max-width: 1170px;**/
+  max-width: 96rem;
+  /** max-width: 998px screen 1024 **/
+  margin: auto; }
+  #wrap h1.title {
+    color: #DE0000;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    line-height: 2.5rem;
+    font-weight: bold; }
+  #wrap p {
+    line-height: 2.4rem;
+    margin-bottom: 2rem;
+    text-align: justify; }
+  #wrap .polaroid {
+    margin-top: 2rem;
+    border: solid 0.4rem #534741; }
+
+.container {
+  background-color: #F2F2F2;
+  max-width: 96rem; }
+
+.category-block {
+  background-color: #FFFFFF;
+  padding: 1rem 0; }
+  .category-block a {
+    max-width: 15rem;
+    display: block;
+    margin: auto;
+    font-weight: bold; }
+
+.row.category-block {
+  margin: 0 0 2rem; }
+
 /** FOOTER **/
-.footer {
+footer.container {
   background-color: #DE0000;
   border-top: solid 1rem #00409C;
   color: #FFFFFF;
-  min-height: 20rem;
+  height: 26.5rem;
   margin-top: 5rem;
   padding-bottom: 2rem;
   font-size: 1.3rem;
   /* This gets Facebook to fall into place */ }
-  .footer .footer-title {
+  footer.container .footer-title {
     color: #FFFFFF;
     font-size: 1.6rem;
     line-height: 4rem;
     font-weight: bold; }
-  .footer p {
+  footer.container .row {
+    height: 100%; }
+  footer.container p {
     font-weight: bold;
     line-height: 2.4rem; }
-  .footer a {
+  footer.container a {
     color: #FFFFFF;
     text-decoration: none; }
-    .footer a:hover {
+    footer.container a:hover {
       color: #3FA9F5; }
-  .footer .telephone {
+  footer.container .contact {
+    height: 100%;
+    display: table; }
+    footer.container .contact #contact-wrap {
+      display: table-cell;
+      vertical-align: middle; }
+  footer.container .telephone {
     font-size: 3rem;
     font-weight: bold; }
-  .footer .fb-plugin {
+  footer.container .fb-plugin {
     margin: auto;
     display: block;
     width: 12rem !important; }
-  .footer iframe {
+  footer.container iframe {
     vertical-align: middle; }
 
 /** BOOSTRAP OVERRIDE **/

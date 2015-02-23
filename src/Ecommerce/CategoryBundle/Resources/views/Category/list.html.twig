@@ -1,0 +1,24 @@
+{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
+
+{% block title %}{{ "El Cartujano Returns"|trans }}{% endblock %}
+{% block description %}{{"Productos El Cartujano. Una amplia variedad de picos y productos artesanales, hechos en España con los mejores ingredientes"|trans}}{% endblock %}
+{% block sectionclass %}page{% endblock %}
+
+{% block content %}
+    {% for category in categories %}
+    <div class="col-md-12">
+        <div class="row category-block">
+            <div class="col-md-3 text-center">
+                <a href="" alt="{{ 'Ver categoría' | trans }} {{ category }}">
+                    <img src="{{ asset('bundles/frontend/img/' ~ category.slug ~ '-hover.png') }}" alt="{{ category }}">
+                    {{ category }}
+                </a>
+            </div>
+
+            <div class="col-md-9">
+                <img class="img-responsive" src="{{ asset('bundles/frontend/img/' ~ category.slug ~ '-banner.png') }}" alt="{{ category }}">
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
