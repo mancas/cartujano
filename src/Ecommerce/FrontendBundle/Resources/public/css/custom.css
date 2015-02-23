@@ -209,7 +209,14 @@ nav.cartujano-nav {
 
 .category-block {
   background-color: #FFFFFF;
-  padding: 1rem 0; }
+  padding: 1rem 0;
+  height: 13.7rem; }
+  .category-block .dtable {
+    display: table;
+    height: 100%; }
+    .category-block .dtable .wrap {
+      display: table-cell;
+      vertical-align: middle; }
   .category-block a {
     max-width: 15rem;
     display: block;

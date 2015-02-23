@@ -285,6 +285,16 @@ nav.cartujano-nav {
 .category-block {
   background-color: $white;
   padding: 1rem 0;
+  height: 13.7rem;
+
+  .dtable {
+    display: table;
+    height: 100%;
+    .wrap {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
   a {
     max-width: 15rem;
     display: block;
