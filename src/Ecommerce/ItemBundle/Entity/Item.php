@@ -38,7 +38,7 @@ class Item
     protected $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
     protected $reference;
