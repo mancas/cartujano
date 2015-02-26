@@ -2,7 +2,10 @@
 
 namespace Ecommerce\FrontendBundle\Controller;
 
+use Ecommerce\FrontendBundle\Form\ContactType;
+use Ecommerce\FrontendBundle\Model\Contact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\BrowserKit\Request;
 
 class FrontendController extends CustomController
 {
@@ -63,5 +66,17 @@ class FrontendController extends CustomController
     public function whoWeAreAction()
     {
         return $this->render('FrontendBundle:Pages:who-we-are.html.twig');
+    }
+
+    public function contactAction(Request $request)
+    {
+        $form = $this->createForm(new ContactType(), new Contact());
+        $formHandler = $this->get('contact.contact_form_handler');
+
+        $message = $formHandler->handle($form, $request);
+        if ($message)
+            $this->setTranslatedFlashMessage($message);
+
+        return $this->render('FrontendBundle:Pages:contact.html.twig', array('form' => $form->createView()));
     }
 }

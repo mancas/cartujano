@@ -1,8 +1,18 @@
 parameters:
-    clop.security.authentication.success_handler.class: Ecommerce\FrontendBundle\Component\Security\AuthenticationSuccessHandler
+    cartujano.security.authentication.success_handler.class: Ecommerce\FrontendBundle\Component\Security\AuthenticationSuccessHandler
+    contact.contactformhandler.class: Ecommerce\FrontendBundle\Form\Handler\ContactFormHandler
+    contact.sendemail.class: Ecommerce\FrontendBundle\EventListener\ContactListener
 
 services:
-    clop.security.authentication.success_handler:
-        class: %clop.security.authentication.success_handler.class%
+    cartujano.security.authentication.success_handler:
+        class: %cartujano.security.authentication.success_handler.class%
         public: false
         arguments:  ['@router']
+    contact.contact_form_handler:
+        class: %contact.contactformhandler.class%
+        arguments: [@event_dispatcher]
+    contact.send_email:
+        class: %contact.sendemail.class%
+        arguments: [@mailer, @templating, %direction_email%]
+        tags:
+            - { name: kernel.event_subscriber }
