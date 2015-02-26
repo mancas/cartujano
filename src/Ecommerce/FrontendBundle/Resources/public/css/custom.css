@@ -10,36 +10,39 @@ a {
   a:hover, a:focus {
     color: #3FA9F5; }
 
+textarea {
+  resize: none; }
+
 /** HELPER CLASSES **/
 .mt50 {
-  margin-top: 50px; }
+  margin-top: 5rem; }
 
 .mt30 {
-  margin-top: 30px; }
+  margin-top: 3rem; }
 
 .mt20 {
-  margin-top: 20px; }
+  margin-top: 2rem; }
 
 .text-12 {
-  font-size: 12px; }
+  font-size: 1.2rem; }
 
 .ml-10 {
-  margin-left: -10px; }
+  margin-left: -1rem; }
 
 .mr8 {
-  margin-right: 8px; }
+  margin-right: 0.8rem; }
 
 .mr15 {
-  margin-right: 15px; }
+  margin-right: 1.5rem; }
 
 .mb20 {
-  margin-bottom: 20px !important; }
+  margin-bottom: 2rem !important; }
 
 .mb10 {
-  margin-bottom: 10px !important; }
+  margin-bottom: 1rem !important; }
 
 .font-xl {
-  font-size: 16px; }
+  font-size: 1.6rem; }
 
 .block {
   display: block !important; }
@@ -189,13 +192,13 @@ nav.cartujano-nav {
   max-width: 96rem;
   /** max-width: 998px screen 1024 **/
   margin: auto; }
-  #wrap h1.title {
+  #wrap h1.title, #wrap h2.title, #wrap h3.title {
     color: #DE0000;
     font-size: 1.5rem;
     text-transform: uppercase;
     line-height: 2.5rem;
     font-weight: bold; }
-    #wrap h1.title a {
+    #wrap h1.title a, #wrap h2.title a, #wrap h3.title a {
       color: #DE0000; }
   #wrap p {
     line-height: 2.4rem;
@@ -204,6 +207,10 @@ nav.cartujano-nav {
   #wrap .polaroid {
     margin-top: 2rem;
     border: solid 0.4rem #534741; }
+  #wrap .cartujano-img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
 
 .container {
   background-color: #F2F2F2;

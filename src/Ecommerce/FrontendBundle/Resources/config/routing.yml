@@ -17,3 +17,7 @@ who_we_are_page:
 view_offers:
   pattern: /ofertas
   defaults: { _controller: FrontendBundle:Frontend:offers }
+
+contact:
+  pattern: /contacto
+  defaults: { _controller: FrontendBundle:Frontend:contact }

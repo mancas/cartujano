@@ -37,7 +37,6 @@ class ContactListener implements EventSubscriberInterface
     private function sendContactEmail(Contact $contact)
     {
         $messageBody = $this->templating->render('FrontendBundle:Email:contact.html.twig', array('contact' => $contact));
-
         $message = $this->mailer->createMessage()
             ->setSubject('Contacto desde el formulario de elcartujano.es')
             ->setFrom($contact->getEmail())

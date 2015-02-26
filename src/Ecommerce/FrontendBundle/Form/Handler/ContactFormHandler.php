@@ -5,14 +5,14 @@ namespace Ecommerce\FrontendBundle\Form\Handler;
 use Ecommerce\FrontendBundle\Event\ContactEvent;
 use Ecommerce\FrontendBundle\Event\ContactEvents;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
 
 class ContactFormHandler
 {
     private $eventDispatcher;
 
-    public function __construct(EventDispatcher $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
     }

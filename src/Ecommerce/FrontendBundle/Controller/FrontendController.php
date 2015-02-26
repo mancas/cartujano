@@ -5,7 +5,7 @@ namespace Ecommerce\FrontendBundle\Controller;
 use Ecommerce\FrontendBundle\Form\ContactType;
 use Ecommerce\FrontendBundle\Model\Contact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 class FrontendController extends CustomController
 {

@@ -38,7 +38,7 @@ security:
             form_login:
                login_path: login
                check_path: login_check
-               success_handler: clop.security.authentication.success_handler
+               success_handler: cartujano.security.authentication.success_handler
                default_target_path: /u/mi-cuenta
             logout:
                path: logout
