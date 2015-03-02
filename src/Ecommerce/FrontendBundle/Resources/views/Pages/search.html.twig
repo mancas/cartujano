@@ -1,6 +1,6 @@
 {% extends "FrontendBundle:Layouts:1column.html.twig" %}
 
-{% block title %}{{ 'Productos de la categoría: ' ~ subcategory.name ~ ' | El Cartujano' | trans }}{% endblock %}
+{% block title %}{{ 'Búsqueda de productos: ' ~ search ~ ' | El Cartujano' | trans }}{% endblock %}
 {% block description %}{{"Nuestros productos son elaborados con los mejores ingredientes."|trans}}{% endblock %}
 {% block sectionclass %}page{% endblock %}
 
@@ -13,16 +13,18 @@
 {% endblock %}
 
 {% block content %}
+    <h1 class="title">{{ 'Resultados para' | trans }} <span class="blue">{{ search }}</span></h1>
     {% if items | length > 0 %}
-        <h1 class="title">{{ subcategory }}</h1>
         <div class="row items-list">
             {% for item in items %}
                 {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
             {% endfor %}
         </div>
+    {% else %}
+        <p>
+            {{ 'No se han encontrado resultados en nuestro amplio catálogo de productos.' | trans }}
+        </p>
     {% endif %}
-
-    {{ simple_paginator_render('view_subcategory', 'items', { 'routeParams' : {'slug' : subcategory.slug}, 'container_class' : 'pagination', 'currentClass' : 'active' }, 'ItemBundle:Commons:paginator.html.twig') }}
 {% endblock %}
 
 {% block javascripts %}

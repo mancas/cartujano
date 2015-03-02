@@ -235,13 +235,16 @@ nav.cartujano-nav {
 .row.category-block {
   margin: 0 0 2rem; }
 
-.items-list .blue-block {
+.items-list .item-box.blue-block {
   background-color: rgba(0, 64, 156, 0.2); }
+.items-list .item-box.red-block {
+  background-color: rgba(255, 0, 0, 0.2); }
 .items-list .item-box {
   padding: 1.5rem;
   display: table;
   width: 100%;
-  height: 27rem; }
+  height: 27rem;
+  background-color: #FFFFFF; }
   .items-list .item-box .img-wrap {
     display: table-cell;
     background-color: #FFFFFF;
@@ -259,6 +262,22 @@ nav.cartujano-nav {
       margin: 0 0 1rem 0; }
     .items-list .item-box .item-info p {
       margin-bottom: 1rem !important; }
+
+/** PAGINATION **/
+.pagination .active a {
+  background-color: #DE0000;
+  border-color: #DE0000; }
+  .pagination .active a:hover {
+    background-color: #DE0000;
+    border-color: #DE0000; }
+.pagination li a {
+  background-color: #00409C;
+  border-color: #00409C;
+  color: #FFFFFF; }
+  .pagination li a:hover {
+    background-color: #DE0000;
+    border-color: #DE0000;
+    color: #FFFFFF; }
 
 /** FOOTER **/
 footer.container {

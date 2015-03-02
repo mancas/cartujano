@@ -21,3 +21,7 @@ view_offers:
 contact:
   pattern: /contacto
   defaults: { _controller: FrontendBundle:Frontend:contact }
+
+search:
+  pattern: /busqueda
+  defaults: { _controller: FrontendBundle:Frontend:search }
