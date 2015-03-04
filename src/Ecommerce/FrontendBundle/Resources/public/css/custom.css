@@ -262,6 +262,20 @@ nav.cartujano-nav {
       margin: 0 0 1rem 0; }
     .items-list .item-box .item-info p {
       margin-bottom: 1rem !important; }
+  .items-list .item-box .item-options li {
+    float: left;
+    width: 50%; }
+    .items-list .item-box .item-options li .item-price {
+      font-size: 2rem; }
+    .items-list .item-box .item-options li .btn-blue {
+      background-color: #00409C;
+      color: white;
+      outline: medium none;
+      transition: all 0.25s ease 0s; }
+      .items-list .item-box .item-options li .btn-blue:hover {
+        background-color: #DE0000; }
+    .items-list .item-box .item-options li .add-to-cart i {
+      margin-right: 0.8rem; }
 
 /** PAGINATION **/
 .pagination .active a {

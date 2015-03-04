@@ -29,24 +29,24 @@
                     {{ 'Descripción:' | trans }} {{ item.description }}
                 </p>
             {% endif %}
-            {% if item.isCommercialItem %}
-                <div class="item-options text-center">
-                    <ul class="list-unstyled">
-                        <li>
-                            <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
-                            <i class="fa fa-euro"></i>
-                        </li>
-                        <li>
-                            {% if item.stock > 0 %}
-                                <a class="btn btn-blue add-to-cart" title="{{ 'Añadir al carrito' | trans }}" href="{{ path('add_to_cart', {'slug':item.slug}) }}"><i class="fa fa-shopping-cart"></i>{{ 'Añadir' | trans }}</a>
-                            {% else %}
-                                <a class="btn btn-disabled" title="{{ 'Agotado' | trans }}" href="">{{ 'Agotado' | trans }}</a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            {% endif %}
         </div>
+        {% if item.isCommercialItem %}
+            <div class="item-options text-center">
+                <ul class="list-unstyled">
+                    <li>
+                        <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
+                        <i class="fa fa-euro"></i>
+                    </li>
+                    <li>
+                        {% if item.stock > 0 %}
+                            <a class="btn btn-blue add-to-cart" title="{{ 'Añadir al carrito' | trans }}" href="{{ path('add_to_cart', {'slug':item.slug}) }}"><i class="fa fa-shopping-cart"></i>{{ 'Añadir' | trans }}</a>
+                        {% else %}
+                            <a class="btn btn-disabled" title="{{ 'Agotado' | trans }}" href="">{{ 'Agotado' | trans }}</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endif %}

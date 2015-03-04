@@ -361,6 +361,33 @@ nav.cartujano-nav {
         margin-bottom: 1rem !important;
       }
     }
+
+    .item-options {
+      li {
+        float: left;
+        width: 50%;
+
+        .item-price {
+          font-size: 2rem;
+        }
+
+        .btn-blue {
+          background-color: $blue;
+          color: white;
+          outline: medium none;
+          transition: all 0.25s ease 0s;
+          &:hover {
+            background-color: $cartujano-red;
+          }
+        }
+
+        .add-to-cart {
+          i {
+            margin-right: 0.8rem;
+          }
+        }
+      }
+    }
   }
 }
 

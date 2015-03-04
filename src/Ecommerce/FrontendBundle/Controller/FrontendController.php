@@ -10,23 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 class FrontendController extends CustomController
 {
     const ITEMS_LIMIT_DQL = 12;
-    const CATEGORIES_IN_INDEX = 3;
 
     public function indexAction()
     {
+        return $this->render('FrontendBundle:Pages:home.html.twig');
+    }
+
+    public function ecommerceHomepageAction()
+    {
         $em = $this->getEntityManager();
-
-        /*$recentItems = $em->getRepository('ItemBundle:Item')->findRecentItemsDQL(self::ITEMS_LIMIT_DQL);
-        $seoCategories = $em->getRepository('CategoryBundle:Category')->findSEOCategories(self::CATEGORIES_IN_INDEX);
-        $indexCategories = array();
-
-        foreach ($seoCategories as $seoCategory) {
-            $indexCategories[$seoCategory->getName()] = $em->getRepository('ItemBundle:Item')->findCategorySEOItemsDQL($seoCategory, self::ITEMS_LIMIT_DQL);
-        }*/
+        $items = $em->getRepository('ItemBundle:Item')->findCommercialItemsDQL();
 
         $this->setCurrentCartIfNeeded();
 
-        return $this->render('FrontendBundle:Pages:home.html.twig');
+        return $this->render('FrontendBundle:Pages:ecommerce.html.twig', array('items' => $items));
     }
 
     /**
