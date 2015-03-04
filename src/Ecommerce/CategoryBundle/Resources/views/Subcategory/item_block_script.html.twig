@@ -1,0 +1,45 @@
+<script>
+    var ItemListHelper = {
+        redCSS: 'red-block',
+        blueCSS: 'blue-block',
+        items: [],
+        offset: 6,
+
+        init: function itemListHelper_init() {
+            this.items = document.querySelectorAll('.item-box');
+            this.changeBackground();
+        },
+
+        changeBackground: function itemListHelper_changeBackground() {
+            if (!this.items.length) {
+                console.error('No products were found!');
+                return;
+            }
+
+            var blueIndex = 0;
+            var redIndex = 2;
+            while ((blueIndex <= this.items.length) || (redIndex <= this.items.length)) {
+                if (this.items[blueIndex]) {
+                    this.items[blueIndex].classList.add(this.blueCSS);
+                }
+
+                if (this.items[blueIndex + 1]) {
+                    this.items[blueIndex + 1].classList.add(this.blueCSS);
+                }
+
+                if (this.items[redIndex]) {
+                    this.items[redIndex].classList.add(this.redCSS);
+                }
+
+                if (this.items[redIndex + 1]) {
+                    this.items[redIndex + 1].classList.add(this.redCSS);
+                }
+
+                blueIndex += this.offset;
+                redIndex += this.offset;
+            }
+        }
+    };
+
+    ItemListHelper.init();
+</script>
