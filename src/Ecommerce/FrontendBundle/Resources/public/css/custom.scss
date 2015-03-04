@@ -321,8 +321,12 @@ nav.cartujano-nav {
 }
 
 .items-list {
-  .blue-block {
+  .item-box.blue-block {
     background-color: rgba(0, 64, 156, 0.2);
+  }
+
+  .item-box.red-block {
+    background-color: rgba(255, 0, 0, 0.2);
   }
 
   .item-box {
@@ -330,6 +334,7 @@ nav.cartujano-nav {
     display: table;
     width: 100%;
     height: 27rem;
+    background-color: $white;
 
     .img-wrap {
       display: table-cell;
@@ -354,6 +359,35 @@ nav.cartujano-nav {
 
       p {
         margin-bottom: 1rem !important;
+      }
+    }
+  }
+}
+
+/** PAGINATION **/
+.pagination {
+  .active {
+    a {
+      background-color: $cartujano-red;
+      border-color: $cartujano-red;
+
+      &:hover {
+        background-color: $cartujano-red;
+        border-color: $cartujano-red;
+      }
+    }
+  }
+
+  li {
+    a {
+      background-color: $blue;
+      border-color: $blue;
+      color: $white;
+
+      &:hover {
+        background-color: $cartujano-red;
+        border-color: $cartujano-red;
+        color: $white;
       }
     }
   }

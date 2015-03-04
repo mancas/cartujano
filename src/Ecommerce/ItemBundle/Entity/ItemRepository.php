@@ -134,4 +134,27 @@ class ItemRepository extends CustomEntityRepository
 
         return $qb->getQuery();
     }
+
+    public function findItemsBySearchText($search, $limit = null)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p','i', 's');
+
+        $qb->leftJoin('p.images', 'i');
+        $qb->leftJoin('p.subcategory', 's');
+        $qb->addOrderBy('p.updated','DESC');
+
+        $and = $qb->expr()->andx();
+
+        $and->add($qb->expr()->like('p.name', $qb->expr()->literal('%' . $search . '%')));
+        $and->add($qb->expr()->isNull('p.deleted'));
+
+        $qb->where($and);
+
+        if (isset($limit)) {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }

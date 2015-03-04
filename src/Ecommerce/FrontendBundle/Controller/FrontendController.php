@@ -68,6 +68,18 @@ class FrontendController extends CustomController
         return $this->render('FrontendBundle:Pages:who-we-are.html.twig');
     }
 
+    public function searchAction(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            $search = $request->request->get('search');
+            if (isset($search) && strlen($search) > 0) {
+                $items = $this->getEntityManager()->getRepository('ItemBundle:Item')->findItemsBySearchText($search);
+                return $this->render('FrontendBundle:Pages:search.html.twig', array('items' => $items, 'search' => $search));
+            }
+        }
+        return $this->redirect($this->generateUrl('frontend_homepage'));
+    }
+
     public function contactAction(Request $request)
     {
         $form = $this->createForm(new ContactType(), new Contact());

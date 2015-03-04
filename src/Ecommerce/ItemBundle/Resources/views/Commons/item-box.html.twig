@@ -1,6 +1,6 @@
 {% if item.imageMain %}
 <div class="col-md-6">
-    <div class="item-box blue-block">
+    <div class="item-box">
         <div class="img-wrap">
             {% set imagePath= item.imageMain.ImageThumbnail.getWebFilePath ~ '?' ~ random() %}
             <img class="img-responsive" src="{{ asset(imagePath) }}">
