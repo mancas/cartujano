@@ -64,6 +64,27 @@ class ItemRepository extends CustomEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findCommercialItemsDQL($limit = null)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p');
+
+        $qb->addOrderBy('p.updated','DESC');
+
+        $and = $qb->expr()->andx();
+
+        $and->add($qb->expr()->eq('p.isCommercialItem', 1));
+        $and->add($qb->expr()->isNull('p.deleted'));
+
+        $qb->where($and);
+
+        if (isset($limit)) {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function findCategorySEOItemsDQL($category, $limit = null)
     {
         $qb = $this->createQueryBuilder('p');
