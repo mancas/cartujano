@@ -1,0 +1,37 @@
+{% extends "FrontendBundle:Layouts:1column.html.twig" %}
+
+{% block title %}{{ 'Tienda online El Cartujano' | trans }}{% endblock %}
+{% block description %}{{"Compra los mejores productos al mejor precio. Picos hechos con ingredientes seleccionados y aceite de olive."|trans}}{% endblock %}
+{% block sectionclass %}page ecommerce{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {% include 'FrontendBundle:Commons:nav-top.html.twig' %}
+    {% include 'CartBundle:Commons:cart-alert.html.twig' %}
+{% endblock %}
+
+{% block content %}
+    {% if items | length > 0 %}
+        <div class="row items-list">
+            {% for item in items %}
+                {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>
+            {{ 'No se han encontrado resultados en nuestro amplio catálogo de productos.' | trans }}
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'CategoryBundle:Subcategory:item_block_script.html.twig' %}
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

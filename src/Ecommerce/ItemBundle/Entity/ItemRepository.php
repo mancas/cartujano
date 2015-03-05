@@ -31,6 +31,28 @@ class ItemRepository extends CustomEntityRepository
 
         $and = $qb->expr()->andx();
 
+        $and->add($qb->expr()->eq('p.isCommercialItem', 0));
+        $and->add($qb->expr()->isNull('p.deleted'));
+
+        $qb->where($and);
+
+        if (isset($limit)) {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findCommercialItemsDQL($limit = null)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('p');
+
+        $qb->addOrderBy('p.updated','DESC');
+
+        $and = $qb->expr()->andx();
+
+        $and->add($qb->expr()->eq('p.isCommercialItem', 1));
         $and->add($qb->expr()->isNull('p.deleted'));
 
         $qb->where($and);
@@ -55,6 +77,7 @@ class ItemRepository extends CustomEntityRepository
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->eq('c.slug', '\''. $category->getSlug() .'\''));
+        $and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
 
         $qb->where($and);
@@ -79,6 +102,7 @@ class ItemRepository extends CustomEntityRepository
 
         $and->add($qb->expr()->neq('p.slug', "'" . $item->getSlug() . "'"));
         $and->add($qb->expr()->eq('s.slug', "'" . $item->getSubcategory()->getSlug() . "'"));
+        $and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
 
         $qb->where($and);
@@ -102,6 +126,7 @@ class ItemRepository extends CustomEntityRepository
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->eq('s.slug', "'" . $subcategory->getSlug() . "'"));
+        $and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
 
         $qb->where($and);
@@ -124,6 +149,7 @@ class ItemRepository extends CustomEntityRepository
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->eq('pa.id', $package));
+        $and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
 
         $qb->where($and);
@@ -147,6 +173,7 @@ class ItemRepository extends CustomEntityRepository
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->like('p.name', $qb->expr()->literal('%' . $search . '%')));
+        $and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
 
         $qb->where($and);

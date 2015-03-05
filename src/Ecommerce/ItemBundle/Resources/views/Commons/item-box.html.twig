@@ -1,52 +1,55 @@
 {% if item.imageMain %}
 <div class="col-md-6">
     <div class="item-box">
-        <div class="img-wrap">
-            {% set imagePath= item.imageMain.ImageThumbnail.getWebFilePath ~ '?' ~ random() %}
-            <img class="img-responsive" src="{{ asset(imagePath) }}">
+        <div class="item-wrap">
+            <div class="img-wrap">
+                {% set imagePath= item.imageMain.ImageThumbnail.getWebFilePath ~ '?' ~ random() %}
+                <img class="img-responsive" src="{{ asset(imagePath) }}">
+            </div>
+            <div class="item-info">
+                <h5 class="item-title">
+                    {{ item.name|length > 40 ? item.name|slice(0, 40) ~ '...' : item.name  }}
+                </h5>
+                {% if item.reference %}
+                <p>
+                    {{ 'Referencia:' | trans }} {{ item.reference }}
+                </p>
+                {% endif %}
+                {% if item.weight %}
+                    <p>
+                        {{ 'Peso:' | trans }} {{ item.weight }} {{ 'Kg' | trans }}
+                    </p>
+                {% endif %}
+                {% if item.package %}
+                    <p>
+                        {{ 'Tipo:' | trans }} {{ item.package }}
+                    </p>
+                {% endif %}
+                {% if item.description %}
+                    <p>
+                        {{ 'Descripción:' | trans }} {{ item.description }}
+                    </p>
+                {% endif %}
+            </div>
         </div>
-        <div class="item-info">
-            <h5 class="item-title">
-                {{ item.name|length > 40 ? item.name|slice(0, 40) ~ '...' : item.name  }}
-            </h5>
-            {% if item.reference %}
-            <p>
-                {{ 'Referencia:' | trans }} {{ item.reference }}
-            </p>
-            {% endif %}
-            {% if item.weight %}
-                <p>
-                    {{ 'Peso:' | trans }} {{ item.weight }} {{ 'Kg' | trans }}
-                </p>
-            {% endif %}
-            {% if item.package %}
-                <p>
-                    {{ 'Tipo:' | trans }} {{ item.package }}
-                </p>
-            {% endif %}
-            {% if item.description %}
-                <p>
-                    {{ 'Descripción:' | trans }} {{ item.description }}
-                </p>
-            {% endif %}
-            {% if item.isCommercialItem %}
-                <div class="item-options text-center">
-                    <ul class="list-unstyled">
-                        <li>
-                            <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
-                            <i class="fa fa-euro"></i>
-                        </li>
-                        <li>
-                            {% if item.stock > 0 %}
-                                <a class="btn btn-blue add-to-cart" title="{{ 'Añadir al carrito' | trans }}" href="{{ path('add_to_cart', {'slug':item.slug}) }}"><i class="fa fa-shopping-cart"></i>{{ 'Añadir' | trans }}</a>
-                            {% else %}
-                                <a class="btn btn-disabled" title="{{ 'Agotado' | trans }}" href="">{{ 'Agotado' | trans }}</a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            {% endif %}
-        </div>
+        {% if item.isCommercialItem %}
+            <div class="item-options text-center">
+                <ul class="list-unstyled">
+                    <li>
+                        <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
+                        <i class="fa fa-euro"></i>
+                        <span class="item-dispatch">(+ 3.95 € de envío)</span>
+                    </li>
+                    <li>
+                        {% if item.stock > 0 %}
+                            <a class="btn btn-blue add-to-cart" title="{{ 'Añadir al carrito' | trans }}" href="{{ path('add_to_cart', {'slug':item.slug}) }}"><i class="fa fa-shopping-cart"></i>{{ 'Añadir' | trans }}</a>
+                        {% else %}
+                            <a class="btn btn-disabled" title="{{ 'Agotado' | trans }}" href="">{{ 'Agotado' | trans }}</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endif %}

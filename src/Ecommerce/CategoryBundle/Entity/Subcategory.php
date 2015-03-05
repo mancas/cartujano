@@ -186,6 +186,17 @@ class Subcategory
         }
     }
 
+    public function hasNonCommercialItems()
+    {
+        foreach ($this->items as $item) {
+            if (!$item->isCommercialItem()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * @param mixed $slug
      */

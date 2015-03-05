@@ -15,7 +15,7 @@
                             <div class="sub-menu-items">
                                 <ul class="list-unstyled subcategories-list">
                                     {% for subcategory in category.subcategories %}
-                                        {% if subcategory.items | length > 0 %}
+                                        {% if subcategory.hasNonCommercialItems %}
                                         <li><a title="{{ subcategory }}" href="{{ path('view_subcategory', {'slug' : subcategory.slug}) }}">{{ subcategory }}</a></li>
                                         {% endif %}
                                     {% endfor %}
