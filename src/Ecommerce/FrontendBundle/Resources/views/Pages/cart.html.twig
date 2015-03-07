@@ -1,13 +1,8 @@
-{% extends "FrontendBundle:Layouts:1column.html.twig" %}
+{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
 
 {% block title %}{{ "Tu carrito | El Cartujano"|trans }}{% endblock %}
 {% block description %}{{"Compra los mejores productos al mejor precio. Picos hechos con ingredientes seleccionados y aceite de olive."|trans}}{% endblock %}
 {% block sectionclass %}user page{% endblock %}
-
-{% block header %}
-    {% include 'FrontendBundle:Commons:nav-top.html.twig' %}
-    {% include 'CartBundle:Commons:cart-alert.html.twig' %}
-{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}

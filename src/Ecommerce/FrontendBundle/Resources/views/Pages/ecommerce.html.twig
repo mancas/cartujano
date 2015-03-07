@@ -1,4 +1,4 @@
-{% extends "FrontendBundle:Layouts:1column.html.twig" %}
+{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
 
 {% block title %}{{ 'Tienda online El Cartujano' | trans }}{% endblock %}
 {% block description %}{{"Compra los mejores productos al mejor precio. Picos hechos con ingredientes seleccionados y aceite de olive."|trans}}{% endblock %}
@@ -6,11 +6,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-{% endblock %}
-
-{% block header %}
-    {% include 'FrontendBundle:Commons:nav-top.html.twig' %}
-    {% include 'CartBundle:Commons:cart-alert.html.twig' %}
 {% endblock %}
 
 {% block content %}

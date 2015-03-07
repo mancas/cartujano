@@ -4,7 +4,6 @@
         originalImages: [],
         init: function init() {
             var navElements = document.querySelectorAll('#categories li > a.dropdown-toggle');
-            console.info(navElements);
             Array.prototype.forEach.call(navElements, function(elem) {
                 var img = elem.querySelector('img');
                 var src = img.src;

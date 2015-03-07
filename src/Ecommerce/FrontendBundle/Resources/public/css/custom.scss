@@ -58,6 +58,10 @@ textarea {
   display: block !important;
 }
 
+.error {
+  color: $cartujano-red !important;
+}
+
 .w100 { width: 100% !important; }
 
 .alert {
@@ -254,7 +258,7 @@ nav.cartujano-nav {
 }
 
 /** MAIN PAGE **/
-body.ecommerce {
+body.ecommerce, body.user-page {
   #wrap {
     padding-top: 4rem;
   }
@@ -492,6 +496,35 @@ body.ecommerce {
 
 .cart-table {
   background-color: $white;
+}
+
+/** LOGIN/REGISTER **/
+.login-form {
+  height: 20rem;
+  width: 100%;
+  display: table;
+  .login-wrap {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    .login {
+      height: 100%;
+      border-right: solid 0.2rem $blue;
+    }
+
+    .register {
+      .register-wrap {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        p {
+          text-align: center !important;
+        }
+      }
+      display: table;
+      height: 100%;
+    }
+  }
 }
 
 /** PAGINATION **/

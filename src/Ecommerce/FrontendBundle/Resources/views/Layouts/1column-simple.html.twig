@@ -1,7 +1,8 @@
 {% extends 'FrontendBundle::base.html.twig' %}
 
 {% block header %}
-    {{ parent() }}
+    {% include 'FrontendBundle:Commons:nav-top.html.twig' %}
+    {% include 'CartBundle:Commons:cart-alert.html.twig' %}
 {% endblock %}
 
 {% block body %}
@@ -15,7 +16,9 @@
         {% endblock %}
 
         <div class="row">
-            {% block content %}{% endblock %}
+            <div class="col-md-12">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -25,5 +28,5 @@
 {% endblock %}
 
 {% block footer %}
-    {% include 'FrontendBundle:Commons:footer.html.twig' %}
+    {{ parent() }}
 {% endblock %}

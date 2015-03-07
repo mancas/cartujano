@@ -62,7 +62,7 @@ class AccessController extends CustomController
 
                 $this->resetToken($user);
 
-                return $this->redirect($this->generateUrl('frontend_homepage'));
+                return $this->redirect($this->generateUrl('ecommerce_homepage'));
             } else {
                 $this->setTranslatedFlashMessage('El código introducido no coincide con el que te hemos mandado.', 'error');
             }
@@ -115,18 +115,21 @@ class AccessController extends CustomController
             $em = $this->getEntityManager();
             $data = $form->getData();
             $user = $em->getRepository('UserBundle:User')->findOneBy(array('email' => $data['email']));
-            $recoverPassword = new RecoverPassword();
-            $recoverPassword->setEmail($user->getEmail());
-            $recoverPassword->setSalt($user->getSalt());
+            if (isset($user)) {
+                $recoverPassword = new RecoverPassword();
+                $recoverPassword->setEmail($user->getEmail());
+                $recoverPassword->setSalt($user->getSalt());
 
-            $em->persist($recoverPassword);
-            $em->flush();
+                $em->persist($recoverPassword);
+                $em->flush();
 
-            $userEvent = new UserEvent($user);
-            $dispatcher = $this->get('event_dispatcher');
-            $dispatcher->dispatch(UserEvents::RECOVER_PASSWORD, $userEvent);
-            $this->setTranslatedFlashMessage('El correo con las instrucciones para reestablecer tu contraseña ha sido enviado correctamente. Recuerda que dispones de 24 horas a partir de ahora para reestablercerla.');
-            return $this->redirect($this->generateUrl('login'));
+                $userEvent = new UserEvent($user);
+                $dispatcher = $this->get('event_dispatcher');
+                $dispatcher->dispatch(UserEvents::RECOVER_PASSWORD, $userEvent);
+                $this->setTranslatedFlashMessage('El correo con las instrucciones para reestablecer tu contraseña ha sido enviado correctamente. Recuerda que dispones de 24 horas a partir de ahora para reestablercerla.');
+                return $this->redirect($this->generateUrl('login'));
+            }
+            $this->setTranslatedFlashMessage('El correo electrónico introducido no corresponde a ninguna cuenta. Asegurate de escribirlo correctamente', 'error');
         }
 
         return $this->render('UserBundle:Access:forgot-password.html.twig', array('form' => $form->createView()));

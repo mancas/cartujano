@@ -1,8 +1,8 @@
-{% extends "FrontendBundle:Layouts:1column.html.twig" %}
+{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
 
-{% block title %}{{ "Valida tu cuenta en Ecommerce"|trans }}{% endblock %}
-{% block description %}{{"Una tienda que vende pulseras"|trans}}{% endblock %}
-{% block sectionclass %}home page{% endblock %}
+{% block title %}{{ "Valida tu cuenta en El Cartujano"|trans }}{% endblock %}
+{% block description %}{{""|trans}}{% endblock %}
+{% block sectionclass %}user-page page{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -13,12 +13,9 @@
 {% endblock %}
 
 {% block content %}
+    <h2 class="title">{{ 'Código de validación' | trans }}</h2>
     <div class="row">
         <div class="col-md-12">
-            <div class="line-block mb20">
-                <h2 class="line-title">{{ 'Código de validación' | trans }}</h2>
-            </div>
-
             <p>
                 {{ 'Antes de acceder a tu perfil o realizar compras debes validar tu cuenta. Te hemos enviado un mensaje a ' | trans }} <i class="blue">{{ user.email }}</i>.
                 {{ 'Para validar la cuenta solo tienes que introducir el código que aparece en el correo.' | trans }}
@@ -46,7 +43,6 @@
             </div><!-- .row -->
         </div><!-- .col-md-12 -->
     </div>
-
 {% endblock %}
 
 {% block javascripts %}
