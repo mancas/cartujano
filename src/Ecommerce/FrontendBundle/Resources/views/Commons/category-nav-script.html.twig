@@ -4,6 +4,7 @@
         originalImages: [],
         init: function init() {
             var navElements = document.querySelectorAll('#categories li > a.dropdown-toggle');
+            console.info(navElements);
             Array.prototype.forEach.call(navElements, function(elem) {
                 var img = elem.querySelector('img');
                 var src = img.src;
@@ -32,6 +33,7 @@
                         img = parent.querySelector('#categories li > a > img');
                         break;
                 }
+                evt.target.parentNode.classList.add('open');
                 img.src = this.hoverImages[img.id];
             }
         },
@@ -47,6 +49,7 @@
                         img = parent.querySelector('#categories li > a > img');
                         break;
                 }
+                evt.target.parentNode.classList.remove('open');
                 img.src = this.originalImages[img.id];
             }
         }

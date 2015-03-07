@@ -36,20 +36,14 @@ class CartController extends CustomController
             $path = $this->container->get('templating.helper.assets')->getUrl($path);
 
             if (!$currentCartItem) {
-                if ($item->getStock() >= $quantity) {
-                    $cartItem = new CartItem($item->getId(), $quantity, $price);
-                    $currentCart->addCartItem($cartItem);
-                    $jsonResponse = json_encode(array('ok' => true, 'title' => $item->getName(),
-                        'image_thumb' => $path, 'quantity' => $quantity, 'items' => count($currentCart->getCartItems())));
-                }
+                $cartItem = new CartItem($item->getId(), $quantity, $price);
+                $currentCart->addCartItem($cartItem);
             } else {
-                if ($item->getStock() >= ($currentCartItem->getQuantity() + $quantity)) {
-                    $cartItem = new CartItem($item->getId(), $quantity, $price);
-                    $currentCart->addCartItem($cartItem);
-                    $jsonResponse = json_encode(array('ok' => true, 'title' => $item->getName(),
-                        'image_thumb' => $path, 'quantity' => $quantity, 'items' => count($currentCart->getCartItems())));
-                }
+                $cartItem = new CartItem($item->getId(), $quantity, $price);
+                $currentCart->addCartItem($cartItem);
             }
+            $jsonResponse = json_encode(array('ok' => true, 'title' => $item->getName(),
+                'image_thumb' => $path, 'quantity' => $quantity, 'items' => count($currentCart->getCartItems())));
 
         }
 

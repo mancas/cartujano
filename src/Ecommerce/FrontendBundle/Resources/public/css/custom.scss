@@ -419,16 +419,6 @@ body.ecommerce {
           font-size: 2rem;
         }
 
-        .btn-blue {
-          background-color: $blue;
-          color: white;
-          outline: medium none;
-          transition: all 0.25s ease 0s;
-          &:hover {
-            background-color: $cartujano-red;
-          }
-        }
-
         .add-to-cart {
           i {
             margin-right: 0.8rem;
@@ -436,6 +426,17 @@ body.ecommerce {
         }
       }
     }
+  }
+}
+
+.btn-blue {
+  background-color: $blue;
+  color: white;
+  outline: medium none;
+  transition: all 0.25s ease 0s;
+  &:hover {
+    background-color: $cartujano-red;
+    color: $white;
   }
 }
 
@@ -453,7 +454,7 @@ body.ecommerce {
     background-color: $cartujano-red;
     font-size: 2rem;
     position: absolute;
-    z-index: 12345;
+    z-index: 1040;
 
     i {
       border-radius: 100rem;
@@ -487,6 +488,10 @@ body.ecommerce {
       font-size: 1.8rem;
     }
   }
+}
+
+.cart-table {
+  background-color: $white;
 }
 
 /** PAGINATION **/
