@@ -62,7 +62,8 @@ header {
   background-image: url("../img/el-cartujano-header.png");
   height: 18rem;
   max-width: 96rem;
-  margin: auto; }
+  margin: auto;
+  position: relative; }
   header a.brand {
     margin-left: 2.5rem; }
     header a.brand img {
@@ -292,7 +293,8 @@ body.ecommerce #wrap {
       .items-list .item-box .item-options li .item-dispatch {
         display: block;
         margin: 0;
-        text-align: center; }
+        text-align: center;
+        font-size: 1.2rem; }
       .items-list .item-box .item-options li .item-price {
         font-size: 2rem; }
       .items-list .item-box .item-options li .btn-blue {
@@ -304,6 +306,46 @@ body.ecommerce #wrap {
           background-color: #DE0000; }
       .items-list .item-box .item-options li .add-to-cart i {
         margin-right: 0.8rem; }
+
+/** SHOPPING CART **/
+.shopping-cart {
+  position: absolute;
+  right: 2rem;
+  top: 2rem; }
+  .shopping-cart .cart-icon {
+    text-align: center;
+    width: 5rem;
+    height: 5rem;
+    vertical-align: middle;
+    border-radius: 100rem;
+    background-color: #DE0000;
+    font-size: 2rem;
+    position: absolute;
+    z-index: 12345; }
+    .shopping-cart .cart-icon i {
+      border-radius: 100rem;
+      width: 4rem;
+      height: 4rem;
+      background-color: #FFFFFF;
+      line-height: 4rem;
+      margin-top: 0.5rem; }
+  .shopping-cart .cart-items {
+    background-color: #DE0000;
+    height: 3rem;
+    width: 18rem;
+    margin: 1rem 0 0 4rem;
+    padding-left: 2rem;
+    border-bottom-right-radius: 100rem;
+    border-top-right-radius: 100rem;
+    color: #FFFFFF;
+    line-height: 3rem; }
+    .shopping-cart .cart-items a {
+      color: #FFFFFF; }
+      .shopping-cart .cart-items a:hover {
+        text-decoration: underline; }
+    .shopping-cart .cart-items .empty-cart {
+      margin-right: 1rem;
+      font-size: 1.8rem; }
 
 /** PAGINATION **/
 .pagination .active a {

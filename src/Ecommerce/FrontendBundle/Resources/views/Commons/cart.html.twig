@@ -1,15 +1,10 @@
-<a class="dropdown-toggle" href="">
-    <span class="badge badge-info cart-items">{{ cart.cartItems | length }}</span>
-    <i class="fa fa-shopping-cart"></i>
-</a>
+<div class="shopping-cart">
+    <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
+    <div class="cart-items">
+        <a href="{{ path('cart_details') }}" title="{{ 'Ver productos' }}" class="items-count">{% if cart.cartItems | length == 1 %}{{ '1 producto' | trans }}{% else %}{{ cart.cartItems | length ~ ' productos' | trans }}{% endif %}</a>
 
-<div class="sub-menu sub-menu-cart dropdown-menu">
-    <div class="sub-menu-cart-items">
-        <span>{{ cart.cartItems | length }} {% if cart.cartItems | length == 1 %}{{ 'producto' | trans }}{% else %}{{ 'productos' | trans }}{% endif %} <a class="empty-cart" href="{{ path('empty_cart') }}" title="{{ 'Vaciar cesta' | trans }}"><i class="fa fa-times-circle"></i></a></span>
-        <span class="pull-right">{{ cart.cartTotal }} <i class="fa fa-euro text-12"></i></span>
-    </div>
-    <div class="cart-buttons">
-        <a class="btn btn-success" href="{{ path('new_order') }}" title="{{ 'Pagar' | trans }}">{{ 'Pagar' | trans }}</a>
-        <a class="btn btn-blue" href="{{ path('cart_details') }}" title="{{ 'Ver cesta' | trans }}">{{ 'Ver cesta' | trans }}</a>
+        <a href="{{ path('empty_cart') }}" title="{{ 'Vaciar el carrito' | trans }}" class="empty-cart pull-right"><i class="fa fa-times-circle"></i></a>
     </div>
 </div>
+
+{% include 'FrontendBundle:Commons:cart-script.html.twig' %}

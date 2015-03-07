@@ -37,8 +37,8 @@
                 <ul class="list-unstyled">
                     <li>
                         <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
-                        <i class="fa fa-euro"></i>
-                        <span class="item-dispatch">(+ 3.95 € de envío)</span>
+                        <i class="fa fa-euro"></i>  {{ 'IVA incluido' | trans }}
+                        <span class="item-dispatch">(+ X.XX <i class="fa fa-euro"></i> {{ 'envío' | trans }})</span>
                     </li>
                     <li>
                         {% if item.stock > 0 %}

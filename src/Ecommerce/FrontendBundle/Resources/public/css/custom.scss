@@ -75,6 +75,7 @@ header {
   height: 18rem;
   max-width: 96rem;
   margin: auto;
+  position: relative;
 
   a.brand {
     margin-left: 2.5rem;
@@ -411,6 +412,7 @@ body.ecommerce {
           display: block;
           margin: 0;
           text-align: center;
+          font-size: 1.2rem;
         }
 
         .item-price {
@@ -433,6 +435,56 @@ body.ecommerce {
           }
         }
       }
+    }
+  }
+}
+
+/** SHOPPING CART **/
+.shopping-cart {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  .cart-icon {
+    text-align: center;
+    width: 5rem;
+    height: 5rem;
+    vertical-align: middle;
+    border-radius: 100rem;
+    background-color: $cartujano-red;
+    font-size: 2rem;
+    position: absolute;
+    z-index: 12345;
+
+    i {
+      border-radius: 100rem;
+      width: 4rem;
+      height: 4rem;
+      background-color: $white;
+      line-height: 4rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .cart-items {
+    background-color: $cartujano-red;
+    height: 3rem;
+    width: 18rem;
+    margin: 1rem 0 0 4rem;
+    padding-left: 2rem;
+    border-bottom-right-radius: 100rem;
+    border-top-right-radius: 100rem;
+    color: $white;
+    line-height: 3rem;
+    a {
+      color: $white;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .empty-cart {
+      margin-right: 1rem;
+      font-size: 1.8rem;
     }
   }
 }

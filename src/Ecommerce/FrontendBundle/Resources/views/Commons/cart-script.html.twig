@@ -1,11 +1,14 @@
 <script>
+    var CartHelper = {
+
+    };
     $(document).ready(function(){
         $('body').delegate('.add-to-cart', 'click', function(e) {
             e.preventDefault();
             $.post($(this).attr('href'), function (response) {
                 console.info(response);
                 if (response.ok) {
-                    updateCart();
+                    updateCart(response);
                     openCartAlert(response);
                 }
             });
@@ -15,16 +18,8 @@
             e.preventDefault();
             $.post($(this).attr('href'), function (response) {
                 console.info(response);
-                updateCart();
+                updateCart(response);
             });
-        });
-
-        $('body').delegate('.dropdown-toggle, .dropdown-menu', 'mouseover mouseout', function(e) {
-            if (e.type == 'mouseover') {
-                $(this).parent().addClass('open');
-            } else {
-                $(this).parent().removeClass('open');
-            }
         });
 
         $('body').on('click', '.add-to-cart-quantity', function(event) {
@@ -34,17 +29,15 @@
             $.post($(this).attr('href'), {'quantity' : quantity}, function (response) {
                 console.info(response);
                 if (response.ok) {
-                    updateCart();
+                    updateCart(response);
                     openCartAlert(response);
                 }
             });
         });
 
-        function updateCart()
+        function updateCart(data)
         {
-            $.get('{{ path('cart_template') }}', function(response) {
-                $('.shopping-cart').html(response);
-            });
+            $('.items-count').html(data.items == 1 ? '{{ '1 producto' | trans }}' : data.items + '{{ ' productos' | trans }}');
         }
 
         function openCartAlert(data)

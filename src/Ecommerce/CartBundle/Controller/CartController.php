@@ -40,14 +40,14 @@ class CartController extends CustomController
                     $cartItem = new CartItem($item->getId(), $quantity, $price);
                     $currentCart->addCartItem($cartItem);
                     $jsonResponse = json_encode(array('ok' => true, 'title' => $item->getName(),
-                        'image_thumb' => $path, 'quantity' => $quantity));
+                        'image_thumb' => $path, 'quantity' => $quantity, 'items' => count($currentCart->getCartItems())));
                 }
             } else {
                 if ($item->getStock() >= ($currentCartItem->getQuantity() + $quantity)) {
                     $cartItem = new CartItem($item->getId(), $quantity, $price);
                     $currentCart->addCartItem($cartItem);
                     $jsonResponse = json_encode(array('ok' => true, 'title' => $item->getName(),
-                        'image_thumb' => $path, 'quantity' => $quantity));
+                        'image_thumb' => $path, 'quantity' => $quantity, 'items' => count($currentCart->getCartItems())));
                 }
             }
 
@@ -63,7 +63,7 @@ class CartController extends CustomController
             $cartStorageManager = $this->getCartStorageManager();
             $currentCart = $cartStorageManager->getCurrentCart();
             $currentCart->resetCart();
-            $jsonResponse = json_encode(array('ok' => true));
+            $jsonResponse = json_encode(array('ok' => true, 'items' => 0));
         }
 
         return $this->getHttpJsonResponse($jsonResponse);
