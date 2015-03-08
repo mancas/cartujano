@@ -1,10 +1,10 @@
 cart:
     resource: "@CartBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /e
 
 pay_pal:
     resource: "@PayPalBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /e
 
 location:
     resource: "@LocationBundle/Resources/config/routing.yml"
@@ -12,7 +12,7 @@ location:
 
 payment:
     resource: "@PaymentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /e
 
 image:
     resource: "@ImageBundle/Resources/config/routing.yml"
@@ -28,7 +28,7 @@ backend:
 
 order:
     resource: "@OrderBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /e
 
 item:
     resource: "@ItemBundle/Resources/config/routing.yml"
@@ -40,7 +40,7 @@ category:
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /u
+    prefix:   /e/u
 
 login:
     pattern: /login

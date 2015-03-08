@@ -26,6 +26,6 @@ search:
   pattern: /busqueda
   defaults: { _controller: FrontendBundle:Frontend:search }
 
-ecommerce_homepage:
-  pattern: /tienda-el-cartujano
-  defaults: { _controller: FrontendBundle:Frontend:ecommerceHomepage }
+ecommerce:
+  resource: "@FrontendBundle/Resources/config/ecommerce.yml"
+  prefix:   /e

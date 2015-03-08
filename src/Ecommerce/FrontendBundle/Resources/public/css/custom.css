@@ -112,6 +112,8 @@ nav.cartujano-nav {
     height: 2.6rem;
     width: 22rem;
     padding: 0.4rem 0.6rem; }
+  nav.cartujano-nav .user-access {
+    margin-right: 0 !important; }
 
 /** CATEGORIES NAV **/
 .category-nav-container {
@@ -376,6 +378,69 @@ body.ecommerce #wrap, body.user-page #wrap {
         text-align: center; }
         .login-form .login-wrap .register .register-wrap p {
           text-align: center !important; }
+
+/** USER **/
+.user-nav-wrap {
+  display: block;
+  text-align: center;
+  list-style: none;
+  padding: 2rem 0;
+  margin: auto;
+  width: 35rem;
+  overflow: hidden; }
+  .user-nav-wrap li {
+    float: left;
+    width: 50%; }
+  .user-nav-wrap i {
+    display: block;
+    font-size: 8rem; }
+  .user-nav-wrap a {
+    line-height: 3rem;
+    font-weight: bold; }
+    .user-nav-wrap a:hover {
+      color: #3FA9F5;
+      text-decoration: none; }
+  .user-nav-wrap .active {
+    color: #DE0000; }
+
+.box h5 {
+  display: block;
+  background-color: #DE0000;
+  padding: 8px 10px;
+  box-shadow: 0 0 1px rgba(50, 50, 50, 0.2);
+  -moz-box-shadow: 0 0 1px rgba(50, 50, 50, 0.2);
+  -webkit-box-shadow: 0 0 1px rgba(50, 50, 50, 0.2);
+  border: solid 1px #EEEEEE; }
+  .box h5 a {
+    display: block;
+    color: #FFFFFF;
+    outline: none !important; }
+    .box h5 a:hover, .box h5 a:active, .box h5 a:focus {
+      text-decoration: none; }
+.box .stack-box {
+  display: block;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(50, 50, 50, 0.2);
+  margin-top: -10px;
+  padding-top: 15px; }
+  .box .stack-box .content {
+    padding: 0px 10px 15px 10px; }
+  .box .stack-box .stack-box-title {
+    font-size: 14px;
+    color: #3FA9F5; }
+  .box .stack-box .controls {
+    display: block;
+    text-align: right; }
+
+#addresses {
+  padding-top: 50px;
+  font-size: 12px; }
+  #addresses .table > thead > tr > th, #addresses .table > tbody > tr > th, #addresses .table > tfoot > tr > th, #addresses .table > thead > tr > td, #addresses .table > tbody > tr > td, #addresses .table > tfoot > tr > td {
+    vertical-align: middle; }
+  #addresses .main {
+    background-color: #FCF8E3; }
+    #addresses .main:hover {
+      background-color: #FAF2CC !important; }
 
 /** PAGINATION **/
 .pagination .active a {

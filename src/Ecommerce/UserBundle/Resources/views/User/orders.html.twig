@@ -1,7 +1,7 @@
-{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
+{% extends "FrontendBundle:Layouts:1column-simple-user.html.twig" %}
 
-{% block title %}{{ "Mis pedidos | Clop Sevilla"|trans }}{% endblock %}
-{% block description %}{{"Una tienda que vende pulseras"|trans}}{% endblock %}
+{% block title %}{{ "Mis pedidos | El Cartujano"|trans }}{% endblock %}
+{% block description %}{{""|trans}}{% endblock %}
 {% block sectionclass %}user page{% endblock %}
 
 {% block header %}
@@ -15,59 +15,53 @@
 {% block error %}{% endblock %}
 
 {% block content %}
-    <div class="intro">
-        <div class="intro-wrap">
-            <h2>{{ 'Mis Pedidos' | trans }}</h2>
-        </div>
-    </div>
-    <div class="col-md-8 col-md-offset-2">
-        <div class="row">
-            <div class="col-md-12">
-                {% include 'UserBundle:Commons:user-sidenav.html.twig' %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                <div class="col-md-12">
+                    {% include 'FrontendBundle:Commons:flashes.html.twig' %}
+                </div>
             </div>
 
-            <div class="col-md-12">
-                {% include 'FrontendBundle:Commons:flashes.html.twig' %}
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    {% if orders | length > 0 %}
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>{{ 'Fecha del pedido' | trans}} </th>
-                                    <th>{{ 'Dirección de envío' | trans }}</th>
-                                    <th>{{ 'Estado' | trans}} </th>
-                                    <th>{{ 'Total' | trans }}</th>
-                                    <th>{{ 'Opciones' | trans }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for order in orders %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        {% if orders | length > 0 %}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                     <tr>
-                                        <td>{{ order.date | date('d-m-Y') }}</td>
-                                        <td>{% if order.address is not null %}{{ order.address.name }}{% else %}{{ 'Recogida en tienda' }}{% endif %}</td>
-                                        <td>{{ order.status }}</td>
-                                        <td>{{ order.totalAmount }} <i class="fa fa-euro"></i></td>
-                                        <td>
-                                            <a class="btn btn-blue btn-sm" href="{{ path('view_order_details', {'id' : order.id}) }}" title="{{ 'Ver detalles' | trans }}"><i class="fa fa-eye"></i></a>
-                                            {#<a class="btn btn-yellow btn-sm" href="{{ path('view_order_details', {'id' : order.id}) }}" title="{{ 'Descargar factura' | trans }}"><i class="fa fa-file-pdf-o"></i></a>#}
-                                        </td>
+                                        <th>{{ 'Fecha del pedido' | trans}} </th>
+                                        <th>{{ 'Dirección de envío' | trans }}</th>
+                                        <th>{{ 'Estado' | trans}} </th>
+                                        <th>{{ 'Total' | trans }}</th>
+                                        <th>{{ 'Opciones' | trans }}</th>
                                     </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% else %}
-                        <span>{{ 'No has realizado ningún pedido' | trans }}</span>
+                                    </thead>
+                                    <tbody>
+                                    {% for order in orders %}
+                                        <tr>
+                                            <td>{{ order.date | date('d-m-Y') }}</td>
+                                            <td>{% if order.address is not null %}{{ order.address.name }}{% else %}{{ 'Recogida en tienda' }}{% endif %}</td>
+                                            <td>{{ order.status }}</td>
+                                            <td>{{ order.totalAmount }} <i class="fa fa-euro"></i></td>
+                                            <td>
+                                                <a class="btn btn-blue btn-sm" href="{{ path('view_order_details', {'id' : order.id}) }}" title="{{ 'Ver detalles' | trans }}"><i class="fa fa-eye"></i></a>
+                                                {#<a class="btn btn-yellow btn-sm" href="{{ path('view_order_details', {'id' : order.id}) }}" title="{{ 'Descargar factura' | trans }}"><i class="fa fa-file-pdf-o"></i></a>#}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <span>{{ 'No has realizado ningún pedido' | trans }}</span>
+                        {% endif %}
+                    </div>
+                    {% if orders | length > 0 %}
+                    {{ simple_paginator_render('user_orders', 'user_orders', {'container_class' : 'pagination', 'currentClass' : 'active'}, 'ItemBundle:Commons:paginator.html.twig') }}
                     {% endif %}
                 </div>
-
-                {{ simple_paginator_render('user_orders', 'user_orders', {'container_class' : 'pagination', 'currentClass' : 'active'}, 'ItemBundle:Commons:paginator.html.twig') }}
             </div>
         </div>
     </div>

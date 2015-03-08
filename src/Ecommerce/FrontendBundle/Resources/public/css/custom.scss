@@ -151,6 +151,10 @@ nav.cartujano-nav {
       padding: 0.4rem 0.6rem;
     }
   }
+
+  .user-access {
+    margin-right: 0 !important;
+  }
 }
 
 /** CATEGORIES NAV **/
@@ -523,6 +527,93 @@ body.ecommerce, body.user-page {
       }
       display: table;
       height: 100%;
+    }
+  }
+}
+
+/** USER **/
+.user-nav-wrap {
+  display: block;
+  text-align: center;
+  list-style: none;
+  padding: 2rem 0;
+  margin: auto;
+  width: 35rem;
+  overflow: hidden;
+
+
+  li {
+    float: left;
+    width: 50%;
+  }
+
+  i {
+    display: block;
+    font-size: 8rem;
+  }
+
+  a {
+    line-height: 3rem;
+    font-weight: bold;
+    &:hover {
+      color: $blue-hover;
+      text-decoration: none;
+    }
+  }
+
+  .active {
+    color: $cartujano-red;
+  }
+}
+
+.box {
+  h5 {
+    display: block;
+    background-color: $cartujano-red;
+    padding: 8px 10px;
+    box-shadow: 0 0 1px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0 0 1px rgba(50, 50, 50, 0.2);
+    -webkit-box-shadow: 0 0 1px rgba(50, 50, 50, 0.2);
+    border: solid 1px $light-gray;
+    a {
+      display: block;
+      color: $white;
+      outline: none !important;
+      &:hover, &:active, &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+  .stack-box {
+    display: block;
+    background-color: $white;
+    box-shadow: 0 1px 3px rgba(50, 50, 50, 0.2);
+    margin-top: -10px;
+    padding-top: 15px;
+    .content {
+      padding: 0px 10px 15px 10px;
+    }
+    .stack-box-title {
+      font-size: 14px;
+      color: $blue-hover;
+    }
+    .controls {
+      display: block;
+      text-align: right;
+    }
+  }
+}
+
+#addresses {
+  padding-top: 50px;
+  font-size: 12px;
+  .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    vertical-align: middle;
+  }
+  .main {
+    background-color: #FCF8E3;
+    &:hover {
+      background-color: #FAF2CC !important;
     }
   }
 }

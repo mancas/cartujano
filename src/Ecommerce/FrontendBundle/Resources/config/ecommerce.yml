@@ -1,0 +1,3 @@
+ecommerce_homepage:
+  pattern: /tienda-el-cartujano
+  defaults: { _controller: FrontendBundle:Frontend:ecommerceHomepage }

@@ -1,5 +1,17 @@
 {% set action = app.request.attributes.get('_route') %}
-<div class="user-nav">
-    <a title="{{ 'Mi cuenta' | trans }}" href="{{ path('user_profile') }}" {% if action == 'user_profile' %}class="active"{% endif %}>{{ 'Mi cuenta' | trans }}</a>
-    <a title="{{ 'Gestiona tus pedidos' | trans }}" href="{{ path('user_orders') }}" {% if action == 'user_orders' or action == 'view_order_details' %}class="active"{% endif %}>{{ 'Mis pedidos' | trans }}</a>
+<div class="user-nav container">
+    <ul class="user-nav-wrap">
+        <li>
+            <a title="{{ 'Mi cuenta' | trans }}" href="{{ path('user_profile') }}" {% if action == 'user_profile' %}class="active"{% endif %}>
+                <i class="fa fa-user"></i>
+                {{ 'Mi cuenta' | trans }}
+            </a>
+        </li>
+        <li>
+            <a title="{{ 'Gestiona tus pedidos' | trans }}" href="{{ path('user_orders') }}" {% if action == 'user_orders' or action == 'view_order_details' %}class="active"{% endif %}>
+                <i class="fa fa-cubes"></i>
+                {{ 'Mis pedidos' | trans }}
+            </a>
+        </li>
+    </ul>
 </div>

@@ -1,4 +1,8 @@
 services:
+    twig.extension.isEcommerceAction:
+        class: Ecommerce\FrontendBundle\Twig\Extension\IsEcommerceAction
+        tags:
+            - { name: twig.extension }
     twig.extension.stockbar:
         class: Ecommerce\FrontendBundle\Twig\Extension\StockBarExtension
         tags:
