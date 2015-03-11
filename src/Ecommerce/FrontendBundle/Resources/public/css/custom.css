@@ -393,7 +393,7 @@ body.ecommerce #wrap, body.user-page #wrap {
     width: 50%; }
   .user-nav-wrap i {
     display: block;
-    font-size: 8rem; }
+    font-size: 6rem; }
   .user-nav-wrap a {
     line-height: 3rem;
     font-weight: bold; }
@@ -427,7 +427,7 @@ body.ecommerce #wrap, body.user-page #wrap {
     padding: 0px 10px 15px 10px; }
   .box .stack-box .stack-box-title {
     font-size: 14px;
-    color: #3FA9F5; }
+    color: #00409C; }
   .box .stack-box .controls {
     display: block;
     text-align: right; }

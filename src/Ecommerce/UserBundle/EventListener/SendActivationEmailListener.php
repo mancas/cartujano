@@ -78,7 +78,7 @@ class SendActivationEmailListener implements EventSubscriberInterface
             'UserBundle:Email:recovery-password.html.twig',
             array('url' => $url));
         $message = \Swift_Message::newInstance()
-            ->setSubject('Restablecer tu contraseña en Clop')
+            ->setSubject('Restablecer tu contraseña en El Cartujano')
             ->setFrom($from)
             ->setTo($to)
             ->setBody($messageBody, 'text/html');

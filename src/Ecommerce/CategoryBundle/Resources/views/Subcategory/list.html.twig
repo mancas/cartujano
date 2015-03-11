@@ -14,12 +14,12 @@
 
 {% block content %}
     {% for subcategory in subcategories %}
-        {% if subcategory.items | length > 0 %}
+        {% if subcategory.getNonCommercialItems | length > 0 %}
         <h1 class="title">
             <a title="{{ 'Ver subcategoría completa' }}" href="{{ path('view_subcategory', {slug: subcategory.slug}) }}">{{ subcategory }}</a>
         </h1>
         <div class="row items-list">
-        {% if subcategory.items | length > 1 %}
+        {% if subcategory.getNonCommercialItems | length > 1 %}
             {% for i in 0..1 %}
                 {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(i)})) }}
             {% endfor %}
@@ -33,6 +33,7 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {% include 'CategoryBundle:Subcategory:item_block_script.html.twig' %}
 {% endblock %}
 
 {% block footer %}

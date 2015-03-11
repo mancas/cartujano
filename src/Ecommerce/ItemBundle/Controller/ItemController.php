@@ -10,7 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ItemController extends CustomController
 {
-    const RELATED_ITEMS_LIMIT = 8;
     /**
      * @param Item $item
      *
@@ -21,21 +20,5 @@ class ItemController extends CustomController
     public function itemBoxAction(Item $item)
     {
         return array('item' => $item);
-    }
-
-    /**
-     * @ParamConverter("item", class="ItemBundle:Item")
-     */
-    public function detailsAction(Item $item)
-    {
-        $em = $this->getEntityManager();
-        $relatedItems = $em->getRepository('ItemBundle:Item')->findRelatedItems($item, self::RELATED_ITEMS_LIMIT);
-
-        if ($item->getDeleted()) {
-            $this->setTranslatedFlashMessage('Este producto ha sido eliminado');
-            return $this->redirect($this->generateUrl('frontend_homepage'));
-        }
-
-        return $this->render('ItemBundle:Item:details.html.twig', array('item' => $item, 'relatedItems' => $relatedItems));
     }
 }
