@@ -1,7 +1,7 @@
 {% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
 
-{% block title %}{{ "Tu pedido | Clop"|trans }}{% endblock %}
-{% block description %}{{"Una tienda que vende pulseras"|trans}}{% endblock %}
+{% block title %}{{ "Tu pedido | El Cartujano"|trans }}{% endblock %}
+{% block description %}{% endblock %}
 {% block sectionclass %}user page{% endblock %}
 
 {% block header %}
@@ -13,169 +13,123 @@
 {% endblock %}
 
 {% block content %}
-    <div class="intro">
-        <div class="intro-wrap">
-            <h2>{{ 'Tu pedido' | trans }}</h2>
-        </div>
-    </div>
-    <div class="col-md-10 col-md-offset-1">
-        <div class="row">
-            <div class="col-md-12">
-                {% include 'FrontendBundle:Commons:flashes.html.twig' %}
+    <h2 class="title">{{ 'Tu pedido' | trans }}</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered cart-table">
+                    <thead>
+                    <tr>
+                        <th class="text-left">{{ 'Descripción' | trans }}</th>
+                        <th>{{ 'Cantidad' | trans }}</th>
+                        <th>{{ 'Precio' | trans }}</th>
+                        <th>{{ 'Subtotal' | trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if cart and cart.cartItems | length > 0 %}
+                        {% for item in cart.cartItems %}
+                            <tr>
+                                <td class="text-left">
+                                    {{ render(controller("CartBundle:Cart:cartItemDetails", {'id':item.id})) }}
+                                </td>
+                                <td>
+                                    {{ item.quantity }}
+                                </td>
+                                <td>{{ item.price / item.quantity }} <i class="fa fa-euro"></i></td>
+                                <td>{{ item.price }} <i class="fa fa-euro"></i></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center">{{ 'Tu carrito está vacio' | trans }}</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div class="row">
+
+        <form action="{{ path('new_order') }}" class="form-inline" novalidate="novalidate" method="POST">
             <div class="col-md-12">
+                <h2 class="title">{{ 'Opciones de envío' | trans }}</h2>
+                {% for shipmentOption in shipmentOptions %}
+                    <div class="form-group mr15">
+                        <input id="shipment_option_{{ loop.index0 }}" data-cost="{{ shipmentOption.cost }}" {% if loop.index0 == 0 %}checked="checked"{% endif %} type="radio" name="shipment_option" value="{{ shipmentOption.id }}">
+                        <label for="shipment_option_{{ loop.index0 }}">{{ shipmentOption.type }}</label> <span>({{ shipmentOption.cost }} <i class="fa fa-euro"></i>)</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div id="address_delivery_block" class="col-md-12">
+                <h2 class="title">{{ 'Dirección de envío' | trans }}</h2>
                 <div class="table-responsive">
                     <table class="table table-bordered cart-table">
                         <thead>
                         <tr>
-                            <th class="text-left">{{ 'Descripción' | trans }}</th>
-                            <th>{{ 'Cantidad' | trans }}</th>
-                            <th>{{ 'Precio' | trans }}</th>
-                            <th>{{ 'Subtotal' | trans }}</th>
+                            <th style="width: 10%;">{{ 'Enviar a' }}</th>
+                            <th style="width: 30%">{{ 'Nombre' | trans }}</th>
+                            <th>{{ 'Dirección' | trans }}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% if cart and cart.cartItems | length > 0 %}
-                            {% for item in cart.cartItems %}
+                        {% if user.addresses | length > 0 %}
+                            {% for address in user.addresses %}
                                 <tr>
-                                    <td class="text-left">
-                                        {{ render(controller("CartBundle:Cart:cartItemDetails", {'id':item.id})) }}
-                                    </td>
-                                    <td>
-                                        {{ item.quantity }}
-                                    </td>
-                                    <td>{{ item.price / item.quantity }} <i class="fa fa-euro"></i></td>
-                                    <td>{{ item.price }} <i class="fa fa-euro"></i></td>
+                                    <td><input {% if address.main %}checked="checked"{% endif %} type="radio" name="delivery_address" value="{{ address.id }}"></td>
+                                    <td>{{ address.name }}</td>
+                                    <td>{{ address.address }}</td>
                                 </tr>
                             {% endfor %}
                         {% else %}
                             <tr>
-                                <td colspan="4" class="text-center">{{ 'Tu carrito está vacio' | trans }}</td>
+                                <td colspan="3" class="text-center">{{ 'No tienes ninguna dirección' | trans }}</td>
                             </tr>
                         {% endif %}
                         </tbody>
                     </table>
-                </div>
+                </div><!-- .table-responsive -->
             </div>
-        </div>
 
-        <form action="{{ path('new_order') }}" class="form-inline" novalidate="novalidate" method="POST">
-            <div class="row mb20">
-                <div class="col-md-12">
-                    <div class="line-block">
-                        <h2 class="line-title">{{ 'Opciones de envío' | trans }}</h2>
-                    </div>
+            <div id="payment-method" class="col-md-12">
+                <h2 class="title">{{ 'Método de pago' | trans }}</h2>
+                <div class="form-group mr15">
+                    <input id="payment_option_0" checked="checked" type="radio" name="payment_option" value="0">
+                    <label for="payment_option_0"><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/logotipo_paypal_pagos.png" alt="{{ 'PayPal' | trans }}"></label>
                 </div>
-                <div class="form-group col-md-3">
-                    <input id="delivery_options_take_in_place" type="radio" name="delivery_options" checked="checked" value="{{ take_in_place }}">
-                    <label for="delivery_options_take_in_place">{{ 'Recoger en tienda' | trans }}</label>
-                </div>
-                <div class="form-group col-md-3">
-                    <input id="delivery_options_to_home" type="radio" name="delivery_options" value="{{ delivery_home }}">
-                    <label for="delivery_options_to_home">
-                        {{ 'Envio a domicilio' | trans }}
-                    </label>
-                    <a href="#" class="clop-tooltip" data-container="body" data-placement="right" data-toggle="tooltip" title="{{ 'Esta opción tiene un suplemento de Gastos de envío' | trans }}"><i class="fa fa-question"></i></a>
+                <div class="form-group mr15">
+                    <input id="payment_option_1" type="radio" name="payment_option" value="1">
+                    <label for="payment_option_1">{{ 'Transferencia bancaria' | trans }}</label>
                 </div>
             </div>
 
-            <div id="address_delivery_block" data-toggle="false" class="row collapse mb20">
-                <div class="col-md-12">
-                    <div class="line-block">
-                        <h2 class="line-title">{{ 'Dirección de envío' | trans }}</h2>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered cart-table">
-                            <thead>
-                            <tr>
-                                <th style="width: 10%;">{{ 'Enviar a' }}</th>
-                                <th style="width: 30%">{{ 'Nombre' | trans }}</th>
-                                <th>{{ 'Dirección' | trans }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% if user.addresses | length > 0 %}
-                                {% for address in user.addresses %}
-                                    <tr>
-                                        <td><input {% if address.main %}checked="checked"{% endif %} type="radio" name="delivery_address" value="{{ address.id }}"></td>
-                                        <td>{{ address.name }}</td>
-                                        <td>{{ address.address }}</td>
-                                    </tr>
-                                {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td colspan="3" class="text-center">{{ 'No tienes ninguna dirección' | trans }}</td>
-                                </tr>
-                            {% endif %}
-                            </tbody>
-                        </table>
-                    </div><!-- .table-responsive -->
-                </div>
 
-                <div class="col-md-12">
-                    <div class="line-block">
-                        <h2 class="line-title">{{ 'Opciones de envío' | trans }}</h2>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    {% for shipmentOption in shipmentOptions %}
-                        <div class="form-group mr15">
-                            <input id="shipment_option_{{ loop.index0 }}" data-cost="{{ shipmentOption.cost }}" {% if loop.index0 == 0 %}checked="checked"{% endif %} type="radio" name="shipment_option" value="{{ shipmentOption.id }}">
-                            <label for="shipment_option_{{ loop.index0 }}">{{ shipmentOption.type }}</label> <span>({{ shipmentOption.cost }} <i class="fa fa-euro"></i>)</span>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
+            <div class="col-md-4 col-md-offset-8">
+                <table class="table">
+                    <tr class="no-lines">
+                        <td colspan="2" class="delivery">
+                            {{ 'Gastos de envío' | trans }}
+                        </td>
+                        <td id="shipment_cost" class="text-right">
+                            0.0 <i class="fa fa-euro"></i>
+                        </td>
+                    </tr>
+                    <tr class="no-lines font-xl">
+                        <td colspan="2" class="total-cart">
+                            <b>{{ 'Total' | trans }}</b>
+                        </td>
+                        <td id="order_total" class="text-right">
+                            {{ cart.cartTotal }} <i class="fa fa-euro"></i>
+                        </td>
+                    </tr>
+                </table>
+                <input id="cart_total" type="hidden" value="{{ cart.cartTotal }}">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="line-block">
-                        <h2 class="line-title">{{ 'Otras opciones' | trans }}</h2>
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
-                    <input id="present" type="checkbox" name="present" value="is_present">
-                    <label for="present">{{ '¿Es un regalo?' | trans }}</label>
-                </div>
-                <div class="col-md-7">
-                    <p>
-                        {{ '¿Quieres sorprender a alguien especial? Nosotros te envolvemos el regalo' | trans }}
-                    </p>
-                </div>
-            </div>
-
-            <div class="row mt50">
-                <div class="col-md-4 col-md-offset-8">
-                    <table class="table">
-                        <tr class="no-lines">
-                            <td colspan="2" class="delivery">
-                                {{ 'Gastos de envío' | trans }}
-                            </td>
-                            <td id="shipment_cost" class="text-right">
-                                0.0 <i class="fa fa-euro"></i>
-                            </td>
-                        </tr>
-                        <tr class="no-lines font-xl">
-                            <td colspan="2" class="total-cart">
-                                <b>{{ 'Total' | trans }}</b>
-                            </td>
-                            <td id="order_total" class="text-right">
-                                {{ cart.cartTotal }} <i class="fa fa-euro"></i>
-                            </td>
-                        </tr>
-                    </table>
-                    <input id="cart_total" type="hidden" value="{{ cart.cartTotal }}">
-
-                    <button type="submit" class="btn btn-success pull-right">{{ 'Pagar ahora' }}</button>
-                </div>
+                <button type="submit" class="btn btn-success pull-right">{{ 'Pagar ahora' }}</button>
             </div>
         </form>
-    </div>
+    </div><!-- .row -->
 {% endblock %}
 
 {% block footer %}
@@ -185,40 +139,43 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        $(document).ready(function() {
-            $('.clop-tooltip').tooltip();
+        var UIManager = {
+            shipmentOptions: null,
+            shipmentCost: null,
+            orderTotal: null,
+            cartTotal: null,
+            cart: {{ cart.cartTotal }},
+            _euro: "<i class=\"fa fa-euro\"></i>",
+            init: function uimanager_init() {
+                this.shipmentOptions = document.querySelectorAll('input[name="shipment_option"]');
+                this.shipmentCost = document.querySelector('#shipment_cost');
+                this.orderTotal = document.querySelector('#order_total');
+                this.cartTotal = document.querySelector('#cart_total').value;
+                this.addEventListeners();
+            },
 
-            $('body').on('change', 'input[name="delivery_options"]', function() {
-                var value = $(this).val();
+            addEventListeners: function uimanager_addEventListeners() {
+                Array.prototype.forEach.call(this.shipmentOptions, function(elem) {
+                    elem.addEventListener('change', this.onShipmentChange.bind(this));
+                    if (elem.checked) {
+                        this._calculateTotal(elem.dataset.cost);
+                    }
+                }.bind(this));
+            },
 
-                if (value == '{{ delivery_home }}') {
-                    $('#address_delivery_block').collapse('show');
-                    var selected_shipment = $("input[type='radio'][name='shipment_option']:checked");
-                    calculateTotal(selected_shipment.attr('data-cost'));
-                } else {
-                    $('#address_delivery_block').collapse('hide');
-                    calculateTotal(0.0);
-                }
-            });
+            onShipmentChange: function uimanager_onShipmentChange(evt) {
+                var element = evt.target;
+                this._calculateTotal(element.dataset.cost);
+            },
 
-            $('body').on('change', 'input[name="shipment_option"]', function() {
-                var shipment = $(this).attr('data-cost');
-                calculateTotal(shipment);
-            });
-
-            function calculateTotal(shipment)
-            {
-                console.info(shipment);
-                var shipment_cost = $('#shipment_cost');
-                var order_total = $('#order_total');
-                var total = $('#cart_total').val();
-                var euro = "<i class=\"fa fa-euro\"></i>";
-
-                total =  parseFloat(total) + parseFloat(shipment);
-                console.info(total);
-                shipment_cost.html(shipment + ' ' + euro);
-                order_total.html(total + euro);
+            _calculateTotal: function uimanager_calculateTotal(shipment) {
+                this.cartTotal = parseFloat(parseFloat(this.cart) + parseFloat(shipment)).toFixed(2);
+                console.info(this.cartTotal);
+                this.shipmentCost.innerHTML = shipment + ' ' + this._euro;
+                this.orderTotal.innerHTML = this.cartTotal + this._euro;
             }
-        });
+        };
+
+        UIManager.init();
     </script>
 {% endblock %}
