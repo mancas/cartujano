@@ -4,6 +4,7 @@ namespace Ecommerce\BackendBundle\Controller;
 
 use Ecommerce\BackendBundle\Form\Type\OrderSearchType;
 use Ecommerce\OrderBundle\Entity\Order;
+use Ecommerce\OrderBundle\Entity\OrderHistoryLog;
 use Ecommerce\OrderBundle\Event\OrderEvent;
 use Ecommerce\OrderBundle\Event\OrderEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -115,6 +116,10 @@ class OrderController extends CustomController
     {
         $em = $this->getEntityManager();
         $order->setStatus(Order::STATUS_CANCELED);
+        $orderHistoryLog = new OrderHistoryLog();
+        $orderHistoryLog->setLog(Order::STATUS_CANCELED);
+        $order->getOrderHistory()->addLog($orderHistoryLog);
+        $em->persist($orderHistoryLog);
         $em->persist($order);
         $em->flush();
 

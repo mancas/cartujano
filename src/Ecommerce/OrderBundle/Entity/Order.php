@@ -89,6 +89,11 @@ class Order
      */
     protected $shipment;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Ecommerce\OrderBundle\Entity\OrderHistory", inversedBy="order")
+     */
+    protected $orderHistory;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -312,5 +317,21 @@ class Order
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderHistory()
+    {
+        return $this->orderHistory;
+    }
+
+    /**
+     * @param mixed $orderHistory
+     */
+    public function setOrderHistory($orderHistory)
+    {
+        $this->orderHistory = $orderHistory;
     }
 }

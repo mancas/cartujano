@@ -3,6 +3,8 @@
 namespace Ecommerce\OrderBundle\Form\Handler;
 
 use Ecommerce\OrderBundle\Entity\Order;
+use Ecommerce\OrderBundle\Entity\OrderHistory;
+use Ecommerce\OrderBundle\Entity\OrderHistoryLog;
 use Ecommerce\OrderBundle\Entity\OrderItem;
 use Ecommerce\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +55,14 @@ class NewOrderFormHandler
             $order->setDate(new \DateTime('now'));
             $order->setStatus(Order::STATUS_IN_PROCESS);
 
+            $orderHistory = new OrderHistory();
+            $orderHistoryLog = new OrderHistoryLog();
+            $orderHistoryLog->setLog(Order::STATUS_IN_PROCESS);
+            $orderHistory->addLog($orderHistoryLog);
+            $order->setOrderHistory($orderHistory);
+
+            $this->em->persist($orderHistoryLog);
+            $this->em->persist($orderHistory);
             $this->em->persist($order);
             $this->em->flush();
             return array('result' => true, 'order' => $order->getId(), 'payment' => $payMethod);
