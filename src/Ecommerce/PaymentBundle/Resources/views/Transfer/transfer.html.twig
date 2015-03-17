@@ -1,0 +1,49 @@
+{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
+
+{% block title %}{{ "Tu compra ha finalizado | El Cartujano"|trans }}{% endblock %}
+{% block description %}{% endblock %}
+{% block sectionclass %}user page{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <h2 class="title">{{ 'Tu pedido se ha reservado correctamente' | trans }}</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                {{ 'Antes de proceder con el envío de tu pedido, debemos comprobar que la transferencia se ha realizado correctamente, esto proceso puede durar' | trans }} <b>{{ 'dos o tres días' | trans }}</b> {{ 'desde que se realice la transferencia.' | trans }}<br>
+            </p>
+
+            <p>
+                {{ 'Por favor, abona la cantidad de ' | trans}} <b>{{ order.getTotalAmountWithShipment }}</b> <i class="fa fa-euro"></i> {{ ' a la siguiente cuenta bancaria:' | trans }}
+            </p>
+
+            <p>
+                <b>{{ bankAccount }}</b>
+            </p>
+
+            <p>
+                {{ 'Recuerda que puedes comprobar el estado de tus pedidos en ' | trans}} <a class="red-link" title="{{ 'Mis pedidos' | trans }}" href="{{ path('user_orders') }}">{{ 'Mis pedidos' | trans }}</a>
+            </p>
+
+            <p>
+                {{ 'Gracias por confiar en El Cartujano.' | trans }}
+            </p>
+        </div><!-- .col-md-12 -->
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

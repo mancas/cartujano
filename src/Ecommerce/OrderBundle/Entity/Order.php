@@ -232,6 +232,15 @@ class Order
         return $total;
     }
 
+    public function getTotalAmountWithShipment()
+    {
+        $total = $this->getTotalAmount();
+
+        $total += $this->shipment->getCost();
+
+        return $total;
+    }
+
     public function getTotalAmountWithoutTaxes()
     {
         $price = $this->getTotalAmount();

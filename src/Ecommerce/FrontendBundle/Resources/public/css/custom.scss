@@ -29,6 +29,10 @@ a {
   }
 }
 
+a.red-link {
+  color: $cartujano-red;
+}
+
 textarea {
   resize: none;
 }
@@ -446,6 +450,12 @@ body.ecommerce, body.user-page {
     background-color: $cartujano-red;
     color: $white;
   }
+  &:active {
+    color: $white;
+  }
+  &:focus {
+    color: $white;
+  }
 }
 
 /** SHOPPING CART **/
@@ -563,6 +573,12 @@ body.ecommerce, body.user-page {
 
   .active {
     color: $cartujano-red;
+  }
+}
+.order-table {
+  background-color: $white;
+  tbody {
+    color: $gray;
   }
 }
 

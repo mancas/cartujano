@@ -101,20 +101,24 @@
                                 <td>
                                     <label for="payment_option_0"><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/logotipo_paypal_pagos.png" alt="{{ 'PayPal' | trans }}"></label>
                                 </td>
+                                {% if bankAccountAvailable %}
                                 <td>
                                     <label for="payment_option_1">
                                         {{ 'Transferencia bancaria' | trans }}
                                         <i class="fa fa-exchange"></i>
                                     </label>
                                 </td>
+                                {% endif %}
                             </tr>
                             <tr>
                                 <td>
                                     <input id="payment_option_0" checked="checked" type="radio" name="payment_option" value="0">
                                 </td>
+                                {% if bankAccountAvailable %}
                                 <td>
                                     <input id="payment_option_1" type="radio" name="payment_option" value="1">
                                 </td>
+                                {% endif %}
                             </tr>
                         </tbody>
                     </table>

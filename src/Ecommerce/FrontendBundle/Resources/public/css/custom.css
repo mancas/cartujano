@@ -10,6 +10,9 @@ a {
   a:hover, a:focus {
     color: #3FA9F5; }
 
+a.red-link {
+  color: #DE0000; }
+
 textarea {
   resize: none; }
 
@@ -313,6 +316,10 @@ body.ecommerce #wrap, body.user-page #wrap {
   .btn-blue:hover {
     background-color: #DE0000;
     color: #FFFFFF; }
+  .btn-blue:active {
+    color: #FFFFFF; }
+  .btn-blue:focus {
+    color: #FFFFFF; }
 
 /** SHOPPING CART **/
 .shopping-cart {
@@ -402,6 +409,11 @@ body.ecommerce #wrap, body.user-page #wrap {
       text-decoration: none; }
   .user-nav-wrap .active {
     color: #DE0000; }
+
+.order-table {
+  background-color: #FFFFFF; }
+  .order-table tbody {
+    color: #404040; }
 
 .box h5 {
   display: block;

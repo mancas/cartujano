@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class OrderController extends CustomController
 {
     const PAYPAL = 0;
-    const TRANSFER = 1;
+    const TRANSFERENCE = 1;
 
     public function newOrderAction(Request $request)
     {
@@ -22,16 +22,16 @@ class OrderController extends CustomController
         $cart = $cartStorageManager->getCurrentCart();
 
         $shipmentOptions = $em->getRepository('ItemBundle:Shipment')->findAllShipmentOptions();
+        $bankAccount = $em->getRepository('PaymentBundle:BankAccount')->findAll();
 
         if ($request->isMethod('POST')) {
             $handler = $this->get('order.new_order_form_handler');
             $handleResult = $handler->handle($user, $cart, $request);
             if ($handleResult['result']) {
-                // TODO: paypal or transference
                 switch ((int) $handleResult['payment']) {
-                    case PAYPAL:
+                    case OrderController::PAYPAL:
                         return $this->redirect($this->generateUrl('pay_paypal', array('id' => $handleResult['order'])));
-                    case TRANSFER:
+                    case OrderController::TRANSFERENCE:
                         return $this->redirect($this->generateUrl('pay_transfer', array('id' => $handleResult['order'])));
                 }
             }
@@ -39,6 +39,7 @@ class OrderController extends CustomController
         }
         return $this->render('OrderBundle:Order:new-order.html.twig', array('cart' => $cart,
                                                                             'user' => $user,
-                                                                            'shipmentOptions' => $shipmentOptions));
+                                                                            'shipmentOptions' => $shipmentOptions,
+                                                                            'bankAccountAvailable' => count($bankAccount) > 0 ? true : false));
     }
 }
