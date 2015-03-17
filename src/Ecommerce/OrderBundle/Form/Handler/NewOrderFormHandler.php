@@ -21,7 +21,7 @@ class NewOrderFormHandler
     public function handle(User $user, $cart, Request $request)
     {
         if ($request->isMethod('POST')) {
-            $payMethod = $request->request->get('pay_method');
+            $payMethod = $request->request->get('payment_option');
             $address = $this->em->getRepository('LocationBundle:Address')->findOneById($request->request->get('delivery_address'));
             $shipmentOption = $this->em->getRepository('ItemBundle:Shipment')->findOneById($request->request->get('shipment_option'));
 
@@ -55,7 +55,7 @@ class NewOrderFormHandler
 
             $this->em->persist($order);
             $this->em->flush();
-            return array('result' => true, 'order' => $order->getId());
+            return array('result' => true, 'order' => $order->getId(), 'payment' => $payMethod);
         }
 
         return array('result' => false);

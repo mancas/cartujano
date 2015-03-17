@@ -647,6 +647,20 @@ body.ecommerce, body.user-page {
   }
 }
 
+/** ORDER **/
+.payment-table {
+  width: auto !important;
+  background-color: $white;
+  text-align: center;
+  tr, td {
+    vertical-align: middle !important;
+    i {
+      display: block;
+      font-size: 1.7rem;
+    }
+  }
+}
+
 /** FOOTER **/
 footer.container {
   background-color: $cartujano-red;

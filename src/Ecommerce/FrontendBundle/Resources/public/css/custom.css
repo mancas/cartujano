@@ -458,6 +458,17 @@ body.ecommerce #wrap, body.user-page #wrap {
     border-color: #DE0000;
     color: #FFFFFF; }
 
+/** ORDER **/
+.payment-table {
+  width: auto !important;
+  background-color: #FFFFFF;
+  text-align: center; }
+  .payment-table tr, .payment-table td {
+    vertical-align: middle !important; }
+    .payment-table tr i, .payment-table td i {
+      display: block;
+      font-size: 1.7rem; }
+
 /** FOOTER **/
 footer.container {
   background-color: #DE0000;

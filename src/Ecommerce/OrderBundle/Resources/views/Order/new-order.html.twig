@@ -92,16 +92,33 @@
                 </div><!-- .table-responsive -->
             </div>
 
-            <div id="payment-method" class="col-md-12">
+            <div id="payment-method" class="col-md-6">
                 <h2 class="title">{{ 'Método de pago' | trans }}</h2>
-                <div class="form-group mr15">
-                    <input id="payment_option_0" checked="checked" type="radio" name="payment_option" value="0">
-                    <label for="payment_option_0"><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/logotipo_paypal_pagos.png" alt="{{ 'PayPal' | trans }}"></label>
-                </div>
-                <div class="form-group mr15">
-                    <input id="payment_option_1" type="radio" name="payment_option" value="1">
-                    <label for="payment_option_1">{{ 'Transferencia bancaria' | trans }}</label>
-                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered payment-table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="payment_option_0"><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/logotipo_paypal_pagos.png" alt="{{ 'PayPal' | trans }}"></label>
+                                </td>
+                                <td>
+                                    <label for="payment_option_1">
+                                        {{ 'Transferencia bancaria' | trans }}
+                                        <i class="fa fa-exchange"></i>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="payment_option_0" checked="checked" type="radio" name="payment_option" value="0">
+                                </td>
+                                <td>
+                                    <input id="payment_option_1" type="radio" name="payment_option" value="1">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- .table-responsive -->
             </div>
 
 

@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OrderController extends CustomController
 {
+    const PAYPAL = 0;
+    const TRANSFER = 1;
+
     public function newOrderAction(Request $request)
     {
         $em = $this->getEntityManager();
@@ -25,6 +28,7 @@ class OrderController extends CustomController
             $handleResult = $handler->handle($user, $cart, $request);
             if ($handleResult['result']) {
                 // TODO: paypal or transference
+                ldd($handleResult['payment']);
                 return $this->redirect($this->generateUrl('pay_paypal', array('id' => $handleResult['order'])));
             }
             $this->setTranslatedFlashMessage('Por favor, revisa la información introducida y asegurate de seleccionar una forma de pago y una dirección de envío.', 'error');
