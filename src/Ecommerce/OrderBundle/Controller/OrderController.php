@@ -28,8 +28,12 @@ class OrderController extends CustomController
             $handleResult = $handler->handle($user, $cart, $request);
             if ($handleResult['result']) {
                 // TODO: paypal or transference
-                ldd($handleResult['payment']);
-                return $this->redirect($this->generateUrl('pay_paypal', array('id' => $handleResult['order'])));
+                switch ((int) $handleResult['payment']) {
+                    case PAYPAL:
+                        return $this->redirect($this->generateUrl('pay_paypal', array('id' => $handleResult['order'])));
+                    case TRANSFER:
+                        return $this->redirect($this->generateUrl('pay_transfer', array('id' => $handleResult['order'])));
+                }
             }
             $this->setTranslatedFlashMessage('Por favor, revisa la información introducida y asegurate de seleccionar una forma de pago y una dirección de envío.', 'error');
         }
