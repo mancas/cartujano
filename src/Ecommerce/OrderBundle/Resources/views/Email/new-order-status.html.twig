@@ -18,15 +18,15 @@
                     </p>
                 {% endif %}
 
-                {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_READY_TO_TAKE') %}
+                {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') %}
                     <p style="color:#767676; font-weight: normal; margin: 0 0 10px 0; padding: 0; line-height: 20px; font-size: 12px;font-family: Helvetica, Arial, sans-serif; ">
-                        {{ 'Ya puedes venir a recoger tu compra en nuestra tienda situada en' | trans }}<i>C\Madre Rafols 15, Local C, Sevilla</i>
+                        {{ 'Tu pedido llegará a la dirección especificada en los próximos días. Muchas gracias por confiar en' | trans }} <a style="text-decoration: none; color:#4cb1ca" title="{{ 'El Cartujano' | trans }}" href="{{ web_url }}">elcartujano.es</a>
                     </p>
                 {% endif %}
 
-                {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') %}
+                {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_CANCELED') %}
                     <p style="color:#767676; font-weight: normal; margin: 0 0 10px 0; padding: 0; line-height: 20px; font-size: 12px;font-family: Helvetica, Arial, sans-serif; ">
-                        {{ 'Tu pedido llegará a la dirección especificada en los próximos días. Muchas gracias por confiar en' | trans }} <a style="text-decoration: none; color:#4cb1ca" title="{{ 'Visita Clop' | trans }}" href="{{ web_url }}">clopsevilla.es</a>
+                        {{ 'Tu pedido ha sido cancelado. Por favor, si tienes alguna duda acerca de la cancelación de tu pedido o del reembolso del mismo, escríbenos. Estaremos encatados de atenderte. Gracias por confiar en' | trans }} <a style="text-decoration: none; color:#4cb1ca" title="{{ 'El Cartujano' | trans }}" href="{{ web_url }}">elcartujano.es</a>
                     </p>
                 {% endif %}
 
@@ -38,7 +38,7 @@
                     {% for orderItem in order.items %}
                         <tr>
                             <td style="width: 120px"><img src="{{ asset(orderItem.item.imageMain.imageItemCart.getWebFilePath) }}"></td>
-                            <td><a style="text-decoration: none;font-size: 14px; color:#4cb1ca" title="{{ 'Ver producto' | trans }}" href="{{ web_url }}{{ path('item_details', {'slug':orderItem.item.slug}) }}">{{ orderItem.item.name }}</a></td>
+                            <td>{{ orderItem.item.name }}</td>
                         </tr>
                     {% endfor %}
                 </table>

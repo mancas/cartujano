@@ -272,6 +272,12 @@ body.ecommerce, body.user-page {
   }
 }
 
+body.order-details {
+  h3.title {
+    margin-top: 3rem;
+  }
+}
+
 #wrap {
   background-color: $background-gray;
   /**max-width: 1170px;**/
@@ -508,10 +514,6 @@ body.ecommerce, body.user-page {
   }
 }
 
-.cart-table {
-  background-color: $white;
-}
-
 /** LOGIN/REGISTER **/
 .login-form {
   height: 20rem;
@@ -575,10 +577,12 @@ body.ecommerce, body.user-page {
     color: $cartujano-red;
   }
 }
-.order-table {
+
+/** TABLES **/
+.order-table, .cart-table, .address-table, .history-table {
   background-color: $white;
-  tbody {
-    color: $gray;
+  thead {
+    color: $cartujano-red;
   }
 }
 

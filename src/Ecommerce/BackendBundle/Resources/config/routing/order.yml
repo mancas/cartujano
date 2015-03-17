@@ -22,6 +22,6 @@ admin_order_out_of_stock:
     pattern: /out-of-stock/{id}
     defaults: { _controller: BackendBundle:Order:markAsOutOfStock }
 
-admin_order_delete:
-    pattern: /delete-order/{id}
-    defaults: { _controller: BackendBundle:Order:delete }
+admin_order_cancel:
+    pattern: /cancel-order/{id}
+    defaults: { _controller: BackendBundle:Order:markAsCancel }

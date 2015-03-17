@@ -22,7 +22,7 @@ class ShipmentController extends CustomController
     /**
      * @ParamConverter("shipment", class="ItemBundle:Shipment")
      */
-    public function editAction(Delivery $shipment, Request $request)
+    public function editAction(Shipment $shipment, Request $request)
     {
         $form = $this->createForm(new ShipmentType(), $shipment);
         $handler = $this->get('shipment.shipment_form_handler');

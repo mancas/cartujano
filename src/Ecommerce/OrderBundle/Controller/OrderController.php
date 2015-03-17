@@ -40,6 +40,6 @@ class OrderController extends CustomController
         return $this->render('OrderBundle:Order:new-order.html.twig', array('cart' => $cart,
                                                                             'user' => $user,
                                                                             'shipmentOptions' => $shipmentOptions,
-                                                                            'bankAccountAvailable' => count($bankAccount) > 0 ? true : false));
+                                                                            'bankAccountAvailable' => count($bankAccount) > 0));
     }
 }

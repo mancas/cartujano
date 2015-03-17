@@ -25,6 +25,7 @@ class Order
     const STATUS_SEND = "Enviado";
     const STATUS_READY_TO_TAKE = "Listo para recoger";
     const STATUS_IN_PROCESS = "En proceso";
+    const STATUS_CANCELED = "Cancelado";
 
     const DELIVERY_HOME = 'Delivery_home';
     const TAKE_IN_PLACE = 'Take_in_place';

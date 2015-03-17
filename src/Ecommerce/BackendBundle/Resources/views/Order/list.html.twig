@@ -86,7 +86,7 @@
                             <td>{% if order.address is not null %}{{ 'Envío a domicilio' | trans }}{% else %}{{ 'Recogida en tienda' | trans }}{% endif %}</td>
                             <td>{{ order.status }}</td>
                             <td>{% if order.payment is not null %}{{ 'Sí' | trans }}{% else %}{{ 'No' | trans }}{% endif %}</td>
-                            <td>{{ order.totalAmount }} <i class="fa fa-euro"></i></td>
+                            <td>{{ order.totalAmountWithShipment }} <i class="fa fa-euro"></i></td>
                             <td class="text-center">
                                 {% if order.payment is not null %}
                                     {% if order.address is not null and order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_IN_PROCESS') %}
@@ -103,7 +103,7 @@
                                     {% endif %}
                                 {% endif %}
                                 <a title="{{ 'Ver detalles' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_order_view', {'id':order.id}) }}"><i class="fa fa-eye"></i>{{ 'Detalles' | trans }}</a>
-                                {#<a title="{{ 'Eliminar' | trans }}" class="delete btn btn-danger btn-xs" href="{{ path('admin_order_delete', {'id':order.id}) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>#}
+                                <a title="{{ 'Cancelar pedido' | trans }}" class="delete btn btn-danger btn-xs" href="{{ path('admin_order_cancel', {'id':order.id}) }}"><i class="fa fa-times"></i>{{ 'Cancelar' | trans }}</a>
                             </td>
                         </tr>
                     {% endfor %}

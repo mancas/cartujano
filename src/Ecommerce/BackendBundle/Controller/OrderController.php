@@ -111,14 +111,18 @@ class OrderController extends CustomController
     /**
      * @ParamConverter("order", class="OrderBundle:Order")
      */
-    public function deleteAction(Order $order)
+    public function markAsCancelAction(Order $order)
     {
         $em = $this->getEntityManager();
-
-        $em->remove($order);
+        $order->setStatus(Order::STATUS_CANCELED);
+        $em->persist($order);
         $em->flush();
 
-        $this->setTranslatedFlashMessage('El pedido ha sido eliminado');
+        $orderEvent = new OrderEvent($order);
+        $dispatcher = $this->get('event_dispatcher');
+        $dispatcher->dispatch(OrderEvents::STATUS_CHANGED, $orderEvent);
+
+        $this->setTranslatedFlashMessage('El pedido ha sido cancelado, recuerda que debes devolver el dinero al usuario en el caso de que haya realizado el pago.');
 
         return $this->redirect($this->generateUrl('admin_order_index'));
     }

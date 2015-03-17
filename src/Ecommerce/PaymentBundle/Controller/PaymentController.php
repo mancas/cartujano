@@ -4,6 +4,9 @@ namespace Ecommerce\PaymentBundle\Controller;
 
 use Ecommerce\FrontendBundle\Controller\CustomController;
 use Ecommerce\OrderBundle\Entity\Order;
+use Ecommerce\OrderBundle\Event\OrderEvent;
+use Ecommerce\OrderBundle\Event\OrderEvents;
+use Ecommerce\PaymentBundle\Entity\Transfer;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
@@ -22,6 +25,26 @@ class PaymentController extends CustomController
             $this->setTranslatedFlashMessage('No se puede procesar el pedido mediante transferencia bancaria. Disculpa las molestias', 'error');
             return $this->redirect('ecommerce_homepage');
         }
+
+        $dispatcher = $this->get('event_dispatcher');
+        $orderEvent = new OrderEvent($order);
+        $dispatcher->dispatch(OrderEvents::NEW_ORDER, $orderEvent);
+        $payment = new Transfer();
+        $payment->setState(Transfer::REQUESTED);
+
+        $bill = new Bill();
+        $bill->setPayment($payment);
+        $payment->setBill($bill);
+
+        $payment->setOrder($order);
+        $payment->setTotal($order->getTotalAmountWithShipment());
+        $order->setPayment($payment);
+
+        $em->persist($order);
+        $em->persist($payment);
+        $em->persist($bill);
+        $em->flush();
+
         return $this->render('PaymentBundle:Transfer:transfer.html.twig', array('order' => $order, 'bankAccount' => $bankAccount));
     }
 }
