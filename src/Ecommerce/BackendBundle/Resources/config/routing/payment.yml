@@ -1,3 +1,7 @@
 admin_payment_index:
     pattern: /
     defaults: { _controller: BackendBundle:Payment:list }
+
+admin_payment_validate:
+    pattern: /validate/{id}
+    defaults: { _controller: BackendBundle:Payment:validate }

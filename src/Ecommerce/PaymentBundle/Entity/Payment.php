@@ -128,4 +128,9 @@ abstract class Payment
     {
         return $this->total;
     }
+
+    public function getType()
+    {
+        return get_class($this);
+    }
 }

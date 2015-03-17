@@ -103,7 +103,9 @@
                                     {% endif %}
                                 {% endif %}
                                 <a title="{{ 'Ver detalles' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_order_view', {'id':order.id}) }}"><i class="fa fa-eye"></i>{{ 'Detalles' | trans }}</a>
+                                {% if order.status != constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_CANCELED') %}
                                 <a title="{{ 'Cancelar pedido' | trans }}" class="delete btn btn-danger btn-xs" href="{{ path('admin_order_cancel', {'id':order.id}) }}"><i class="fa fa-times"></i>{{ 'Cancelar' | trans }}</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

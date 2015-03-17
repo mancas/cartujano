@@ -81,20 +81,25 @@
                         </tr>
                         </tbody>
                     </table>
-                {% else %}
-                    <p>{{ 'Este pedido se recogerá en nuestra tienda en la calle' | trans }} <i>{{ 'C/Madre Rafols 15, Local C, Sevilla' | trans }}</i></p>
-                    <div id="map"></div>
                 {% endif %}
             </div>
 
             <h3 class="title">{{ 'Método de pago' | trans }}</h3>
 
             <div class="box">
-                {% if order.payment is not null %}
-                    <p>{{ 'Este pedido fue pagado el' | trans }} <b>{{ order.payment.created | date('d-m-y') }}</b> {{ 'mediante PayPal.'  | trans }}</p>
-                {% elseif order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_CANCELED') %}
+                {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_CANCELED') %}
                     <p>{{ 'Este pedido ha sido cancelado. Si aún no se te ha reembolsado tu dinero, por favor, ponte en contacto con nosotros enviando un correo electrónico a la siguiente dirección: ' | trans }}<a class="red-link" href="mailto:el_cartujano@yahoo.es" title="{{ 'Enviar email' | trans }}">el_cartujano@yahoo.es</a></p>
+                {% elseif order.payment is not null %}
+                    {% if order.payment.type == 'Ecommerce\\PaymentBundle\\Entity\\Transfer' %}
+                        {% if order.payment.state == constant('Ecommerce\\PaymentBundle\\Entity\\Transfer::PAID') %}
+                        <p>{{ 'Este pedido fue pagado el' | trans }} <b>{{ order.payment.created | date('d-m-y') }}</b> {{ 'mediante transferencia bancaria.'  | trans }}</p>
+                        {% else %}
+                        <p>{{ 'Este pedido esta pendiente de la recepción de la transferencia bancaria. Si tienes cualquier duda, por favor, ponte en contacto con nosotros enviando un correo electrónico a la siguiente dirección: ' | trans }}<a class="red-link" href="mailto:el_cartujano@yahoo.es" title="{{ 'Enviar email' | trans }}">el_cartujano@yahoo.es</a></p>
+                        {% endif %}
                     {% else %}
+                        <p>{{ 'Este pedido fue pagado el' | trans }} <b>{{ order.payment.created | date('d-m-y') }}</b> {{ 'mediante PayPal.'  | trans }}</p>
+                    {% endif %}
+                {% else %}
                     <p>{{ 'Este pedido aún no ha sido pagado. Si deseas cancelar este pedido, ponte en contacto con nosotros enviando un correo electrónico a la siguiente dirección: ' | trans }}<a class="red-link" href="mailto:el_cartujano@yahoo.es" title="{{ 'Enviar email' | trans }}">el_cartujano@yahoo.es</a></p>
                     <form action="" method="post">
                         <div class="table-responsive">
@@ -141,18 +146,23 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% for log in order.orderHistory.logs %}
                     <tr>
                         <td>
-                        {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_IN_PROCESS') %}
+                        {% if log.log == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_IN_PROCESS') %}
                             {{ 'El pedido se esta procesando' | trans }}
                         {% else %}
-                            {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_READY_TO_TAKE') %}
+                            {% if log.log == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_READY_TO_TAKE') %}
                                 {{ 'Ya puedes recoger el pedido en nuestra tienda' | trans }}
                             {% else %}
-                                {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') %}
+                                {% if log.log == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') %}
                                     {{ 'Nos hemos quedado sin stock de este producto, te lo enviaremos tan pronto como nos sea posible. Disculpa las molestias' | trans }}
                                 {% else %}
-                                    {{ 'Ya hemos enviado tu pedido. Esperamos que lo disfrutes' | trans }}
+                                    {% if log.log == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_CANCELED') %}
+                                        {{ 'Se ha cancelado el pedido' | trans }}
+                                    {% else %}
+                                        {{ 'Ya hemos enviado tu pedido. Esperamos que lo disfrutes' | trans }}
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                         {% endif %}
@@ -161,6 +171,7 @@
                             {{ order.updated | date('d-m-y') }}
                         </td>
                     </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>

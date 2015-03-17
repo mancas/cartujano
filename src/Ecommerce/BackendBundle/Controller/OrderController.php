@@ -57,6 +57,11 @@ class OrderController extends CustomController
         $em = $this->getEntityManager();
 
         $order->setStatus(Order::STATUS_SEND);
+        $orderHistoryLog = new OrderHistoryLog();
+        $orderHistoryLog->setLog(Order::STATUS_SEND);
+        $order->getOrderHistory()->addLog($orderHistoryLog);
+        $orderHistoryLog->setOrderHistory($order->getOrderHistory());
+        $em->persist($orderHistoryLog);
         $em->persist($order);
         $em->flush();
 
@@ -77,6 +82,11 @@ class OrderController extends CustomController
         $em = $this->getEntityManager();
 
         $order->setStatus(Order::STATUS_READY_TO_TAKE);
+        $orderHistoryLog = new OrderHistoryLog();
+        $orderHistoryLog->setLog(Order::STATUS_READY_TO_TAKE);
+        $order->getOrderHistory()->addLog($orderHistoryLog);
+        $orderHistoryLog->setOrderHistory($order->getOrderHistory());
+        $em->persist($orderHistoryLog);
         $em->persist($order);
         $em->flush();
 
@@ -97,6 +107,11 @@ class OrderController extends CustomController
         $em = $this->getEntityManager();
 
         $order->setStatus(Order::STATUS_OUT_OF_STOCK);
+        $orderHistoryLog = new OrderHistoryLog();
+        $orderHistoryLog->setLog(Order::STATUS_OUT_OF_STOCK);
+        $order->getOrderHistory()->addLog($orderHistoryLog);
+        $orderHistoryLog->setOrderHistory($order->getOrderHistory());
+        $em->persist($orderHistoryLog);
         $em->persist($order);
         $em->flush();
 
@@ -119,6 +134,7 @@ class OrderController extends CustomController
         $orderHistoryLog = new OrderHistoryLog();
         $orderHistoryLog->setLog(Order::STATUS_CANCELED);
         $order->getOrderHistory()->addLog($orderHistoryLog);
+        $orderHistoryLog->setOrderHistory($order->getOrderHistory());
         $em->persist($orderHistoryLog);
         $em->persist($order);
         $em->flush();

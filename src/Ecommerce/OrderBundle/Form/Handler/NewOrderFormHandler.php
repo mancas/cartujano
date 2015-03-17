@@ -60,6 +60,7 @@ class NewOrderFormHandler
             $orderHistoryLog->setLog(Order::STATUS_IN_PROCESS);
             $orderHistory->addLog($orderHistoryLog);
             $order->setOrderHistory($orderHistory);
+            $orderHistoryLog->setOrderHistory($orderHistory);
 
             $this->em->persist($orderHistoryLog);
             $this->em->persist($orderHistory);

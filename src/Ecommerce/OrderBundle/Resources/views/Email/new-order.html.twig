@@ -9,8 +9,8 @@
                 </h2>
 
                 <p style="color:#767676; font-weight: normal; margin: 0 0 10px 0; padding: 0; line-height: 20px; font-size: 12px;font-family: Helvetica, Arial, sans-serif; ">
-                    {{ "Gracias por tu pedido en"|trans }} <a style="text-decoration: none; color:#4cb1ca" title="{{ 'Visita Clop' | trans }}" href="http://www.clopsevilla.es">clopsevilla.es</a>. {{ "Te enviaremos otro e-mail cuando el estado de tu pedido se actualice. También puedes visitar" |trans }}
-                    <a style="text-decoration: none; color:#4cb1ca" title="{{ 'Mis pedidos' | trans }}" href="{{ web_url }}{{ path('user_orders') }}">{{ 'Mis pedidos' | trans }}</a> {{ 'en clopsevilla.es para consultar el estado de tus pedidos.' | trans }}
+                    {{ "Gracias por tu pedido en"|trans }} <a style="text-decoration: none; color:#4cb1ca" title="{{ 'El Cartujano' | trans }}" href="http://www.elcartujano.es">elcartujano.es</a>. {{ "Te enviaremos otro e-mail cuando el estado de tu pedido se actualice. También puedes visitar" |trans }}
+                    <a style="text-decoration: none; color:#4cb1ca" title="{{ 'Mis pedidos' | trans }}" href="{{ web_url }}{{ path('user_orders') }}">{{ 'Mis pedidos' | trans }}</a> {{ 'en elcartujano.es para consultar el estado de tus pedidos.' | trans }}
                 </p>
 
                 <h2 style="color:#555; font-weight: bold; margin: 0 0 10px 0; padding: 0; line-height: 26px; font-size: 14px; font-family: Helvetica, Arial, sans-serif; ">
@@ -25,7 +25,7 @@
                 </p>#}
                     <tr>
                         <td style="width: 120px"><img src="{{ asset(orderItem.item.imageMain.imageItemCart.getWebFilePath) }}"></td>
-                        <td>{{ orderItem.quantity }} x <a style="text-decoration: none;font-size: 14px; color:#4cb1ca" title="{{ 'Ver producto' | trans }}" href="{{ web_url }}{{ path('item_details', {'slug':orderItem.item.slug}) }}">{{ orderItem.item.name }}</a></td>
+                        <td>{{ orderItem.quantity }} x {{ orderItem.item.name }}</td>
                     </tr>
                 {% endfor %}
                 </table>

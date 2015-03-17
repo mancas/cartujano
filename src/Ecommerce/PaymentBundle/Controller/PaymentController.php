@@ -6,6 +6,7 @@ use Ecommerce\FrontendBundle\Controller\CustomController;
 use Ecommerce\OrderBundle\Entity\Order;
 use Ecommerce\OrderBundle\Event\OrderEvent;
 use Ecommerce\OrderBundle\Event\OrderEvents;
+use Ecommerce\PaymentBundle\Entity\Bill;
 use Ecommerce\PaymentBundle\Entity\Transfer;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;

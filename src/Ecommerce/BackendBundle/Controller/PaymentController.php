@@ -2,6 +2,7 @@
 
 namespace Ecommerce\BackendBundle\Controller;
 
+use Ecommerce\PaymentBundle\Entity\Transfer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Ecommerce\FrontendBundle\Controller\CustomController;
@@ -25,6 +26,19 @@ class PaymentController extends CustomController
                                                                            'paymentTotal' => $paymentTotal,
                                                                            'paymentMonthly' => $paymentMonthly,
                                                                            'paginator' => $paginator));
+    }
+
+    /**
+     * @ParamConverter("payment", class="PaymentBundle:Transfer")
+     */
+    public function validateAction(Transfer $payment)
+    {
+        $payment->setState(Transfer::PAID);
+        $this->getEntityManager()->persist($payment);
+        $this->getEntityManager()->flush();
+        $this->setTranslatedFlashMessage('El pago ha sido validado. Recuerda envíar el pedido y marcarlo como enviado para notificar al usuario.');
+
+        return $this->redirect($this->generateUrl('admin_payment_index'));
     }
 
     private function getTotalAmountFromPayments($payments)
