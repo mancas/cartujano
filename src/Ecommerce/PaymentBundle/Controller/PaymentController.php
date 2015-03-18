@@ -46,6 +46,8 @@ class PaymentController extends CustomController
         $em->persist($bill);
         $em->flush();
 
+        $this->clearCart();
+
         return $this->render('PaymentBundle:Transfer:transfer.html.twig', array('order' => $order, 'bankAccount' => $bankAccount));
     }
 }

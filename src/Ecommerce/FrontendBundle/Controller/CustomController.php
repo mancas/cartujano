@@ -91,4 +91,11 @@ class CustomController extends Controller
         $this->container->get('security.context')->setToken($token);
         $this->container->get('session')->set("_security_private", serialize($token));
     }
+
+    protected function clearCart()
+    {
+        $cartEvent = new CartEvent($this->getCartStorageManager()->getCurrentCart());
+        $dispatcher = $this->get('event_dispatcher');
+        $dispatcher->dispatch(CartEvents::CLEAR_CART, $cartEvent);
+    }
 }

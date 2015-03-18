@@ -4,8 +4,9 @@
     <a class="brand" href="{{ path('frontend_homepage') }}" title="{{ 'Inicio' | trans }}">
         <img src="{{ asset('bundles/frontend/img/el-cartujano-logo.png') }}" alt="{{ 'Logo de El Cartujano' | trans }}">
     </a>
-
+    {% if isEcommerceAction(path(action, action_params)) %}
     {{ render(controller('CartBundle:Cart:cart')) }}
+    {% endif %}
 </header>
 
 <nav class="navbar cartujano-nav">

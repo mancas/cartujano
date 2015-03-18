@@ -35,6 +35,8 @@ class PayPalController extends CustomController
         $response = $paypal->pay($paymentAmount, $deliveryAmount, $desc, $urlAccept, $urlCancel);
         $url = $response['url'];
 
+        $this->clearCart();
+
         return $this->redirect($url);
     }
 

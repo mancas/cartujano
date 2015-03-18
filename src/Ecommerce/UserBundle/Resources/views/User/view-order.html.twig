@@ -47,7 +47,7 @@
                                 {{ 'Total' | trans }}
                             </td>
                             <td>
-                                {{ order.totalAmount }} <i class="fa fa-euro"></i>
+                                {{ order.totalAmount + order.shipment.cost }} <i class="fa fa-euro"></i>
                             </td>
                         </tr>
                         </tbody>
