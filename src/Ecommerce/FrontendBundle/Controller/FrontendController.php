@@ -20,10 +20,15 @@ class FrontendController extends CustomController
     {
         $em = $this->getEntityManager();
         $items = $em->getRepository('ItemBundle:Item')->findCommercialItemsDQL();
+        $shipments = $this->getEntityManager()->getRepository('ItemBundle:Shipment')->findAllShipmentOptions();
+        $shipment = null;
+        if (count($shipments) > 0) {
+            $shipment = $shipments[0];
+        }
 
         $this->setCurrentCartIfNeeded();
 
-        return $this->render('FrontendBundle:Pages:ecommerce.html.twig', array('items' => $items));
+        return $this->render('FrontendBundle:Pages:ecommerce.html.twig', array('items' => $items, 'shipment' => $shipment));
     }
 
     /**

@@ -61,10 +61,10 @@ class UserController extends CustomController
     {
         $user = $this->getCurrentUser();
         $this->setStatusFlashMessage($order);
-        $bankAccountAvailable = $this->getEntityManager()->getRepository('PaymentBundle:BankAccount')->findAll();
-        $bankAccountAvailable = count($bankAccountAvailable) > 0;
+        $bankAccount = $this->getEntityManager()->getRepository('PaymentBundle:BankAccount')->findBankAccount();
+        $bankAccountAvailable = isset($bankAccount);
 
-        return $this->render('UserBundle:User:view-order.html.twig', array('order' => $order, 'user'=> $user, 'bankAccountAvailable' => $bankAccountAvailable));
+        return $this->render('UserBundle:User:view-order.html.twig', array('order' => $order, 'user'=> $user, 'bankAccountAvailable' => $bankAccountAvailable, 'bankAccount' => $bankAccount));
     }
 
     private function setStatusFlashMessage(Order $order)

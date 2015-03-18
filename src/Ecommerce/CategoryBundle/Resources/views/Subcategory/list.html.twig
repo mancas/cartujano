@@ -21,10 +21,10 @@
         <div class="row items-list">
         {% if subcategory.getNonCommercialItems | length > 1 %}
             {% for i in 0..1 %}
-                {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(i)})) }}
+                {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(i), 'shipment': null})) }}
             {% endfor %}
         {% else %}
-            {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(0)})) }}
+            {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(0), 'shipment': null})) }}
         {% endif %}
         </div>
         {% endif %}

@@ -95,6 +95,8 @@
                         <p>{{ 'Este pedido fue pagado el' | trans }} <b>{{ order.payment.created | date('d-m-y') }}</b> {{ 'mediante transferencia bancaria.'  | trans }}</p>
                         {% else %}
                         <p>{{ 'Este pedido esta pendiente de la recepción de la transferencia bancaria. Si tienes cualquier duda, por favor, ponte en contacto con nosotros enviando un correo electrónico a la siguiente dirección: ' | trans }}<a class="red-link" href="mailto:el_cartujano@yahoo.es" title="{{ 'Enviar email' | trans }}">el_cartujano@yahoo.es</a></p>
+                        <p>{{ 'Tienes que abonar la cantidad de' | trans }} {{ order.totalAmount + order.shipment.cost }} <i class="fa fa-euro"></i> {{ ' a la sigueinte cuenta bancaria:' }}</p>
+                        <p><b>{{ bankAccount }}</b></p>
                         {% endif %}
                     {% else %}
                         <p>{{ 'Este pedido fue pagado el' | trans }} <b>{{ order.payment.created | date('d-m-y') }}</b> {{ 'mediante PayPal.'  | trans }}</p>

@@ -19,10 +19,8 @@ class PaymentController extends CustomController
     public function transferAction(Order $order, Request $request)
     {
         $em = $this->getEntityManager();
-        $bankAccount = $em->getRepository('PaymentBundle:BankAccount')->findAll();
-        if (count($bankAccount) > 0) {
-            $bankAccount = $bankAccount[0];
-        } else {
+        $bankAccount = $em->getRepository('PaymentBundle:BankAccount')->findBankAccount();
+        if (!isset($bankAccount)) {
             $this->setTranslatedFlashMessage('No se puede procesar el pedido mediante transferencia bancaria. Disculpa las molestias', 'error');
             return $this->redirect('ecommerce_homepage');
         }

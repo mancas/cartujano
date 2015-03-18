@@ -38,7 +38,13 @@
                     <li>
                         <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
                         <i class="fa fa-euro"></i>  {{ 'IVA incluido' | trans }}
-                        <span class="item-dispatch">(+ X.XX <i class="fa fa-euro"></i> {{ 'envío' | trans }})</span>
+                        <span class="item-dispatch">
+                            {% if shipment is not null %}
+                            (+ {{ shipment.cost }} <i class="fa fa-euro"></i> {{ 'envío' | trans }})
+                            {% else %}
+                            {{ 'Gastos de envio no incluidos' | trans }}
+                            {% endif %}
+                        </span>
                     </li>
                     <li>
                         {% if item.stock > 0 %}

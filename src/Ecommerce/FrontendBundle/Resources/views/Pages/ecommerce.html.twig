@@ -12,7 +12,7 @@
     {% if items | length > 0 %}
         <div class="row items-list">
             {% for item in items %}
-                {{ render(controller("ItemBundle:Item:itemBox", {'item': item})) }}
+                {{ render(controller("ItemBundle:Item:itemBox", {'item': item, 'shipment': shipment})) }}
             {% endfor %}
         </div>
     {% else %}

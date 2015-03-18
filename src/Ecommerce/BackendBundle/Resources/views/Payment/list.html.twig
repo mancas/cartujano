@@ -74,7 +74,7 @@
                             <td><a title="Ver" href="{{ path('admin_order_view', {'id':payment.order.id}) }}">{{ payment.order.id }}</a></td>
                             <td>{{ payment.total }} <i class="fa fa-euro"></i></td>
                             <td class="text-center">
-                                {% if payment.type == 'Ecommerce\\PaymentBundle\\Entity\\Transfer' and payment.type == 'Ecommerce\\PaymentBundle\\Entity\\Transfer::REQUESTED' and payment.order.status != constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_CANCELED') %}
+                                {% if payment.type == 'Ecommerce\\PaymentBundle\\Entity\\Transfer' and payment.state == constant('Ecommerce\\PaymentBundle\\Entity\\Transfer::REQUESTED') and payment.order.status != constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_CANCELED') %}
                                     <a title="{{ 'Validar transferencia bancaria' | trans }}" class="btn btn-primary btn-dark-green btn-xs" href="{{ path('admin_payment_validate', {'id':payment.id}) }}"><i class="fa fa-eye"></i>{{ 'Validar transferencia' | trans }}</a>
                                 {% endif %}
                                 <a title="{{ 'Ver pedido completo' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_order_view', {'id':payment.order.id}) }}"><i class="fa fa-eye"></i>{{ 'Ver pedido' | trans }}</a>

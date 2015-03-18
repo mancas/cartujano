@@ -6,7 +6,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Ecommerce\PaymentBundle\Entity\BankAccountRepository")
  */
 class BankAccount
 {

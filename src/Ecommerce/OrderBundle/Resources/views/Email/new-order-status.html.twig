@@ -34,7 +34,7 @@
                     {{ "Detalles de tu pedido"|trans }}
                 </h2>
 
-                <table border="0" width="680" style="margin-bottom: 20px">
+                <table border="0" width="660" style="margin-bottom: 20px">
                     {% for orderItem in order.items %}
                         <tr>
                             <td style="width: 120px"><img src="{{ asset(orderItem.item.imageMain.imageItemCart.getWebFilePath) }}"></td>
