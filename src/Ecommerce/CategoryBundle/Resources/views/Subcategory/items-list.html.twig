@@ -20,9 +20,11 @@
                 {{ render(controller("ItemBundle:Item:itemBox", {'item': item, 'shipment': null})) }}
             {% endfor %}
         </div>
+        {{ simple_paginator_render('view_subcategory', 'items', { 'routeParams' : {'slug' : subcategory.slug}, 'container_class' : 'pagination', 'currentClass' : 'active' }, 'ItemBundle:Commons:paginator.html.twig') }}
+    {% else %}
+        <p>{{ 'No se han encontrado productos para esta categoría.' | trans }}</p>
     {% endif %}
 
-    {{ simple_paginator_render('view_subcategory', 'items', { 'routeParams' : {'slug' : subcategory.slug}, 'container_class' : 'pagination', 'currentClass' : 'active' }, 'ItemBundle:Commons:paginator.html.twig') }}
 {% endblock %}
 
 {% block javascripts %}
