@@ -249,10 +249,22 @@ class Order
 
     public function getTotalAmountWithoutTaxes()
     {
-        $price = $this->getTotalAmount();
-        $price = $price - ($price * Item::TAX_ES/100);
+        $total = 0.0;
+        foreach ($this->items as $orderRow) {
+            $total += $orderRow->getPrice() / (1 + $orderRow->getItem()->getTax()->getTaxes()/100);
+        }
 
-        return round($price, 2);
+        return round($total, 2);
+    }
+
+    public function getTotalTaxes()
+    {
+        $total = 0.0;
+        foreach ($this->items as $orderRow) {
+            $total += $orderRow->getItemsTaxes();
+        }
+
+        return round($total, 2);
     }
 
     /**

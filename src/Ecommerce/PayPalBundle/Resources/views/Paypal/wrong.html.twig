@@ -1,7 +1,7 @@
-{% extends "FrontendBundle:Layouts:1column.html.twig" %}
+{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
 
 {% block title %}{{ "El pago no se ha realizado correctamente"|trans }}{% endblock %}
-{% block description %}{{"Una tienda que vende pulseras"|trans}}{% endblock %}
+{% block description %}{% endblock %}
 {% block sectionclass %}home page{% endblock %}
 
 {% block stylesheets %}
@@ -15,12 +15,9 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <div class="line-block mb20">
-                <h2 class="line-title">{{ 'No es culpa tuya, es culpa de Internet' | trans }}</h2>
-            </div>
-
+            <h2 class="title">{{ 'No es culpa tuya, es culpa de Internet' | trans }}</h2>
             <p>
-                {{ 'El pago no se ha completado correctamente. Puedes volver a intentarlo haciendo click' | trans }} <a title="{{ 'Pagar ahora' | trans }}" href="{{ path('pay_paypal', {'id' : order.id}) }}">{{ 'aquí' | trans }}</a>
+                {{ 'El pago no se ha completado correctamente. Puedes volver a intentarlo haciendo click' | trans }} <a class="red-link" title="{{ 'Pagar ahora' | trans }}" href="{{ path('pay_paypal', {'id' : order.id}) }}">{{ 'aquí' | trans }}</a>
             </p>
 
             <p>

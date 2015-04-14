@@ -250,6 +250,11 @@ class Item
         return $this->price;
     }
 
+    public function getTaxApplied()
+    {
+        return round($this->price * ($this->tax->getTaxes()/100), 2);
+    }
+
     /**
      * @param mixed $slug
      */

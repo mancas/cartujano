@@ -125,4 +125,8 @@ class OrderItem
         return ($this->price * $this->quantity);
     }
 
+    public function getItemsTaxes()
+    {
+        return $this->item->getTaxApplied() * $this->quantity;
+    }
 }

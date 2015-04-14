@@ -12,11 +12,11 @@ parameters:
     mailer_password: null
     locale: en
     secret: 7a6d5e633cddaead7bd4b4e075c2818c
-    noreply_email: noreply@clopsevilla.es
+    noreply_email: noreply@elcartujano.es
     direction_email: mancas.91@gmail.com
-    paypal.api_name: mcragea-facilitator_api1.gmail.com
-    paypal.api_key: 1403791880
-    paypal.api_certificate: AFcWxV21C7fd0v3bYYYRCpSSRl31AG9NgQZhQazZFNp.4t8aVv1.L9Pe
+    paypal.api_name: elcartujano.develop_api1.gmail.com
+    paypal.api_key: KJPXZBCR99HV4ANE
+    paypal.api_certificate: AGETZWxMSsaEXbMqWfwng-H2eTkLAMCML468eaJCCMmTPp8TG6u.joTr
     paypal.environment: sandbox.paypal
     paypal.moneda: EUR
     paypal.tipo_pago: Sale

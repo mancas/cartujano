@@ -1,6 +1,8 @@
 <?php
 
-namespace Ecommerce\PayPalBundle\PayPal;
+namespace Ecommerce\PayPalBundle\Paypal;
+
+use Ecommerce\ItemBundle\Entity\Item;
 
 class Paypal
 {
@@ -31,14 +33,15 @@ class Paypal
         $this->apiVersion = $version;
         $this->pagoTarjeta = $pagoTarjeta;
         $this->localeCode = $localeCode;
-        $this->taxes = $container->getParameter('taxes_es')/100;
+        //$this->taxes = $container->getParameter('taxes_es')/100;
+        $this->taxes = Item::TAX_ES/100;
     }
 
-    public function pay($paymentAmount, $deliveryAmount, $desc, $urlAccept, $urlCancel)
+    public function pay($paymentAmount, $paymentTaxes, $deliveryAmount, $desc, $urlAccept, $urlCancel)
     {
         $urlAccept = $this->sanitizeUrl($urlAccept);
         $urlCancel = $this->sanitizeUrl($urlCancel);
-        $nvpStr = $this->getNvpStr($paymentAmount, $deliveryAmount, $desc, $urlAccept, $urlCancel);
+        $nvpStr = $this->getNvpStr($paymentAmount, $paymentTaxes,$deliveryAmount, $desc, $urlAccept, $urlCancel);
 
         $httpParsedResponseAr = $this->PPHttpPost('SetExpressCheckout', $nvpStr);
         if ("SUCCESS" == strtoupper($httpParsedResponseAr["ACK"]) || "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])) {
@@ -67,22 +70,19 @@ class Paypal
         return $url;
     }
 
-    private function getNvpStr($paymentAmount, $deliveryAmount, $desc, $urlAccept, $urlCancel)
+    private function getNvpStr($paymentAmount, $paymentTaxes, $deliveryAmount, $desc, $urlAccept, $urlCancel)
     {
         $currencyID = urlencode($this->currency);
         $paymentType = urlencode($this->tipoPago);
         $noShipping = urlencode($this->delivery);
         $sole = urlencode($this->pagoTarjeta);
         $localeCode = urlencode($this->localeCode);
-        $paymentTaxes = round($paymentAmount*($this->taxes), 2);
-        $paymentAmountWithoutTaxes = $paymentAmount - $paymentTaxes;
-//ldd($paymentAmount - $paymentTaxes + $paymentTaxes);
-        $paymentTotal = urlencode($paymentAmountWithoutTaxes + $paymentTaxes + $deliveryAmount);
+        $paymentTotal = urlencode($paymentAmount + $paymentTaxes + $deliveryAmount);
 
         if ($deliveryAmount > 0) {
-            $nvpStr = "&PAYMENTREQUEST_0_AMT=$paymentTotal&L_PAYMENTREQUEST_0_DESC0=$desc&PAYMENTREQUEST_0_ITEMAMT=$paymentAmountWithoutTaxes&L_PAYMENTREQUEST_0_AMT0=$paymentAmountWithoutTaxes&PAYMENTREQUEST_0_TAXAMT=$paymentTaxes&L_PAYMENTREQUEST_0_QTY0=1&ReturnUrl=$urlAccept&CANCELURL=$urlCancel&PAYMENTACTION=$paymentType&PAYMENTREQUEST_0_CURRENCYCODE=$currencyID&PAYMENTREQUEST_0_SHIPPINGAMT=$deliveryAmount&SOLUTIONTYPE=$sole&LOCALECODE=$localeCode";
+            $nvpStr = "&PAYMENTREQUEST_0_AMT=$paymentTotal&L_PAYMENTREQUEST_0_DESC0=$desc&PAYMENTREQUEST_0_ITEMAMT=$paymentAmount&L_PAYMENTREQUEST_0_AMT0=$paymentAmount&PAYMENTREQUEST_0_TAXAMT=$paymentTaxes&L_PAYMENTREQUEST_0_QTY0=1&ReturnUrl=$urlAccept&CANCELURL=$urlCancel&PAYMENTACTION=$paymentType&PAYMENTREQUEST_0_CURRENCYCODE=$currencyID&PAYMENTREQUEST_0_SHIPPINGAMT=$deliveryAmount&SOLUTIONTYPE=$sole&LOCALECODE=$localeCode";
         } else {
-            $nvpStr = "&PAYMENTREQUEST_0_AMT=$paymentTotal&L_PAYMENTREQUEST_0_DESC0=$desc&PAYMENTREQUEST_0_ITEMAMT=$paymentAmountWithoutTaxes&L_PAYMENTREQUEST_0_AMT0=$paymentAmountWithoutTaxes&PAYMENTREQUEST_0_TAXAMT=$paymentTaxes&L_PAYMENTREQUEST_0_QTY0=1&ReturnUrl=$urlAccept&CANCELURL=$urlCancel&PAYMENTACTION=$paymentType&PAYMENTREQUEST_0_CURRENCYCODE=$currencyID&NOSHIPPING=$noShipping&SOLUTIONTYPE=$sole&LOCALECODE=$localeCode";
+            $nvpStr = "&PAYMENTREQUEST_0_AMT=$paymentTotal&L_PAYMENTREQUEST_0_DESC0=$desc&PAYMENTREQUEST_0_ITEMAMT=$paymentAmount&L_PAYMENTREQUEST_0_AMT0=$paymentAmount&PAYMENTREQUEST_0_TAXAMT=$paymentTaxes&L_PAYMENTREQUEST_0_QTY0=1&ReturnUrl=$urlAccept&CANCELURL=$urlCancel&PAYMENTACTION=$paymentType&PAYMENTREQUEST_0_CURRENCYCODE=$currencyID&NOSHIPPING=$noShipping&SOLUTIONTYPE=$sole&LOCALECODE=$localeCode";
         }
 
         return $nvpStr;
@@ -126,7 +126,7 @@ class Paypal
                 $httpParsedResponseAr[$tmpAr[0]] = $tmpAr[1];
             }
         }
-
+ldd($httpParsedResponseAr);
         if ((0 == sizeof($httpParsedResponseAr)) || !array_key_exists('ACK', $httpParsedResponseAr)) {
             exit("Invalid HTTP Response for POST request($nvpreq) to $apiEndpoint.");
         }
