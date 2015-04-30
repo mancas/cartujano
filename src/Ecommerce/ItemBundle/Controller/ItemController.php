@@ -19,7 +19,7 @@ class ItemController extends CustomController
      *
      * @return array
      */
-    public function itemBoxAction(Item $item, Shipment $shipment)
+    public function itemBoxAction(Item $item, $shipment)
     {
         return array('item' => $item, 'shipment' => $shipment);
     }
