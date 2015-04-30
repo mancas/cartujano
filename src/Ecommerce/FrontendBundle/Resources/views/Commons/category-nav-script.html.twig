@@ -8,8 +8,9 @@
                 var img = elem.querySelector('img');
                 var src = img.src;
                 this.originalImages[img.id] = src;
-                var split = src.split('.');
-                this.hoverImages[img.id] = split[0] + '-hover.' + split[1];
+                var firstPart = src.slice(0, src.lastIndexOf('.'));
+                var lastPart = src.slice(src.lastIndexOf('.'));
+                this.hoverImages[img.id] = firstPart + '-hover' + lastPart;
 
                 var li = elem.parentNode;
                 var dropdownMenuElement = li.querySelector('.dropdown-menu');
