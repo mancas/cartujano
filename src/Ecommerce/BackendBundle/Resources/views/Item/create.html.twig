@@ -170,6 +170,9 @@
 
             updatePrice: function taxPrice_updatePrice(evt) {
                 var price = parseFloat(this.itemPriceElement.value);
+                if (this.taxElement.selectedIndex == -1) {
+                    return;
+                }
                 var tax = this.taxElement.options[this.taxElement.selectedIndex].textContent;
 
                 var calculateTaxedPrice = function() {
