@@ -349,9 +349,6 @@ body.order-details {
   .item-box.blue-block {
     .item-wrap {
       background-color: rgba(0, 64, 156, 0.2);
-      .img-responsive {
-        margin: auto;
-      }
     }
     .item-options {
       background-color: $white;
@@ -390,6 +387,9 @@ body.order-details {
       &:hover {
         border-color: $blue-hover;
         cursor: pointer;
+      }
+      .img-responsive {
+        margin: auto;
       }
     }
 

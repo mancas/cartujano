@@ -254,8 +254,6 @@ body.order-details h3.title {
   margin-bottom: 3rem; }
   .items-list .item-box.blue-block .item-wrap {
     background-color: rgba(0, 64, 156, 0.2); }
-    .items-list .item-box.blue-block .item-wrap .img-responsive {
-      margin: auto; }
   .items-list .item-box.blue-block .item-options {
     background-color: #FFFFFF; }
   .items-list .item-box.red-block .item-wrap {
@@ -282,6 +280,8 @@ body.order-details h3.title {
       .items-list .item-box .img-wrap:hover {
         border-color: #3FA9F5;
         cursor: pointer; }
+      .items-list .item-box .img-wrap .img-responsive {
+        margin: auto; }
     .items-list .item-box .item-info {
       margin-left: 1.5rem; }
       .items-list .item-box .item-info .item-title {
