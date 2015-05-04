@@ -1,8 +1,4 @@
 /** COLORS **/
-body {
-  background: url(../img/texture.png) repeat;
-  color: #00409C; }
-
 a {
   color: #00409C;
   outline: none; }
@@ -16,6 +12,10 @@ textarea {
   resize: none; }
 
 /** HELPER CLASSES **/
+body {
+  background: url(../img/texture.png) repeat;
+  color: #00409C; }
+
 .mt50 {
   margin-top: 5rem; }
 

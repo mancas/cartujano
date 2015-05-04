@@ -15,11 +15,6 @@ $disabled-gray: #DDDDDD;
 $red: #FF0000;
 $cartujano-red: #DE0000;
 
-body {
-  background: url(../img/texture.png) repeat;
-  color: $blue;
-}
-
 a {
   color: $blue;
   outline: none;
@@ -37,6 +32,13 @@ textarea {
 }
 
 /** HELPER CLASSES **/
+
+body {
+  background: url(../img/texture.png) repeat;
+  color: $blue;
+}
+
+
 .mt50 { margin-top: 5rem; }
 
 .mt30 { margin-top: 3rem; }
