@@ -10,7 +10,7 @@ class ItemSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array('required' => false))
+        $builder->add('reference', 'text', array('required' => false))
             ->add('subcategory', 'entity',
                 array(
                     'class' => 'CategoryBundle:Subcategory',

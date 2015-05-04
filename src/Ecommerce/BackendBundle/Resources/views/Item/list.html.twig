@@ -25,7 +25,7 @@
         <div class="widget-content nopadding">
             <form class="form-inline" role="form" action="{{ path('admin_item_index') }}" method="get">
                 <div class="form-group">
-                    {{ form_widget(form.name, { 'attr': { 'class': 'form-control', 'placeholder' : 'Nombre'} }) }}
+                    {{ form_widget(form.reference, { 'attr': { 'class': 'form-control', 'placeholder' : 'Referencia'} }) }}
                 </div>
                 <div class="form-group">
                     <label for="form_search_item_subcategory">{{ 'Subcategoría:' | trans }}</label>
@@ -53,6 +53,7 @@
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                     <tr>
+                        <th>{{ "Referencia"|trans }}</th>
                         <th>{{ "Nombre"|trans }}</th>
                         <th>{{ "Descripción"|trans }}</th>
                         <th>{{ "Precio"|trans }}</th>
@@ -66,6 +67,7 @@
                     <tbody>
                     {% for item in items %}
                         <tr>
+                            <td>{{ item.reference }}</td>
                             <td><a title="Modificar" href="{{ path('admin_item_edit', { 'slug': item.slug }) }}">{{ item.name }}</a></td>
                             <td>{{ item.description|length > 100 ? item.description|slice(0, 100) ~ '...' : item.description }}</td>
                             <td>{% if item.price %}{{ item.price }} <i class="fa fa-euro"></i>{% else %} -- {% endif %}</td>
