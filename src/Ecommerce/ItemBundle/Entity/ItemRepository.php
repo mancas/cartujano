@@ -149,7 +149,7 @@ class ItemRepository extends CustomEntityRepository
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->eq('pa.id', $package));
-        $and->add($qb->expr()->eq('p.isCommercialItem', 0));
+        //$and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
 
         $qb->where($and);

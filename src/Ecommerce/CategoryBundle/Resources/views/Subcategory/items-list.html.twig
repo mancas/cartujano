@@ -15,11 +15,16 @@
 {% block content %}
     {% if items | length > 0 %}
         <h1 class="title">{{ subcategory }}</h1>
-        <div class="row items-list">
-            {% for item in items %}
+        {% for item in items %}
+            {% set index = loop.index0 %}
+            {% if index is even %}
+            <div class="row items-list">
+            {% endif %}
                 {{ render(controller("ItemBundle:Item:itemBox", {'item': item, 'shipment': null})) }}
-            {% endfor %}
-        </div>
+            {% if index is odd or (index is even and loop.last) %}
+            </div>
+            {% endif %}
+        {% endfor %}
         {{ simple_paginator_render('view_subcategory', 'items', { 'routeParams' : {'slug' : subcategory.slug}, 'container_class' : 'pagination', 'currentClass' : 'active' }, 'ItemBundle:Commons:paginator.html.twig') }}
     {% else %}
         <p>{{ 'No se han encontrado productos para esta categoría.' | trans }}</p>
