@@ -103,7 +103,7 @@ class Item
     protected $tax;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\ItemPackage", inversedBy="items", cascade={"persist", "merge"})
+     * @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\ItemPackage", inversedBy="items")
      */
     protected $package;
 
