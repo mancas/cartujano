@@ -15,7 +15,7 @@
             <li {% if action == 'frontend_homepage' %}class="active"{% endif %}>
                 <a title="{{ 'Nosotros' | trans }}" href="{{ path('frontend_homepage') }}">{{ 'Nosotros' | trans }}</a>
             </li>
-            <li {% if action == 'view_categories' %}class="active"{% endif %}>
+            <li {% if action == 'view_categories' or action == 'view_subcategory' or action == 'view_subcategories' %}class="active"{% endif %}>
                 <a href="{{ path('view_categories') }}" alt="{{ 'Nuestros productos' | trans }}">{{ 'Productos' | trans }}</a>
             </li>
             <li {% if action == 'ecommerce_homepage' %}class="active"{% endif %}>
