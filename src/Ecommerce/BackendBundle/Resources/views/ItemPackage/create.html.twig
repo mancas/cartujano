@@ -34,7 +34,7 @@
         </div>
         <div class="widget-content nopadding">
             <form class="form-horizontal" role="form"
-                  action="{% if edition is defined %}{{ path('admin_item_pacakge_edit',{'slug':package.slug}) }} {% else %} {{ path('admin_item_package_create') }} {% endif %}"
+                  action="{% if edition is defined %}{{ path('admin_item_package_edit',{'slug':package.slug}) }} {% else %} {{ path('admin_item_package_create') }} {% endif %}"
                   method="post" xmlns="http://www.w3.org/1999/html">
 
                 <div class="tab-content">

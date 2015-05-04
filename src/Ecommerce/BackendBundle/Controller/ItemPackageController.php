@@ -44,14 +44,14 @@ class ItemPackageController extends CustomController
     public function deleteAction(ItemPackage $package)
     {
         $em = $this->getEntityManager();
-        $items = $em->getRepository('ItemBundle:Item')->findItemsByPackageDQL($package->getId())->getResult();;
+        $items = $em->getRepository('ItemBundle:Item')->findItemsByPackageDQL($package->getId())->getResult();
         foreach ($items as $item) {
             $item->setPackage(null);
             $em->persist($item);
         }
         $em->flush();
 
-        $em->delete($package);
+        $em->remove($package);
         $em->flush();
 
         $this->setTranslatedFlashMessage('Se ha eliminado el tipo de paquete');
