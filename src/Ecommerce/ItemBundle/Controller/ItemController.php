@@ -8,6 +8,7 @@ use Ecommerce\ItemBundle\Entity\Shipment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 
 class ItemController extends CustomController
 {
@@ -19,8 +20,8 @@ class ItemController extends CustomController
      *
      * @return array
      */
-    public function itemBoxAction(Item $item, $shipment)
+    public function itemBoxAction(Item $item, $shipment, $isEcommerceAction)
     {
-        return array('item' => $item, 'shipment' => $shipment);
+        return array('item' => $item, 'shipment' => $shipment, 'isEcommerceAction' => $isEcommerceAction);
     }
 }

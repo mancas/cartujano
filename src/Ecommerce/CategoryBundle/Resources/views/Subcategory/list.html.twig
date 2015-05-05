@@ -12,6 +12,9 @@
     {{ parent() }}
 {% endblock %}
 
+{% set action = app.request.attributes.get('_route') %}
+{% set action_params = app.request.attributes.get('_route_params') %}
+
 {% block content %}
     {% for subcategory in subcategories %}
         <h1 class="title">
@@ -21,10 +24,10 @@
             <div class="row items-list">
         {% if subcategory.getNonCommercialItems | length > 1 %}
             {% for i in 0..1 %}
-                {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(i), 'shipment': null})) }}
+                {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(i), 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
             {% endfor %}
         {% else %}
-            {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(0), 'shipment': null})) }}
+            {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(0), 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
         {% endif %}
         </div>
         {% else %}

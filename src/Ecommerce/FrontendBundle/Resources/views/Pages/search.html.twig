@@ -12,12 +12,15 @@
     {{ parent() }}
 {% endblock %}
 
+{% set action = app.request.attributes.get('_route') %}
+{% set action_params = app.request.attributes.get('_route_params') %}
+
 {% block content %}
     <h1 class="title">{{ 'Resultados para' | trans }} <span class="blue">{{ search }}</span></h1>
     {% if items | length > 0 %}
         <div class="row items-list">
             {% for item in items %}
-                {{ render(controller("ItemBundle:Item:itemBox", {'item': item, 'shipment': null})) }}
+                {{ render(controller("ItemBundle:Item:itemBox", {'item': item, 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
             {% endfor %}
         </div>
     {% else %}

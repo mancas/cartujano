@@ -32,7 +32,8 @@
                 {% endif %}
             </div>
         </div>
-        {% if item.isCommercialItem %}
+
+        {% if item.isCommercialItem and isEcommerceAction %}
             <div class="item-options text-center">
                 <ul class="list-unstyled">
                     <li>
