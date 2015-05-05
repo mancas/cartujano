@@ -60,7 +60,7 @@
                         <th>{{ "Impuesto"|trans }}</th>
                         <th>{{ "Precio con impuestos"|trans }}</th>
                         <th>{{ "Categoría"|trans }}</th>
-                        <th>{{ "Stock"|trans }}</th>
+                        <th>{{ "En la tienda"|trans }}</th>
                         <th>{{ "Acciones"|trans }}</th>
                     </tr>
                     </thead>
@@ -74,7 +74,7 @@
                             <td>{% if item.price and item.tax %}{{ item.tax }} -- {{ item.tax.taxes }} %{% else %} -- {% endif %}</td>
                             <td>{% if item.price and item.tax %}{{ item.tax.getTaxedPrice(item.price) }} <i class="fa fa-euro"></i>{% else %} -- {% endif %}</td>
                             <td>{% if item.subcategory %}{{ item.subcategory }}{% else %} -- {% endif %}</td>
-                            <td>{{ item.stock }}</td>
+                            <td>{% if item.isCommercialItem %} {{ 'Sí' | trans }} {% else %} {{ 'No' | trans }}{% endif %}</td>
                             <td class="text-center">
                                 <a title="Modificar" class="btn btn-primary btn-xs" href="{{ path('admin_item_edit', { 'slug': item.slug }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
                                 <a title="Borrar" class="delete btn btn-danger btn-xs" href="{{ path('admin_item_delete', { 'slug': item.slug }) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
