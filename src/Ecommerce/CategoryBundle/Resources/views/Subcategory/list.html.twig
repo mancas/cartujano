@@ -20,14 +20,14 @@
         <h1 class="title">
             <a title="{{ 'Ver subcategoría completa' }}" href="{{ path('view_subcategory', {slug: subcategory.slug}) }}">{{ subcategory }}</a>
         </h1>
-        {% if subcategory.getNonCommercialItems | length > 0 %}
+        {% if subcategory.items | length > 0 %}
             <div class="row items-list">
-        {% if subcategory.getNonCommercialItems | length > 1 %}
+        {% if subcategory.items | length > 1 %}
             {% for i in 0..1 %}
-                {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(i), 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
+                {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items[i], 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
             {% endfor %}
         {% else %}
-            {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items.get(0), 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
+            {{ render(controller("ItemBundle:Item:itemBox", {'item': subcategory.items[0], 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
         {% endif %}
         </div>
         {% else %}

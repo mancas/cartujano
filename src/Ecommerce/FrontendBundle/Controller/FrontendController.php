@@ -44,17 +44,6 @@ class FrontendController extends CustomController
         return array('categories' => $categories);
     }
 
-    public function offersAction()
-    {
-        $em = $this->getEntityManager();
-        $offers = $em->getRepository('ItemBundle:Item')->findOffersDQL();
-        $paginator = $this->get('ideup.simple_paginator');
-        $paginator->setItemsPerPage(32, 'offers');
-        $offers = $paginator->paginate($em->getRepository('ItemBundle:Item')->findOffersDQL(), 'offers')->getResult();
-
-        return $this->render('FrontendBundle:Pages:offers.html.twig', array('offers' => $offers, 'paginator' => $paginator));
-    }
-
     public function policyAction()
     {
         return $this->render('FrontendBundle:Pages:policy.html.twig');

@@ -169,7 +169,14 @@ class Subcategory
      */
     public function getItems()
     {
-        return $this->items;
+        $result = array();
+        foreach ($this->items as $item) {
+            if ($item->getImageMain()) {
+                $result[] = $item;
+            }
+        }
+
+        return $result;
     }
 
     public function addItem($item)
@@ -201,7 +208,7 @@ class Subcategory
     {
         $result = array();
         foreach ($this->items as $item) {
-            if (!$item->isCommercialitem()) {
+            if (!$item->isCommercialitem() && $item->getImageMain()) {
                 $result[] = $item;
             }
         }

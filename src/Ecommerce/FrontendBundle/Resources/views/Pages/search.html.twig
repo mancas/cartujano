@@ -20,7 +20,14 @@
     {% if items | length > 0 %}
         <div class="row items-list">
             {% for item in items %}
+                {% set index = loop.index0 %}
+                {% if index is even %}
+                    <div class="row items-list">
+                {% endif %}
                 {{ render(controller("ItemBundle:Item:itemBox", {'item': item, 'shipment': null, 'isEcommerceAction': isEcommerceAction(path(action, action_params))})) }}
+                {% if index is odd or (index is even and loop.last) %}
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     {% else %}

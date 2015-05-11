@@ -51,14 +51,7 @@
                     </div>
                     {% if item is defined %}
                     <div id="images" class="tab-pane">
-                        <div class="row mt">
-                            <div class="col-md-12">
-                                <div class="alert alert-info">
-                                    <span><strong>{{ 'Consejo' | trans }}:</strong> {{ 'Puedes seleccionar varias imágenes a la vez, manteniendo pulsada la tecla CTRL' | trans }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        {% if edition is defined %}
+                         {% if edition is defined %}
                             <div class="col-sm-12 mt20" id="images_item">
                                 {% if item.images is defined and item.images | length > 0%}
                                     {% for image in item.images %}
