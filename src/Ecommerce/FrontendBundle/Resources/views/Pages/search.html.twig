@@ -18,7 +18,8 @@
 {% block content %}
     <h1 class="title">{{ 'Resultados para' | trans }} <span class="blue">{{ search }}</span></h1>
     {% if items | length > 0 %}
-        <div class="row items-list">
+        <div class="row">
+            <div class="col-md-12">
             {% for item in items %}
                 {% set index = loop.index0 %}
                 {% if index is even %}
@@ -29,6 +30,7 @@
                     </div>
                 {% endif %}
             {% endfor %}
+            </div>
         </div>
     {% else %}
         <p>
