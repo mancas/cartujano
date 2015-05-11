@@ -126,7 +126,7 @@ class Paypal
                 $httpParsedResponseAr[$tmpAr[0]] = $tmpAr[1];
             }
         }
-ldd($httpParsedResponseAr);
+//ldd($httpParsedResponseAr);
         if ((0 == sizeof($httpParsedResponseAr)) || !array_key_exists('ACK', $httpParsedResponseAr)) {
             exit("Invalid HTTP Response for POST request($nvpreq) to $apiEndpoint.");
         }

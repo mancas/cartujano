@@ -15,17 +15,15 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <div class="line-block mb20">
-                <h2 class="line-title">{{ 'Has completado tu pedido correctamente' | trans }}</h2>
-            </div>
+            <h2 class="title">{{ 'Has completado tu pedido correctamente' | trans }}</h2>
 
             <p>
                 {{ 'Estamos procesando tu pedido, te notificaremos por correo electrónico con cualquier novedad en el estado de tu pedido. También puedes
-                ver toda la información en la sección' | trans }} <a title="{{ 'Mis pedidos' | trans }}" href="{{ path('user_orders') }}">{{ 'Mis pedidos' | trans }}</a>.<br>
+                ver toda la información en la sección' | trans }} <a class="red-link" title="{{ 'Mis pedidos' | trans }}" href="{{ path('user_orders') }}">{{ 'Mis pedidos' | trans }}</a>.<br>
             </p>
 
             <p>
-                {{ 'Gracias por confiar en Clop Sevilla.' | trans }}
+                {{ 'Gracias por confiar en El Cartujano.' | trans }}
             </p>
         </div><!-- .col-md-12 -->
     </div>
