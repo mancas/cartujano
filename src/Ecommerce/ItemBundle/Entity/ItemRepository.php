@@ -56,6 +56,7 @@ class ItemRepository extends CustomEntityRepository
         $and->add($qb->expr()->eq('p.isCommercialItem', 1));
         $and->add($qb->expr()->isNull('p.deleted'));
         $and->add($qb->expr()->isNull('i.deletedDate'));
+        $and->add($qb->expr()->isNotNull('i.createDate'));
 
         $qb->where($and);
 
@@ -82,6 +83,7 @@ class ItemRepository extends CustomEntityRepository
         //$and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
         $and->add($qb->expr()->isNull('i.deletedDate'));
+        $and->add($qb->expr()->isNotNull('i.createDate'));
 
         $qb->where($and);
 
@@ -132,6 +134,7 @@ class ItemRepository extends CustomEntityRepository
         //$and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
         $and->add($qb->expr()->isNull('i.deletedDate'));
+        $and->add($qb->expr()->isNotNull('i.createDate'));
 
         $qb->where($and);
 
@@ -180,6 +183,7 @@ class ItemRepository extends CustomEntityRepository
         //$and->add($qb->expr()->eq('p.isCommercialItem', 0));
         $and->add($qb->expr()->isNull('p.deleted'));
         $and->add($qb->expr()->isNull('i.deletedDate'));
+        $and->add($qb->expr()->isNotNull('i.createDate'));
         //$qb->andHaving($qb->expr()->gt($qb->expr()->count('i.id'), 0));
 
         $qb->where($and);
