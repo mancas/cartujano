@@ -34,13 +34,12 @@ class CartController extends CustomController
 
             $path = $item->getImageMain()->getImageItemCart()->getWebFilePath();
             $path = $this->container->get('templating.helper.assets')->getUrl($path);
-
             if (!$currentCartItem) {
-                $cartItem = new CartItem($item->getId(), $quantity, $price);
+                $cartItem = new CartItem($item->getId(), $quantity, $price, $item->getWeight());
                 $currentCart->addCartItem($cartItem);
             } else {
-                $cartItem = new CartItem($item->getId(), $quantity, $price);
-                $currentCart->addCartItem($cartItem);
+                // Update quantity
+                $currentCart->incrementQuantity($item->getId(), $quantity);
             }
             $jsonResponse = json_encode(array('ok' => true, 'title' => $item->getName(),
                 'image_thumb' => $path, 'quantity' => $quantity, 'items' => count($currentCart->getCartItems())));
@@ -77,13 +76,9 @@ class CartController extends CustomController
         $this->setCurrentCartIfNeeded();
         $cartStorageManager = $this->getCartStorageManager();
         $cart = $cartStorageManager->getCurrentCart();
-        $shipments = $this->getEntityManager()->getRepository('ItemBundle:Shipment')->findAllShipmentOptions();
-        $shipment = null;
-        if (count($shipments) > 0) {
-            $shipment = $shipments[0];
-        }
+        list($shipment, $extra) = $this->calculateShippingCost();
 
-        return $this->render("FrontendBundle:Pages:cart.html.twig", array('cart' => $cart, 'shipment' => $shipment));
+        return $this->render("FrontendBundle:Pages:cart.html.twig", array('cart' => $cart, 'shipment' => $shipment, 'extra' => $extra));
     }
 
     public function deleteItemAction($id)

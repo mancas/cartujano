@@ -90,6 +90,11 @@ class Order
     protected $shipment;
 
     /**
+     *  @ORM\ManyToOne(targetEntity="Ecommerce\ItemBundle\Entity\Extra")
+     */
+    protected $extra;
+
+    /**
      * @ORM\OneToOne(targetEntity="Ecommerce\OrderBundle\Entity\OrderHistory", inversedBy="order")
      */
     protected $orderHistory;
@@ -242,7 +247,7 @@ class Order
     {
         $total = $this->getTotalAmount();
 
-        $total += $this->shipment->getCost();
+        $total += $this->getShipmentCost();
 
         return $total;
     }
@@ -265,6 +270,15 @@ class Order
         }
 
         return round($total, 2);
+    }
+
+    public function getShipmentCost() {
+        $cost = $this->shipment->getCost();
+        if ($this->extra) {
+            $cost += $this->extra->getCost();
+        }
+
+        return $cost;
     }
 
     /**
@@ -345,5 +359,21 @@ class Order
     public function setOrderHistory($orderHistory)
     {
         $this->orderHistory = $orderHistory;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
+
+    /**
+     * @param mixed $extra
+     */
+    public function setExtra($extra)
+    {
+        $this->extra = $extra;
     }
 }

@@ -34,44 +34,17 @@
         </div>
         <div class="widget-content nopadding">
             <form class="form-horizontal" role="form"
-                  action="{% if edition is defined %}{{ path('admin_shipment_edit',{'id':shipmentOption.id}) }} {% else %} {{ path('admin_shipment_create') }} {% endif %}"
+                  action="{% if edition is defined %}{{ path('admin_shipment_extra_edit',{'id':extraOption.id}) }} {% else %} {{ path('admin_shipment_extra_create') }} {% endif %}"
                   method="post" xmlns="http://www.w3.org/1999/html">
 
-                {#<div class="form-group">
-                    <label for="shipment_type" class="col-sm-2 control-label">
-                        <span class="red">*</span>
-                        {{ 'Tipo de envío'|trans }}
-                        <a href="#" data-placement="right" class="bo-tooltip" data-toggle="tooltip" title="{{ "Express, estándar, 48 horas..."|trans }}"><span class="fa fa-question"></span></a></label>
-                    </label>
-                    <div class="col-sm-3">
-                        {{ form_widget(form.type, { 'attr': { 'class': 'form-control required'} }) }}
-                    </div>
-                </div>#}
-
                 <div class="form-group">
                     <label for="shipment_type" class="col-sm-3 control-label">
                         <span class="red">*</span>
-                        {{ 'Límite inferior de peso'|trans }}
-                        <a href="#" data-placement="right" class="bo-tooltip" data-toggle="tooltip" title="{{ "En kilos"|trans }}"><span class="fa fa-question"></span></a></label>
+                        {{ 'Número de cajas'|trans }}
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
-                            {{ form_widget(form.lowerBound, { 'attr': { 'class': 'form-control required'} }) }}
-                            <span class="input-group-addon"><i class="fa fa-euro"></i></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="shipment_type" class="col-sm-3 control-label">
-                        <span class="red">*</span>
-                        {{ 'Límite superior de peso'|trans }}
-                        <a href="#" data-placement="right" class="bo-tooltip" data-toggle="tooltip" title="{{ "En kilos"|trans }}"><span class="fa fa-question"></span></a></label>
-                    </label>
-                    <div class="col-sm-2">
-                        <div class="input-group">
-                            {{ form_widget(form.upperBound, { 'attr': { 'class': 'form-control required'} }) }}
-                            <span class="input-group-addon"><i class="fa fa-euro"></i></span>
+                            {{ form_widget(form.numberOfItems, { 'attr': { 'class': 'form-control required'} }) }}
                         </div>
                     </div>
                 </div>

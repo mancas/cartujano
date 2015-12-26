@@ -2,7 +2,9 @@
 
 namespace Ecommerce\BackendBundle\Controller;
 
+use Ecommerce\ItemBundle\Entity\Extra;
 use Ecommerce\ItemBundle\Entity\Shipment;
+use Ecommerce\ItemBundle\Form\Type\ExtraType;
 use Ecommerce\ItemBundle\Form\Type\ShipmentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -15,8 +17,9 @@ class ShipmentController extends CustomController
     {
         $em = $this->getEntityManager();
         $shipmentOptions = $em->getRepository("ItemBundle:Shipment")->findAllShipmentOptions();
+        $extraOptions = $em->getRepository("ItemBundle:Extra")->findAllExtraOptions();
 
-        return $this->render('BackendBundle:Shipment:list.html.twig', array('shipmentOptions' => $shipmentOptions));
+        return $this->render('BackendBundle:Shipment:list.html.twig', array('shipmentOptions' => $shipmentOptions, 'extraOptions' => $extraOptions));
     }
 
     /**
@@ -42,8 +45,8 @@ class ShipmentController extends CustomController
     public function deleteAction(Shipment $shipment)
     {
         $em = $this->getEntityManager();
-        $em->remove($shipment);
-        $em->flush();
+        $shipment->setDeleted(new \DateTime('now'));
+        $em->persist($shipment);
 
         $this->setTranslatedFlashMessage('Se ha eliminado la opción de envío');
 
@@ -63,5 +66,52 @@ class ShipmentController extends CustomController
         }
 
         return $this->render('BackendBundle:Shipment:create.html.twig', array('form' => $form->createView()));
+    }
+
+    public function createExtraAction(Request $request)
+    {
+        $extraOption = new Extra();
+        $form = $this->createForm(new ExtraType(), $extraOption);
+        $handler = $this->get('extra.extra_form_handler');
+
+        if ($handler->handle($form, $request)) {
+            $this->setTranslatedFlashMessage('Se ha creado el suplemento correctamente');
+
+            return $this->redirect($this->generateUrl('admin_shipment_index'));
+        }
+
+        return $this->render('BackendBundle:Shipment:create-extra.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @ParamConverter("extra", class="ItemBundle:Extra")
+     */
+    public function editExtraAction(Extra $extra, Request $request)
+    {
+        $form = $this->createForm(new ExtraType(), $extra);
+        $handler = $this->get('extra.extra_form_handler');
+
+        if ($handler->handle($form, $request)) {
+            $this->setTranslatedFlashMessage('Se ha modificado el suplemento');
+
+            return $this->redirect($this->generateUrl('admin_shipment_index'));
+        }
+
+        return $this->render('BackendBundle:Shipment:create-extra.html.twig', array('edition' => true, 'extraOption' => $extra, 'form' => $form->createView()));
+    }
+
+    /**
+     * @ParamConverter("extra", class="ItemBundle:Extra")
+     */
+    public function deleteExtraAction(Extra $extra)
+    {
+        $em = $this->getEntityManager();
+        $extra->setDeleted(new \DateTime('now'));
+        $em->persist($extra);
+        $em->flush();
+
+        $this->setTranslatedFlashMessage('Se ha eliminado el suplemento');
+
+        return $this->redirect($this->generateUrl('admin_shipment_index'));
     }
 }

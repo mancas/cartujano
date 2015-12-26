@@ -98,4 +98,46 @@ class CustomController extends Controller
         $dispatcher = $this->get('event_dispatcher');
         $dispatcher->dispatch(CartEvents::CLEAR_CART, $cartEvent);
     }
+
+    protected function calculateShippingCost() {
+        $this->setCurrentCartIfNeeded();
+        $cartStorageManager = $this->getCartStorageManager();
+        $cart = $cartStorageManager->getCurrentCart();
+        $cartWeight = $cart->getCartWeight();
+
+        $shipmentOption = $this->getEntityManager()->getRepository('ItemBundle:Shipment')->findShipmentOption($cartWeight);
+        if (count($shipmentOption) === 0) {
+            // Just in case: If there is no available shipment let's apply the most expensive.
+            $shipmentOption = $this->getEntityManager()->getRepository('ItemBundle:Shipment')->findMostExpensiveShipmentOption();
+        }
+
+        $extraOption = $this->_whichExtraShouldBeApplied($cart->getCartItemsCount());
+
+        return array($shipmentOption[0], $extraOption);
+    }
+
+    private function _whichExtraShouldBeApplied($itemsCount) {
+        $extras = $this->getEntityManager()->getRepository('ItemBundle:Extra')->findAllExtraOptions();
+        $extraOption = null;
+        if (count($extras) > 0) {
+            // If the first extra does not fit with the cart number of items, we should't apply an extra
+            if ($extras[0]->getNumberOfItems() > $itemsCount) {
+                return null;
+            }
+            foreach ($extras as $extra) {
+                $shouldApply = $extra->shouldApplyThisExtra($itemsCount);
+                if ($shouldApply) {
+                    $extraOption = $extra;
+                    break;
+                }
+            }
+
+            // At this point if we have no extra means that we need to apply the most expensive
+            if (!isset($extraOption)) {
+                $extraOption = end($extras);
+            }
+        }
+
+        return $extraOption;
+    }
 }

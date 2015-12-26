@@ -58,5 +58,5 @@ security:
         - { path: ^/u/reenviar-correo-de-activacion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/u/cambiar-password/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/u/valida-tu-cuenta, roles: ROLE_USER_NOT_VALIDATED }
-        - { path: ^/tu-pedido, roles: ROLE_USER }
+        - { path: ^/e/tu-pedido, roles: ROLE_USER }
         - { path: ^/u/*, roles: ROLE_USER }

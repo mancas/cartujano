@@ -43,6 +43,16 @@
 <div class="form-group">
     <label for="item_description" class="col-sm-2 control-label">
         <span class="red">*</span>
+        {{ 'Cantidad'|trans }}
+    </label>
+    <div class="col-sm-2">
+        {{ form_widget(form.quantity, { 'attr': { 'class': 'form-control'} }) }}
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="item_description" class="col-sm-2 control-label">
+        <span class="red">*</span>
         {{ 'Tipo de embalaje'|trans }}
     </label>
     <div class="col-sm-3">

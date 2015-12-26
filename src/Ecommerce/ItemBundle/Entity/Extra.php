@@ -3,14 +3,13 @@ namespace Ecommerce\ItemBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Ecommerce\OrderBundle\Entity\Order;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ecommerce\ItemBundle\Entity\ShipmentRepository")
+ * @ORM\Entity(repositoryClass="Ecommerce\ItemBundle\Entity\ExtraRepository")
  */
-class Shipment
+class Extra
 {
     /**
      * @ORM\Id
@@ -47,19 +46,9 @@ class Shipment
     protected $deleted;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ecommerce\OrderBundle\Entity\Order", mappedBy="shipment", cascade={"persist"})
+     * @ORM\Column(name="number_of_items", type="integer")
      */
-    protected $orders;
-
-    /**
-     * @ORM\Column(name="upper_bound", type="integer")
-     */
-    protected $upperBound;
-
-    /**
-     * @ORM\Column(name="lower_bound", type="integer")
-     */
-    protected $lowerBound;
+    protected $numberOfItems;
 
     public function __construct()
     {
@@ -162,71 +151,28 @@ class Shipment
         $this->deleted = $deleted;
     }
 
-    /**
-     * @param mixed $orders
-     */
-    public function setOrders($orders)
+    public function __toString()
     {
-        $this->orders = $orders;
+        return $this->getType();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOrders()
-    {
-        return $this->orders;
-    }
-
-    public function addOrder(Order $order)
-    {
-        if (!$this->orders->contains($order))
-            $this->orders->add($order);
-    }
-
-    public function removeOrder(Order $order)
-    {
-        if ($this->orders->contains($order))
-            $this->orders->removeElement($order);
+    public function shouldApplyThisExtra($numberOfItems) {
+        return $numberOfItems <= $this->numberOfItems;
     }
 
     /**
      * @return mixed
      */
-    public function getUpperBound()
+    public function getNumberOfItems()
     {
-        return $this->upperBound;
+        return $this->numberOfItems;
     }
 
     /**
-     * @param mixed $upperBound
+     * @param mixed $numberOfItems
      */
-    public function setUpperBound($upperBound)
+    public function setNumberOfItems($numberOfItems)
     {
-        $this->upperBound = $upperBound;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLowerBound()
-    {
-        return $this->lowerBound;
-    }
-
-    /**
-     * @param mixed $lowerBound
-     */
-    public function setLowerBound($lowerBound)
-    {
-        $this->lowerBound = $lowerBound;
-    }
-
-    public function canApplyThisShipment($weight) {
-        return $weight <= $this->upperBound && $weight >= $this->lowerBound;
-    }
-
-    public function __toString() {
-        return $this->lowerBound . "-" . $this->upperBound . "KG";
+        $this->numberOfItems = $numberOfItems;
     }
 }

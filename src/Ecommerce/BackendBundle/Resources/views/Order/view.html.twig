@@ -49,7 +49,7 @@
                                     {% endfor %}
                                     <tr>
                                         <td colspan="3" class="text-right">
-                                            {{ 'Total' | trans }} {{ order.totalAmount }} <i class="fa fa-euro"></i>
+                                            {{ 'Total' | trans }} {{ order.totalAmount }} + {{ order.shipmentCost }}<i class="fa fa-euro"></i>
                                         </td>
                                     </tr>
                                 </tbody>

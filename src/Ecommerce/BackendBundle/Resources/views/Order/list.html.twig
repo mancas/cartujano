@@ -67,7 +67,6 @@
                         <th>{{ "Fecha"|trans }}</th>
                         <th>{{ "Cliente"|trans }}</th>
                         <th>{{ "Nº de articulos"|trans }}</th>
-                        <th>{{ "Es un regalo"|trans }}</th>
                         <th>{{ "Envío"|trans }}</th>
                         <th>{{ "Estado"|trans }}</th>
                         <th>{{ 'Pagado'|trans }}</th>
@@ -82,7 +81,6 @@
                             <td>{{ order.date | date('d-m-Y') }}</td>
                             <td><a href="{{ path('admin_user_view', {'id':order.customer.id}) }}" title="{{ 'Ver cliente' | trans }}">{{ order.customer.name }}</a></td>
                             <td>{{ order.items | length }}</td>
-                            <td>{% if order.isPresent %}{{ 'Sí' | trans }}{% else %}{{ 'No' | trans }}{% endif %}</td>
                             <td>{% if order.address is not null %}{{ 'Envío a domicilio' | trans }}{% else %}{{ 'Recogida en tienda' | trans }}{% endif %}</td>
                             <td>{{ order.status }}</td>
                             <td>{% if order.payment is not null %}{{ 'Sí' | trans }}{% else %}{{ 'No' | trans }}{% endif %}</td>

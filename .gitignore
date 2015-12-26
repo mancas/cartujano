@@ -13,3 +13,5 @@
 /app/session
 /app/session/*
 .idea
+.DS_Store
+/web/.DS_Store

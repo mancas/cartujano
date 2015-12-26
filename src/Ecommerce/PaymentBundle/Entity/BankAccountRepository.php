@@ -15,6 +15,6 @@ class BankAccountRepository extends CustomEntityRepository
         $qb = $this->createQueryBuilder('ba');
         $qb->select('ba');
 
-        return $qb->getQuery()->getSingleResult();
+        return $qb->getQuery()->getResult();
     }
 }

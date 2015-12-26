@@ -27,7 +27,7 @@ class PayPalController extends CustomController
         $paymentAmount = urlencode($order->getTotalAmountWithoutTaxes());
         $paymentTaxes = urlencode($order->getTotalTaxes());
 
-        $deliveryAmount = urlencode($order->getShipment()->getCost());
+        $deliveryAmount = urlencode($order->getShipmentCost());
         $desc = urlencode($this->get('translator')->trans(Order::PAYPAL_DESC));
 
         $urlAccept = $this->generateUrl('paypal_pay_correct', array('id' => $order->getId()), true);

@@ -54,6 +54,11 @@ class Item
     protected $price;
 
     /**
+     * @ORM\Column(name="quantity", type="integer")
+     */
+    protected $quantity;
+
+    /**
      * @ORM\Column(name="weight", type="decimal", precision=10, scale=2, nullable=true)
      */
     protected $weight;
@@ -411,6 +416,22 @@ class Item
     public function setPackage($package)
     {
         $this->package = $package;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param mixed $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
     }
 
     /**

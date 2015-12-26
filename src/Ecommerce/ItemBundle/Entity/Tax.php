@@ -166,7 +166,7 @@ class Tax
     {
         $taxes = ($this->taxes/100) * $price;
 
-        return $price + $taxes;
+        return round($price + $taxes, 2);
     }
 
     /**

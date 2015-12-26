@@ -7,15 +7,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ShipmentType extends AbstractType
+class ExtraType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lowerBound', 'number', array('required' => true))
-                ->add('upperBound', 'number', array('required' => true))
+        $builder->add('numberOfItems', 'number', array('required' => true))
                 ->add('cost', 'number', array('required' => true));
     }
 
@@ -25,7 +24,7 @@ class ShipmentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class'        => 'Ecommerce\ItemBundle\Entity\Shipment',
+            'data_class'        => 'Ecommerce\ItemBundle\Entity\Extra',
         ));
     }
 
@@ -34,6 +33,6 @@ class ShipmentType extends AbstractType
      */
     public function getName()
     {
-        return 'shipment';
+        return 'extra';
     }
 }

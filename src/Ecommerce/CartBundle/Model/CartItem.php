@@ -9,11 +9,14 @@ class CartItem implements \Serializable
 
     protected $price;
 
-    public function __construct($itemId, $quantity, $price)
+    protected $weight;
+
+    public function __construct($itemId, $quantity, $price, $weight)
     {
         $this->id = $itemId;
         $this->quantity = $quantity;
         $this->price = $price;
+        $this->weight = $weight;
     }
 
     /**
@@ -65,6 +68,22 @@ class CartItem implements \Serializable
     }
 
     /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param mixed $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    }
+
+    /**
      * (PHP 5 &gt;= 5.1.0)<br/>
      * String representation of object
      * @link http://php.net/manual/en/serializable.serialize.php
@@ -72,7 +91,7 @@ class CartItem implements \Serializable
      */
     public function serialize()
     {
-        return serialize(array($this->id, $this->quantity, $this->price));
+        return serialize(array($this->id, $this->quantity, $this->price, $this->weight));
     }
 
     /**
@@ -86,6 +105,6 @@ class CartItem implements \Serializable
      */
     public function unserialize($serialized)
     {
-        list($this->id, $this->quantity, $this->price) = unserialize($serialized);
+        list($this->id, $this->quantity, $this->price, $this->weight) = unserialize($serialized);
     }
 }

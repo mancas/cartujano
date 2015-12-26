@@ -17,17 +17,55 @@ class ShipmentRepository extends CustomEntityRepository
         $qb = $this->createQueryBuilder('s');
         $qb->select('s');
 
-        $qb->addOrderBy('s.cost','ASC');
+        $qb->addOrderBy('s.lowerBound','ASC');
 
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->neq('s.cost', 0.0));
+        $and->add($qb->expr()->isNull('s.deleted'));
 
         $qb->andWhere($and);
 
         if (isset($limit)) {
             $qb->setMaxResults($limit);
         }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findShipmentOption($weight)
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->select('s');
+
+        $qb->addOrderBy('s.lowerBound','ASC');
+
+        $and = $qb->expr()->andx();
+
+        $or = $qb->expr()->orX();
+
+        $and->add($qb->expr()->neq('s.cost', 0.0));
+        $and->add($qb->expr()->isNull('s.deleted'));
+
+        $or->add($qb->expr()->lte('s.lowerBound', $weight));
+        $or->add($qb->expr()->lt('s.upperBound', $weight));
+
+        $and->add($or);
+
+        $qb->andWhere($and);
+        $qb->setMaxResults(1);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findMostExpensiveShipmentOption()
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->select('s');
+
+        $qb->addOrderBy('s.cost','DESC');
+
+        $qb->setMaxResults(1);
 
         return $qb->getQuery()->getResult();
     }

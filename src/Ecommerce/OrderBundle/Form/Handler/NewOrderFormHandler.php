@@ -26,6 +26,7 @@ class NewOrderFormHandler
             $payMethod = $request->request->get('payment_option');
             $address = $this->em->getRepository('LocationBundle:Address')->findOneById($request->request->get('delivery_address'));
             $shipmentOption = $this->em->getRepository('ItemBundle:Shipment')->findOneById($request->request->get('shipment_option'));
+            $extraOption = $this->em->getRepository('ItemBundle:Extra')->findOneById($request->request->get('extra_option'));
 
             if (!isset($payMethod) || !isset($address) || !isset($shipmentOption)) {
                 return array('result' => false);
@@ -35,6 +36,7 @@ class NewOrderFormHandler
             $order->setAddress($address);
             $order->setShipment($shipmentOption);
             $shipmentOption->addOrder($order);
+            $order->setExtra($extraOption);
 
             $cartItems = $cart->getCartItems();
 

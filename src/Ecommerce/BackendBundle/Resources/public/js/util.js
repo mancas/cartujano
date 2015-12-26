@@ -8,7 +8,7 @@ $(document).ready(function() {
                 msg      = $(wrap).find('.msg-upload');
             $('.upload-image').removeClass('spinner');//loading
             $('.upload-image').find('i').removeClass('hidden');//icon plus
-
+console.info(data, e);
             if(result_request.request_result){
                 icon = 'check';
                 //insertamos la imagen

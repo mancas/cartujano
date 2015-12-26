@@ -7,7 +7,8 @@ use Symfony\Component\Yaml\Dumper;
 
 class FileHelper
 {
-    const PATH = "/var/www/html/cartujano/web/uploads";
+    //const PATH = "/var/www/html/cartujano/web/uploads";
+    const PATH = "/Users/manu/Documents/Projects/cartujano/web/uploads";
     const TMP_IMAGE_PATH = "/tmp/";
     const TMP_IMAGE_NAME = "fetched_image.jpg";
 
@@ -76,7 +77,7 @@ class FileHelper
         $oldWidth = $size[0] / $scale;
         $oldHeight = $size[1] / $scale;
 
-        $command = "convert -resize " . $dim[0] . "x" . $dim[1] . " -background none "
+        $command = "/opt/local/bin/convert -resize " . $dim[0] . "x" . $dim[1] . " -background none "
                 . $originalFilePath . " " . $path;
 
         exec($command, $output, $result);

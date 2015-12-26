@@ -70,7 +70,7 @@ class Cart implements \Serializable
     public function addCartItem(\Ecommerce\CartBundle\Model\CartItem $cartItem)
     {
         if ($this->contains($cartItem)) {
-            $this->incrementQuantity($cartItem);
+            $this->incrementQuantity($cartItem->getId(), $cartItem->getQuantity());
         } else {
             $this->cartItems->add($cartItem);
         }
@@ -90,6 +90,8 @@ class Cart implements \Serializable
                 return $item;
             }
         }
+
+        return false;
     }
 
     public function contains(\Ecommerce\CartBundle\Model\CartItem $cartItem)
@@ -103,10 +105,10 @@ class Cart implements \Serializable
         return false;
     }
 
-    public function incrementQuantity(\Ecommerce\CartBundle\Model\CartItem $cartItem)
+    public function incrementQuantity($id, $quantity)
     {
-        $item = $this->getCartItem($cartItem);
-        $item->setQuantity($item->getQuantity() + $cartItem->getQuantity());
+        $item = $this->getCartItemById($id);
+        $item->setQuantity($item->getQuantity() + $quantity);
     }
 
     public function getCartItem(\Ecommerce\CartBundle\Model\CartItem $cartItem)
@@ -116,6 +118,8 @@ class Cart implements \Serializable
                 return $item;
             }
         }
+
+        return false;
     }
 
     public function getCartTotal()
@@ -126,6 +130,27 @@ class Cart implements \Serializable
         }
 
         return $total;
+    }
+
+    public function getCartWeight()
+    {
+        $weight = 0.0;
+        foreach ($this->cartItems as $item) {
+            $weight += $item->getWeight();
+        }
+
+        // Grams
+        return $weight/1000;
+    }
+
+    public function getCartItemsCount()
+    {
+        $count = 0;
+        foreach ($this->cartItems as $item) {
+            $count += $item->getQuantity();
+        }
+
+        return $count;
     }
 
     public function resetCart()

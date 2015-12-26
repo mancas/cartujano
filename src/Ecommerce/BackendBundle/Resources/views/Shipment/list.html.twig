@@ -13,6 +13,10 @@
         <a href="{{ path('admin_shipment_create') }}" class="btn btn-success">
             <i class="fa fa-plus"></i> {{ "Crear nueva opción de envío" | trans }}
         </a>
+
+        <a href="{{ path('admin_shipment_extra_create') }}" class="btn btn-success">
+            <i class="fa fa-plus"></i> {{ "Crear nuevo suplemento" | trans }}
+        </a>
     </div>
 
     {% if shipmentOptions | length > 0 %}
@@ -21,9 +25,9 @@
             <span class="icon">
                 <i class="fa fa-th"></i>
             </span>
-                <h5>{{ "Listado de opciones de envío"|trans }}</h5>
+                <h5>{{ "Coste de los envíos"|trans }}</h5>
             </div>
-            <div class="widget-content nopadding">
+            {#<div class="widget-content nopadding">
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                     <tr>
@@ -45,6 +49,60 @@
                     {% endfor %}
                     </tbody>
                 </table>
+            </div>#}
+
+            <div class="widget-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>{{ 'Gastos de envío' | trans }}</h5>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>{{ "Peso"|trans }}</th>
+                                <th>{{ "Coste"|trans }}</th>
+                                <th>{{ "Acciones"|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for shipmentOption in shipmentOptions %}
+                                <tr>
+                                    <td>{{ shipmentOption.lowerBound }} - {{ shipmentOption.upperBound }} KG</td>
+                                    <td>{{ shipmentOption.cost }} <i class="fa fa-euro"></i></td>
+                                    <td class="text-center">
+                                        <a title="Modificar" class="btn btn-primary btn-xs" href="{{ path('admin_shipment_edit', { 'id': shipmentOption.id }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
+                                        <a title="Borrar" class="delete btn btn-danger btn-xs" href="{{ path('admin_shipment_delete', { 'id': shipmentOption.id }) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>{{ 'Suplementos' | trans }}</h5>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>{{ "Número de cajas"|trans }}</th>
+                                <th>{{ "Coste"|trans }}</th>
+                                <th>{{ "Acciones"|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for extraOption in extraOptions %}
+                                <tr>
+                                    <td>{{ extraOption.numberOfItems }}</td>
+                                    <td>{{ extraOption.cost }} <i class="fa fa-euro"></i></td>
+                                    <td class="text-center">
+                                        <a title="Modificar" class="btn btn-primary btn-xs" href="{{ path('admin_shipment_extra_edit', { 'id': extraOption.id }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
+                                        <a title="Borrar" class="delete btn btn-danger btn-xs" href="{{ path('admin_shipment_extra_delete', { 'id': extraOption.id }) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     {% else %}

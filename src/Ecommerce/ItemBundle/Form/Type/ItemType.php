@@ -19,6 +19,7 @@ class ItemType extends AbstractType
                 ->add('description', 'textarea', array('required' => true))
                 ->add('price', 'number', array('required' => false))
                 ->add('weight', 'number', array('required' => false))
+                ->add('quantity', 'number', array('required' => true))
                 ->add('subcategory', 'entity',
                         array(
                             'class' => 'CategoryBundle:Subcategory',

@@ -21,7 +21,7 @@ class OrderController extends CustomController
         $cartStorageManager = $this->getCartStorageManager();
         $cart = $cartStorageManager->getCurrentCart();
 
-        $shipmentOptions = $em->getRepository('ItemBundle:Shipment')->findAllShipmentOptions();
+        list($shipment, $extra) = $this->calculateShippingCost();
         $bankAccount = $em->getRepository('PaymentBundle:BankAccount')->findBankAccount();
 
         if ($request->isMethod('POST')) {
@@ -39,7 +39,8 @@ class OrderController extends CustomController
         }
         return $this->render('OrderBundle:Order:new-order.html.twig', array('cart' => $cart,
                                                                             'user' => $user,
-                                                                            'shipmentOptions' => $shipmentOptions,
-                                                                            'bankAccountAvailable' => isset($bankAccount)));
+                                                                            'shipment' => $shipment,
+                                                                            'extra' => $extra,
+                                                                            'bankAccountAvailable' => count($bankAccount) > 0));
     }
 }

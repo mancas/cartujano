@@ -41,6 +41,12 @@
                             </td>
                             <td>
                                 {% if shipment is not null %}{{ shipment.cost }} <i class="fa fa-euro"></i>{% else %}{{ '--' | trans }}{% endif %}
+                                {% if extra is not null %}
+                                <span class="extra-shipment">
+                                    (+{{ extra.cost }} <i class="fa fa-euro"></i> {{ 'adicionales' | trans }})
+                                </span>
+                                <a href="" class="help-tooltip" data-placement="right" data-toggle="tooltip" title="{{ 'Debido a las dimensiones de las cajas el trasporte tiene un gasto adicional según estipula la agencia de reparto' | trans }}"><i class="fa fa-question-circle"></i></a>
+                                {% endif %}
                             </td>
                         </tr>
                         <tr class="no-lines">
@@ -48,10 +54,10 @@
                                 {{ 'Total' | trans }}
                             </td>
                             <td>
-                                {% if shipment is not null %}
-                                    {{ cart.cartTotal + shipment.cost }} <i class="fa fa-euro"></i>
+                                {% if extra is not null %}
+                                    {{ cart.cartTotal + shipment.cost + extra.cost }} <i class="fa fa-euro"></i>
                                 {% else %}
-                                    {{ cart.cartTotal }} <i class="fa fa-euro"></i>
+                                    {{ cart.cartTotal + shipment.cost }} <i class="fa fa-euro"></i>
                                 {% endif %}
                             </td>
                         </tr>
@@ -88,6 +94,10 @@
                         window.location = response.path;
                     }
                 });
+            });
+
+            $('.help-tooltip').each(function () {
+                $(this).tooltip();
             });
         });
     </script>

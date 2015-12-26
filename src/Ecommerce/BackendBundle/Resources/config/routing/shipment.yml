@@ -13,3 +13,15 @@ admin_shipment_delete:
 admin_shipment_create:
     pattern: /create
     defaults: { _controller: BackendBundle:Shipment:create }
+
+admin_shipment_extra_edit:
+    pattern: /edit-extra/{id}
+    defaults: { _controller: BackendBundle:Shipment:editExtra }
+
+admin_shipment_extra_delete:
+    pattern: /delete-extra/{id}
+    defaults: { _controller: BackendBundle:Shipment:deleteExtra }
+
+admin_shipment_extra_create:
+    pattern: /create-extra
+    defaults: { _controller: BackendBundle:Shipment:createExtra }
