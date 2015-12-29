@@ -90,7 +90,7 @@ class ItemController extends CustomController
     {
         $file = $request->files->get('multiple_images');
         $file = $file['images'][0];
-ldd($file, $request->files->get('multiple_images'));
+
         $formImgHandler = $this->get('image.create_image_asynchronous_form_handler');
         $result = $formImgHandler->handleAjaxUpload($file, $item, $request);
 
