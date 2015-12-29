@@ -90,7 +90,7 @@ class ItemController extends CustomController
     {
         $file = $request->files->get('multiple_images');
         $file = $file['images'][0];
-
+ldd($file, $request->files->get('multiple_images'));
         $formImgHandler = $this->get('image.create_image_asynchronous_form_handler');
         $result = $formImgHandler->handleAjaxUpload($file, $item, $request);
 
@@ -115,7 +115,7 @@ class ItemController extends CustomController
         }
 
         return $response = new \Symfony\Component\HttpFoundation\Response(json_encode(array('request_result'    => $request_result,
-            'request_msg'       => $result->getMessage(),
+            'request_msg'       => $request_msg,
             'request_pathImage' => $request_pathImage,
             'request_pathDelete'=> $deleteImageUrl,
             'request_pathMain'  => $imageMainUrl,
