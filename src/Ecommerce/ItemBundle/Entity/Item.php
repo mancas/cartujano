@@ -269,6 +269,11 @@ class Item
         return $this->price;
     }
 
+    public function pricePerUnitWithTaxes()
+    {
+        return round($this->price + $this->price * ($this->tax->getTaxes()/100), 2);
+    }
+
     public function getTaxApplied()
     {
         return round(($this->price * ($this->tax->getTaxes()/100)) * $this->quantity, 2);

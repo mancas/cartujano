@@ -45,7 +45,7 @@
                         <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
                         <i class="fa fa-euro"></i>  {{ 'IVA incluido' | trans }}
                         <span class="single-price">
-                            ({{ item.price/item.quantity |round(2, 'common')}} <i class="fa fa-euro"></i> {{ '/ud' | trans }})
+                            ({{ item.pricePerUnitWithTaxes }} <i class="fa fa-euro"></i> {{ '/ud' | trans }})
                         </span>
                         <span class="item-dispatch">
                             {% if shipment is not null %}
