@@ -140,7 +140,7 @@ class Cart implements \Serializable
         }
 
         // Grams
-        return $weight/1000;
+        return ceil($weight/1000);
     }
 
     public function getCartItemsCount()

@@ -42,10 +42,10 @@
             <div class="item-options text-center">
                 <ul class="list-unstyled">
                     <li>
-                        <span class="item-price">{% if item.price %}{{ item.tax.getTaxedPrice(item.price) }}{% endif %}</span>
+                        <span class="item-price">{% if item.price %}{{ item.price }}{% endif %}</span>
                         <i class="fa fa-euro"></i>  {{ 'IVA incluido' | trans }}
                         <span class="single-price">
-                            ({{ item.tax.getTaxedPrice(item.price)/item.quantity }} <i class="fa fa-euro"></i> {{ '/ud' | trans }})
+                            ({{ item.price/item.quantity }} <i class="fa fa-euro"></i> {{ '/ud' | trans }})
                         </span>
                         <span class="item-dispatch">
                             {% if shipment is not null %}

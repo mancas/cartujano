@@ -248,20 +248,30 @@ class Item
     public function getPrice()
     {
         if (!isset($this->tax)) {
-            return $this->price;
+            return $this->_getPrice();
         }
 
-        return round($this->price + $this->price * ($this->tax->getTaxes()/100), 2);
+        return round(($this->price + $this->price * ($this->tax->getTaxes()/100)) * $this->quantity, 2);
     }
 
     public function getPriceWithoutTaxes()
+    {
+        return $this->_getPrice();
+    }
+
+    private function _getPrice()
+    {
+        return $this->price * $this->quantity;
+    }
+
+    public function pricePerUnit()
     {
         return $this->price;
     }
 
     public function getTaxApplied()
     {
-        return round($this->price * ($this->tax->getTaxes()/100), 2);
+        return round(($this->price * ($this->tax->getTaxes()/100)) * $this->quantity, 2);
     }
 
     /**
@@ -376,6 +386,11 @@ class Item
     public function getWeight()
     {
         return $this->weight;
+    }
+
+    public function getTotalWeight()
+    {
+        return $this->weight * $this->quantity;
     }
 
     /**

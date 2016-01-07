@@ -72,7 +72,7 @@ class CartItem implements \Serializable
      */
     public function getWeight()
     {
-        return $this->weight * $this->quantitygi;
+        return $this->weight * $this->quantity;
     }
 
     /**

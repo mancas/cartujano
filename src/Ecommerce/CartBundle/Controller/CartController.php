@@ -35,7 +35,7 @@ class CartController extends CustomController
             $path = $item->getImageMain()->getImageItemCart()->getWebFilePath();
             $path = $this->container->get('templating.helper.assets')->getUrl($path);
             if (!$currentCartItem) {
-                $cartItem = new CartItem($item->getId(), $quantity, $price, $item->getWeight());
+                $cartItem = new CartItem($item->getId(), $quantity, $price, $item->getTotalWeight());
                 $currentCart->addCartItem($cartItem);
             } else {
                 // Update quantity

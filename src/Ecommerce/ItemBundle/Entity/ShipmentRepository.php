@@ -42,13 +42,13 @@ class ShipmentRepository extends CustomEntityRepository
 
         $and = $qb->expr()->andx();
 
-        $or = $qb->expr()->orX();
+        $or = $qb->expr()->andX();
 
         $and->add($qb->expr()->neq('s.cost', 0.0));
         $and->add($qb->expr()->isNull('s.deleted'));
 
-        $or->add($qb->expr()->lte('s.lowerBound', $weight));
-        $or->add($qb->expr()->lt('s.upperBound', $weight));
+        $or->add($qb->expr()->gte($weight, 's.lowerBound'));
+        $or->add($qb->expr()->lte($weight, 's.upperBound'));
 
         $and->add($or);
 
