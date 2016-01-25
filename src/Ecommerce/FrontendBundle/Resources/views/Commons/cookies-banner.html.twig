@@ -1,0 +1,31 @@
+<div class="cookies-banner hidden">
+    <div class="row">
+        <div class="col-md-11">
+            <p>
+                {{ 'Este sitio web utiliza cookies para mejorar tu experiencia. Por favor, visita nuestra' | trans }} <a title="{{ 'Política de Cookies' | trans }}" href="{{ path('cookies_policy') }}">{{ 'Política de Cookies' | trans }}</a> {{ 'para más información sobre las cookies y como las usamos.' }}
+            </p>
+        </div>
+
+        <div class="col-md-1">
+            <a class="cookies-policy-accept" href="#close">Aceptar</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        var cookiesPolicyBtn = document.querySelector('a.cookies-policy-accept');
+        var banner = document.querySelector('.cookies-banner');
+
+        if (localStorage && localStorage.getItem('cartujano_cookies')) {
+            document.body.removeChild(banner);
+        } else {
+            banner.classList.remove('hidden');
+            cookiesPolicyBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                localStorage && localStorage.setItem('cartujano_cookies', true);
+                document.body.removeChild(banner);
+            });
+        }
+    });
+</script>

@@ -59,6 +59,11 @@ class FrontendController extends CustomController
         return $this->render('FrontendBundle:Pages:who-we-are.html.twig');
     }
 
+    public function cookiesPolicyAction()
+    {
+        return $this->render('FrontendBundle:Pages:cookies.html.twig');
+    }
+
     public function searchAction(Request $request)
     {
         if ($request->isMethod('POST')) {

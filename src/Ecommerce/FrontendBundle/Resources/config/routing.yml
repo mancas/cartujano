@@ -10,6 +10,10 @@ use_terms_page:
   pattern: /condiciones-de-uso
   defaults: { _controller: FrontendBundle:Frontend:useTerms }
 
+cookies_policy:
+  pattern: /politica-de-cookies
+  defaults: { _controller: FrontendBundle:Frontend:cookiesPolicy }
+
 who_we_are_page:
   pattern: /quienes-somos
   defaults: { _controller: FrontendBundle:Frontend:whoWeAre }

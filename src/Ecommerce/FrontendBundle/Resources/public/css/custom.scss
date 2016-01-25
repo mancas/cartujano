@@ -778,3 +778,23 @@ footer.container {
   }
 
 }
+
+/* COOKIES BANNER */
+.cookies-banner {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+  padding: 0 15px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.6);
+
+  p, a {
+    color: white;
+    line-height: 60px;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
