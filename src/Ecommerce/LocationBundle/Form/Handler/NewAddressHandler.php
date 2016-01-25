@@ -31,6 +31,8 @@ class NewAddressHandler
                 if (isset($city)) {
                     $city = $this->em->getRepository('LocationBundle:City')->findOneById($city);
                     $address->setCity($city);
+                } else {
+                    return false;
                 }
 
                 $dataBilling = new DataBilling();

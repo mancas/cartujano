@@ -210,26 +210,6 @@ abstract class Image
         $this->updateDate = new \DateTime('today');
     }
 
-    public function getImageItemBox()
-    {
-        return $this->getImageCopyFromType('ImageItemBox');
-    }
-
-    public function setImageItemBox(\Ecommerce\ImageBundle\Entity\ImageItemBox $thumbnail)
-    {
-        $this->setUniqueImageCopy($thumbnail);
-    }
-
-    public function getImageItemBoxW()
-    {
-        return $this->getImageCopyFromType('ImageItemBoxW');
-    }
-
-    public function setImageItemBoxW(\Ecommerce\ImageBundle\Entity\ImageItemBoxW $thumbnail)
-    {
-        $this->setUniqueImageCopy($thumbnail);
-    }
-
     public function getImageThumbnail()
     {
         return $this->getImageCopyFromType('ImageThumbnail');
