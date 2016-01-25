@@ -220,26 +220,6 @@ abstract class Image
         $this->setUniqueImageCopy($thumbnail);
     }
 
-    public function getImageItemCarousel()
-    {
-        return $this->getImageCopyFromType('ImageItemCarousel');
-    }
-
-    public function setImageItemCarousel(\Ecommerce\ImageBundle\Entity\ImageItemCarousel $carousel)
-    {
-        $this->setUniqueImageCopy($carousel);
-    }
-
-    public function getImageItemCarouselThumbnail()
-    {
-        return $this->getImageCopyFromType('ImageItemCarouselThumbnail');
-    }
-
-    public function setImageItemCarouselThumbnail(\Ecommerce\ImageBundle\Entity\ImageItemCarouselThumbnail $thumbnail)
-    {
-        $this->setUniqueImageCopy($thumbnail);
-    }
-
     public function getImageItemCart()
     {
         return $this->getImageCopyFromType('ImageItemCart');
