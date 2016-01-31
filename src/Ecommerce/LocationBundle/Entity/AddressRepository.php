@@ -23,6 +23,7 @@ class AddressRepository extends CustomEntityRepository
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->eq('u.email', '\''. $user->getEmail() .'\''));
+        $and->add($qb->expr()->isNull('a.deleted'));
 
         $qb->where($and);
 

@@ -24,7 +24,7 @@
                     {{ orderItem.item.name }}
                 </p>#}
                     <tr>
-                        <td style="width: 120px"><img src="{{ asset(orderItem.item.imageMain.imageItemCart.getWebFilePath) }}"></td>
+                        <td style="width: 120px"><img src="{{ url_for_image }}{{ asset(orderItem.item.imageMain.imageItemCart.getWebFilePath) }}"></td>
                         <td>{{ orderItem.quantity }} x {{ orderItem.item.name }}</td>
                     </tr>
                 {% endfor %}

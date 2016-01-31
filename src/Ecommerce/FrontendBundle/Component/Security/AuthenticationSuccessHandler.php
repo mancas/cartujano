@@ -1,6 +1,7 @@
 <?php
 namespace Ecommerce\FrontendBundle\Component\Security;
 
+use Ecommerce\CartBundle\Storage\CartStorageManager;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
@@ -37,8 +38,13 @@ class AuthenticationSuccessHandler implements AuthenticationSuccessHandlerInterf
     {
         $user = $token->getUser();
 
-        if (!in_array('ROLE_USER_NOT_VALIDATED', $token->getUser()->getRoles())) {
-            $uri = $this->router->generate('user_profile');
+        if (!in_array('ROLE_USER_NOT_VALIDATED', $user->getRoles())) {
+            $cart = $request->getSession()->get(CartStorageManager::KEY);
+            if (count($cart->getCartItems())) {
+                $uri = $this->router->generate('cart_details');
+            } else {
+                $uri = $this->router->generate('user_profile');
+            }
         } else {
             $uri = $this->router->generate('validate_user');
         }

@@ -13,6 +13,7 @@
     <link rel="icon" type="image/x-icon" href="{{asset('bundles/frontend/img/favicon.ico')}}">
     {% block mainstylesheets %}
         <link rel="stylesheet" href="{{ asset('bundles/frontend/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/frontend/css/colorbox.css') }}">
         {% stylesheets filter='cssrewrite, sass' output='css/main.css'
         'bundles/frontend/css/font-awesome.min.css'
         'bundles/frontend/css/custom.scss'%}
@@ -21,6 +22,7 @@
     {% endblock %}
     {% block stylesheets %}{% endblock %}
     <script src="{{ asset('bundles/frontend/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/jquery.colorbox-min.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/bootstrap.min.js') }}"></script>
     <script>
 
@@ -56,6 +58,17 @@
 </div>
 {% block javascripts %}
     {% include 'FrontendBundle:Commons:category-nav-script.html.twig' %}
+    <script>
+        $('.img-product').colorbox({
+            href: function() {
+                return $(this).attr('data-img');
+            },
+            maxWidth: window.innerWidth,
+            maxHeight: window.innerHeight,
+            scalePhotos: true,
+            fixed: true
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

@@ -4,7 +4,8 @@
         <div class="item-wrap">
             <div class="img-wrap">
                 {% set imagePath= item.imageMain.ImageThumbnail.getWebFilePath ~ '?' ~ random() %}
-                <img class="img-responsive" src="{{ asset(imagePath) }}">
+                {% set imageColorboxPath= item.imageMain.getWebFilePath ~ '?' ~ random() %}
+                <img class="img-responsive img-product" src="{{ asset(imagePath) }}" data-img="{{ asset(imageColorboxPath) }}">
             </div>
             <div class="item-info">
                 <h5 class="item-title">
