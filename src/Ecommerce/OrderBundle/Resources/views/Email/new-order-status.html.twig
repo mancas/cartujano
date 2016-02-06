@@ -37,7 +37,7 @@
                 <table border="0" width="660" style="margin-bottom: 20px">
                     {% for orderItem in order.items %}
                         <tr>
-                            <td style="width: 120px"><img src="{{ asset(orderItem.item.imageMain.imageItemCart.getWebFilePath) }}"></td>
+                            <td style="width: 120px"><img src="{{ url_for_image }}{{ asset(orderItem.item.imageMain.imageItemCart.getWebFilePath) }}"></td>
                             <td>{{ orderItem.item.name }}</td>
                         </tr>
                     {% endfor %}

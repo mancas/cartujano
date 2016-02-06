@@ -267,7 +267,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
 
     public function getAddresses()
     {
-        /*$addresses = array();
+        $addresses = array();
 
         foreach ($this->addresses as $address) {
             if ($address->getDeleted() == null) {
@@ -275,8 +275,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
             }
         }
 
-        return addresses;*/
-        return $this->addresses;
+        return addresses;
     }
 
     public function addAddress(\Ecommerce\LocationBundle\Entity\Address $address)

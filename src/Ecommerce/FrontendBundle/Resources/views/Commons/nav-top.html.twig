@@ -29,16 +29,10 @@
             <ul class="nav navbar-nav navbar-right user-access">
                 {% if is_granted('ROLE_USER') %}
                 <li {% if action == 'user_profile' or action == 'user_orders' %}class="active"{% endif %}>
-                    <a title="{{ 'Mi cuenta' | trans }}" href="{{ path('user_profile') }}">
-                        <i class="fa fa-user"></i>
-                        {{ 'Mi cuenta' | trans }}
-                    </a>
+                    <a title="{{ 'Mi cuenta' | trans }}" href="{{ path('user_profile') }}"><i class="fa fa-user"></i> {{ 'Mi cuenta' | trans }}</a>
                 </li>
                 <li>
-                    <a title="{{ 'Cerrar sesión' | trans }}" href="{{ path('logout') }}">
-                        <i class="fa fa-sign-out"></i>
-                        {{ 'Cerrar sesión' | trans}}
-                    </a>
+                    <a title="{{ 'Cerrar sesión' | trans }}" href="{{ path('logout') }}"><i class="fa fa-sign-out"></i> {{ 'Cerrar sesión' | trans }}</a>
                 </li>
                 {% else %}
                 <li>
