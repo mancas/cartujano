@@ -13,6 +13,6 @@ services:
         arguments: [@event_dispatcher]
     contact.send_email:
         class: %contact.sendemail.class%
-        arguments: [@mailer, @templating, %direction_email%]
+        arguments: [@mailer, @templating, %direction_contact_email%]
         tags:
             - { name: kernel.event_subscriber }
