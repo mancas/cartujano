@@ -275,7 +275,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
             }
         }
 
-        return addresses;
+        return $addresses;
     }
 
     public function addAddress(\Ecommerce\LocationBundle\Entity\Address $address)
