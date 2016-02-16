@@ -20,7 +20,7 @@ class PaymentController extends CustomController
     {
         $em = $this->getEntityManager();
         $bankAccount = $em->getRepository('PaymentBundle:BankAccount')->findBankAccount();
-        if (!isset($bankAccount)) {
+        if (!isset($bankAccount) || count($bankAccount) === 0) {
             $this->setTranslatedFlashMessage('No se puede procesar el pedido mediante transferencia bancaria. Disculpa las molestias', 'error');
             return $this->redirect('ecommerce_homepage');
         }
@@ -46,6 +46,6 @@ class PaymentController extends CustomController
 
         $this->clearCart();
 
-        return $this->render('PaymentBundle:Transfer:transfer.html.twig', array('order' => $order, 'bankAccount' => $bankAccount));
+        return $this->render('PaymentBundle:Transfer:transfer.html.twig', array('order' => $order, 'bankAccount' => array_shift($bankAccount)));
     }
 }
