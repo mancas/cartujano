@@ -35,6 +35,7 @@ twig:
     globals:
         url_for_image: http://www.elcartujano.es
         web_url: http://www.elcartujano.es/
+        cartujano_email: elcartujano@distribucioneselcartujano.es
 
 # Assetic Configuration
 assetic:
