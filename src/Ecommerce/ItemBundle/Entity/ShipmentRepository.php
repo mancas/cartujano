@@ -65,6 +65,12 @@ class ShipmentRepository extends CustomEntityRepository
 
         $qb->addOrderBy('s.cost','DESC');
 
+        $and = $qb->expr()->andx();
+        $and->add($qb->expr()->neq('s.cost', 0.0));
+        $and->add($qb->expr()->isNull('s.deleted'));
+
+        $qb->andWhere($and);
+
         $qb->setMaxResults(1);
 
         return $qb->getQuery()->getResult();

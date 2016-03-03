@@ -2,6 +2,7 @@
 
 namespace Ecommerce\BackendBundle\Controller;
 
+use Ecommerce\OrderBundle\Entity\Order;
 use Ecommerce\PaymentBundle\Entity\Transfer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -33,9 +34,18 @@ class PaymentController extends CustomController
      */
     public function validateAction(Transfer $payment)
     {
+        $em = $this->getEntityManager();
         $payment->setState(Transfer::PAID);
-        $this->getEntityManager()->persist($payment);
-        $this->getEntityManager()->flush();
+        $order = $payment->getOrder();
+        $order->setStatus(Order::STATUS_READY);
+        $em->persist($payment);
+        $em->persist($order);
+        $em->flush();
+
+        $dispatcher = $this->get('event_dispatcher');
+        $orderEvent = new OrderEvent($order);
+        $dispatcher->dispatch(OrderEvents::STATUS_CHANGED, $orderEvent);
+
         $this->setTranslatedFlashMessage('El pago ha sido validado. Recuerda envíar el pedido y marcarlo como enviado para notificar al usuario.');
 
         return $this->redirect($this->generateUrl('admin_payment_index'));

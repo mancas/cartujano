@@ -44,13 +44,6 @@
                                 <small>{% if ordersReadyToSend == 1 %}{{ 'pedido pendiente de envío' | trans }}{% else %}{{ 'pedidos pendientes de envío' | trans }}{% endif %}</small>
                             </div>
                         </li>
-                        <li>
-                            <div class="cc">
-                                <i class="fa fa-home"></i>
-                                <strong>{{ ordersReadyToTake }}</strong>
-                                <small>{% if ordersReadyToTake == 1 %}{{ 'pedido pendiente de recoger' | trans }}{% else %}{{ 'pedidos pendientes de recoger' | trans }}{% endif %}</small>
-                            </div>
-                        </li>
                     </ul>
                 </div>
                 <div class="col-md-8">

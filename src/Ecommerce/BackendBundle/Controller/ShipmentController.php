@@ -47,6 +47,7 @@ class ShipmentController extends CustomController
         $em = $this->getEntityManager();
         $shipment->setDeleted(new \DateTime('now'));
         $em->persist($shipment);
+        $em->flush();
 
         $this->setTranslatedFlashMessage('Se ha eliminado la opción de envío');
 

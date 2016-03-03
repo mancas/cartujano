@@ -1,11 +1,16 @@
 parameters:
     cartujano.security.authentication.success_handler.class: Ecommerce\FrontendBundle\Component\Security\AuthenticationSuccessHandler
+    cartujano.security.authentication.failure_handler.class: Ecommerce\FrontendBundle\Component\Security\AuthenticationFailureHandler
     contact.contactformhandler.class: Ecommerce\FrontendBundle\Form\Handler\ContactFormHandler
     contact.sendemail.class: Ecommerce\FrontendBundle\EventListener\ContactListener
 
 services:
     cartujano.security.authentication.success_handler:
         class: %cartujano.security.authentication.success_handler.class%
+        public: false
+        arguments:  ['@router']
+    cartujano.security.authentication.failure_handler:
+        class: %cartujano.security.authentication.failure_handler.class%
         public: false
         arguments:  ['@router']
     contact.contact_form_handler:

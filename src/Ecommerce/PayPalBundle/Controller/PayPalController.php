@@ -66,6 +66,7 @@ class PayPalController extends CustomController
         $payment->setOrder($order);
         $payment->setTotal($order->getTotalAmount());
         $order->setPayment($payment);
+        $order->setStatus(Order::STATUS_READY);
 
         $em->persist($order);
         $em->persist($payment);

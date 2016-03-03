@@ -100,7 +100,7 @@ class OrderRepository extends CustomEntityRepository
         $qb->addOrderBy('o.date', 'ASC');
 
         $and = $qb->expr()->andx();
-        $and->add($qb->expr()->eq('o.status', '\''.Order::STATUS_IN_PROCESS.'\''));
+        $and->add($qb->expr()->eq('o.status', '\''.Order::STATUS_READY.'\''));
         $and->add($qb->expr()->isNotNull('o.address'));
 
         $qb->where($and);

@@ -39,6 +39,7 @@ security:
                login_path: login
                check_path: login_check
                success_handler: cartujano.security.authentication.success_handler
+               failure_handler: cartujano.security.authentication.failure_handler
                default_target_path: /u/mi-cuenta
             logout:
                path: logout
