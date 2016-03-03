@@ -51,7 +51,7 @@
         </div>
 
 
-        <form action="{{ path('new_order') }}" class="form-inline" novalidate="novalidate" method="POST">
+        <form action="{{ path('new_order') }}" novalidate="novalidate" method="POST">
             <div id="address_delivery_block" class="col-md-12">
                 <h2 class="title">{{ 'Dirección de envío' | trans }}</h2>
                 <div class="table-responsive">
@@ -115,6 +115,14 @@
                 </div><!-- .table-responsive -->
             </div>
 
+            <div id="comments_block" class="col-md-12">
+                <h2 class="title">{{ 'Comentarios' | trans }}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <textarea name="user_comments" class="form-control" rows="4" placeholder="{{ 'Escribe aquí tus comentarios sobre el envío' | trans }}"></textarea>
+                    </div>
+                </div>
+            </div>
 
             <div class="{% if extra is not null %}col-md-5 col-md-offset-7{% else %}col-md-4 col-md-offset-8{% endif %}">
                 <table class="table">

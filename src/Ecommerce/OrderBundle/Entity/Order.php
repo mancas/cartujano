@@ -99,6 +99,11 @@ class Order
      */
     protected $orderHistory;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $comment;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -375,5 +380,21 @@ class Order
     public function setExtra($extra)
     {
         $this->extra = $extra;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
     }
 }
