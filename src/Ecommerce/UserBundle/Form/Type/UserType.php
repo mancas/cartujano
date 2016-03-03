@@ -20,7 +20,8 @@ class UserType extends AbstractType
                 'second_options' => array('attr' => array('placeholder' => 'Confirmar password')),
                 'error_bubbling' => 'true'))
             ->add('name', 'text', array('required' => true, 'attr' => array('placeholder' => 'Nombre')))
-            ->add('lastName', 'text', array('required' => true, 'attr' => array('placeholder' => 'Apellidos')));
+            ->add('lastName', 'text', array('required' => true, 'attr' => array('placeholder' => 'Apellidos')))
+            ->add('phone', 'integer');
     }
 
     public function getDefaultOptions(array $options)

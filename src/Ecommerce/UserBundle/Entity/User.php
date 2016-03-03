@@ -105,6 +105,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Regex("/[0-9]{9}/")
      */
     protected $phone;
 

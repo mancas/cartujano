@@ -22,7 +22,7 @@ class UserHandler
             if ($form->isValid()) {
                 $user = $form->getData();
                 $nif = $user->getNif();
-                if (!$user->checkNIF($nif)) {
+                if (isset($nif) && !$user->checkNIF($nif)) {
                     $user->setNif(null);
                     $this->userManager->saveUser($user);
                     return false;
