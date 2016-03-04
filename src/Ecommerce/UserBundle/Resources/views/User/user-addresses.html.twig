@@ -30,6 +30,8 @@
                 </select>
             </div>
 
+            <h6 class="stack-box-title mt30"><input class="mr5" type="checkbox" name="billing_address" value="billing_address_required" checked />{{ 'Utilizar como dirección de facturación' | trans }}</h6>
+
             {{ form_rest(addressForm)}}
             <div class="controls">
                 <img id="address-loader" style="display:none;" class="ml15 loader" src="{{ asset('bundles/frontend/img/ajax_loader_blue.gif') }}">

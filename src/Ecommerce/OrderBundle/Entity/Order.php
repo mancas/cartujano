@@ -104,6 +104,11 @@ class Order
      */
     protected $comment;
 
+    /**
+    * @ORM\OneToOne(targetEntity="Ecommerce\PaymentBundle\Entity\DataBilling", inversedBy="order")
+    */
+    protected $dataBilling;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -396,5 +401,21 @@ class Order
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDataBilling()
+    {
+        return $this->dataBilling;
+    }
+
+    /**
+     * @param mixed $dataBilling
+     */
+    public function setDataBilling($dataBilling)
+    {
+        $this->dataBilling = $dataBilling;
     }
 }

@@ -24,14 +24,19 @@ class DataBilling
     protected $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $corporateName;
 
     /**
-     * @ORM\OneToOne(targetEntity="Ecommerce\LocationBundle\Entity\Address", mappedBy="dataBilling", cascade={"persist", "merge", "remove"})
+     * @ORM\OneToOne(targetEntity="Ecommerce\LocationBundle\Entity\Address")
      */
     protected $address;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Ecommerce\OrderBundle\Entity\Order", mappedBy="dataBilling")
+     */
+    protected $order;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -44,7 +49,7 @@ class DataBilling
     protected $fax;
 
     /**
-     * @ORM\Column(type="string", length=250)
+     * @ORM\Column(type="string", length=250, nullable=true)
      * @Assert\Email();
      */
     protected $email;
@@ -210,4 +215,19 @@ class DataBilling
         return ($this->corporateName && $this->name && $this->phone && $this->email && $this->address);
     }
 
+    /**
+     * @return mixed
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param mixed $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
 }

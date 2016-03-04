@@ -82,9 +82,9 @@ class Address
     protected $postalCode;
 
     /**
-     * @ORM\OneToOne(targetEntity="Ecommerce\PaymentBundle\Entity\DataBilling", inversedBy="address")
+     * @ORM\Column(type="boolean", nullable=true, options={"default" = 1})
      */
-    protected $dataBilling;
+    protected $useAsDataBilling = true;
 
     /**
      * @param mixed $address
@@ -268,19 +268,18 @@ class Address
     }
 
     /**
-     * @param mixed $dataBilling
+     * @return mixed
      */
-    public function setDataBilling($dataBilling)
+    public function getUseAsDataBilling()
     {
-        $this->dataBilling = $dataBilling;
+        return $this->useAsDataBilling;
     }
 
     /**
-     * @return mixed
+     * @param mixed $useAsDataBilling
      */
-    public function getDataBilling()
+    public function setUseAsDataBilling($useAsDataBilling)
     {
-        return $this->dataBilling;
+        $this->useAsDataBilling = $useAsDataBilling;
     }
-
 }

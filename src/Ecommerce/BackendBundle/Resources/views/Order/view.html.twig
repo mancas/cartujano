@@ -126,7 +126,7 @@
             </div><!-- .row -->
 
             <div class="row">
-                {% if order.comment is not null %}
+                {% if order.comment %}
                 <div class="col-md-6">
                     <div class="widget-box">
                         <div class="widget-title">
@@ -141,6 +141,56 @@
                         </div>
                     </div><!-- .widget-box -->
                 </div>
+                {% endif %}
+
+                {% if order.dataBilling is not null %}
+                    <div class="col-md-6">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                            <span class="icon">
+                                <i class="fa fa-credit-card"></i>
+                            </span>
+                                <h5>{{ "Datos de facturación"|trans }}</h5>
+                            </div>
+
+                            <div class="widget-content">
+                                <h4>{{ 'Nombre' | trans }}</h4>
+                                <p>{{ order.dataBilling.name }}</p>
+                                <h4>{{ 'Nombre de la empresa' | trans }}</h4>
+                                <p>{{ order.dataBilling.corporateName }}</p>
+                                {% if order.dataBilling.phone %}
+                                <h4>{{ 'Teléfono' | trans }}</h4>
+                                <p>{{ order.dataBilling.phone }}</p>
+                                {% endif %}
+                                {% if order.dataBilling.fax %}
+                                <h4>{{ 'Fax' | trans }}</h4>
+                                <p>{{ order.dataBilling.fax }}</p>
+                                {% endif %}
+                                <h4>{{ 'Email' | trans }}</h4>
+                                <p>{{ order.dataBilling.email }}</p>
+                                <h4>{{ 'Dirección de facturación' | trans }}</h4>
+
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>{{ 'Dirección' | trans }}</th>
+                                        <th>{{ 'Localidad' | trans }}</th>
+                                        <th>{{ 'Provincia' | trans }}</th>
+                                        <th>{{ 'Código Postal' | trans }}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{ order.address.address }}</td>
+                                        <td>{{ order.address.city }}</td>
+                                        <td>{{ order.address.city.province.name }}</td>
+                                        <td>{{ order.address.postalCode }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- .widget-box -->
+                    </div>
                 {% endif %}
             </div>
         </div>

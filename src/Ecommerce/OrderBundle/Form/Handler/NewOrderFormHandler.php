@@ -20,7 +20,7 @@ class NewOrderFormHandler
         $this->em = $entityManager;
     }
 
-    public function handle(User $user, $cart, Request $request)
+    public function handle(User $user, $cart, $dataBillingForm, Request $request)
     {
         if ($request->isMethod('POST')) {
             $payMethod = $request->request->get('payment_option');
@@ -28,10 +28,12 @@ class NewOrderFormHandler
             $shipmentOption = $this->em->getRepository('ItemBundle:Shipment')->findOneById($request->request->get('shipment_option'));
             $extraOption = $this->em->getRepository('ItemBundle:Extra')->findOneById($request->request->get('extra_option'));
             $comments = $request->request->get('user_comments');
+            $billingRequired = $request->request->get('billing_required');
 
             if (!isset($payMethod) || !isset($address) || !isset($shipmentOption)) {
                 return array('result' => false);
             }
+
 
             $order = new Order();
             $order->setAddress($address);
@@ -39,6 +41,25 @@ class NewOrderFormHandler
             $shipmentOption->addOrder($order);
             $order->setExtra($extraOption);
             $order->setComment($comments);
+
+            if ($billingRequired === 'required') {
+                $dataBillingForm->handleRequest($request);
+                $billingAddress = $this->em->getRepository('LocationBundle:Address')->findOneById($request->request->get('billing_address'));
+                if (!isset($billingAddress)) {
+                    return array('result' => false);
+                }
+                $dataBilling = $dataBillingForm->getData();
+                $corporateName = $dataBilling->getCorporateName();
+                if (!isset($corporateName)) {
+                    $dataBilling->setCorporateName($dataBilling->getName());
+                }
+
+                $dataBilling->setAddress($billingAddress);
+
+                $order->setDataBilling($dataBilling);
+                $dataBilling->setOrder($order);
+                $this->em->persist($dataBilling);
+            }
 
             $cartItems = $cart->getCartItems();
 

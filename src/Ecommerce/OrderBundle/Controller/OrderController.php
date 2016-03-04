@@ -7,6 +7,8 @@ use Ecommerce\CartBundle\Event\CartEvents;
 use Ecommerce\FrontendBundle\Controller\CustomController;
 use Ecommerce\OrderBundle\Entity\Order;
 use Ecommerce\OrderBundle\Entity\OrderItem;
+use Ecommerce\PaymentBundle\Entity\DataBilling;
+use Ecommerce\PaymentBundle\Form\Type\DataBillingType;
 use Symfony\Component\HttpFoundation\Request;
 
 class OrderController extends CustomController
@@ -24,9 +26,16 @@ class OrderController extends CustomController
         list($shipment, $extra) = $this->calculateShippingCost();
         $bankAccount = $em->getRepository('PaymentBundle:BankAccount')->findBankAccount();
 
+        $dataBilling = new DataBilling();
+        $dataBilling->setName($user->getName());
+        $dataBilling->setEmail($user->getEmail());
+        $dataBilling->setPhone($user->getPhone());
+
+        $dataBillingForm = $this->createForm(new DataBillingType(), $dataBilling);
+
         if ($request->isMethod('POST')) {
             $handler = $this->get('order.new_order_form_handler');
-            $handleResult = $handler->handle($user, $cart, $request);
+            $handleResult = $handler->handle($user, $cart, $dataBillingForm, $request);
             if ($handleResult['result']) {
                 switch ((int) $handleResult['payment']) {
                     case OrderController::PAYPAL:
@@ -41,6 +50,7 @@ class OrderController extends CustomController
                                                                             'user' => $user,
                                                                             'shipment' => $shipment,
                                                                             'extra' => $extra,
-                                                                            'bankAccountAvailable' => count($bankAccount) > 0));
+                                                                            'bankAccountAvailable' => count($bankAccount) > 0,
+                                                                            'dataBillingForm' => $dataBillingForm->createView()));
     }
 }

@@ -35,16 +35,10 @@ class NewAddressHandler
                     return false;
                 }
 
-                $dataBilling = new DataBilling();
-                $dataBilling->setAddress($address);
-                $address->setDataBilling($dataBilling);
-                $dataBilling->setName($user->getName());
-                $dataBilling->setCorporateName($user->getLastName());
-                $dataBilling->setEmail($user->getEmail());
-                $dataBilling->setPhone($user->getPhone());
+                $dataBillingRequired = $request->request->get('billing_address');
+                $address->setUseAsDataBilling($dataBillingRequired === 'billing_address_required');
 
                 $this->em->persist($address);
-                $this->em->persist($dataBilling);
                 $this->em->persist($user);
                 $this->em->flush();
 

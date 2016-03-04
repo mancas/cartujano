@@ -312,7 +312,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
         $mainAddress = false;
 
         foreach ($this->addresses as $address) {
-            if ($address->getMain()) {
+            if ($address->getMain() && $address->getDeleted() == null) {
                 $mainAddress = $address;
                 break;
             }
