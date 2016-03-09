@@ -44,17 +44,12 @@ class PayPalController extends CustomController
     /**
      * @ParamConverter("$order", class="OrderBundle:Order")
      */
-    public function payCorrectAction(Order $order, Request $request)
+    public function prePayCorrectAction(Order $order, Request $request)
     {
         $em = $this->getEntityManager();
-        $user = $this->get('security.context')->getToken()->getUser();
         $payerId = $request->query->get('PayerID');
         $token = $request->query->get('token');
-        $result = true;
 
-        $dispatcher = $this->get('event_dispatcher');
-        $orderEvent = new OrderEvent($order);
-        $dispatcher->dispatch(OrderEvents::NEW_ORDER, $orderEvent);
         $payment = new PaypalPayment();
         $payment->setPayerId($payerId);
         $payment->setTokenPayPal($token);
@@ -66,14 +61,48 @@ class PayPalController extends CustomController
         $payment->setOrder($order);
         $payment->setTotal($order->getTotalAmount());
         $order->setPayment($payment);
-        $order->setStatus(Order::STATUS_READY);
 
         $em->persist($order);
         $em->persist($payment);
         $em->persist($bill);
         $em->flush();
 
-        return $this->render('PayPalBundle:Paypal:success.html.twig', array('result' => $result));
+        //$url = $response['url'];
+
+        return $this->render('PayPalBundle:Paypal:confirm.html.twig', array('token' => $token,
+                                                                            'payerId' => $payerId,
+                                                                            'order' => $order));
+    }
+
+    /**
+     * @ParamConverter("$order", class="OrderBundle:Order")
+     */
+    public function payCorrectAction(Order $order, $token, $payerId, Request $request)
+    {
+        $paypal = $this->get('paypal');
+        $paymentAmount = urlencode($order->getTotalAmount());
+
+        $response = $paypal->doExpressCheckoutPayment($token, $payerId, $paymentAmount);
+
+        if ($response['ok']) {
+            $em = $this->getEntityManager();
+            $dispatcher = $this->get('event_dispatcher');
+            $orderEvent = new OrderEvent($order);
+            $dispatcher->dispatch(OrderEvents::NEW_ORDER, $orderEvent);
+            $order->setStatus(Order::STATUS_READY);
+
+            $payment = $order->getPayment();
+            $payment->setExpressCheckoutDone(true);
+            $em->persist($order);
+            $em->persist($payment);
+            $em->flush();
+
+            return $this->render('PayPalBundle:Paypal:success.html.twig', array('token' => $token,
+                'payerId' => $payerId,
+                'order' => $order));
+        }
+
+        return $this->redirect($this->generateUrl('paypal_pay_denied', array('id' => $order->getId()), true));
     }
 
     /**

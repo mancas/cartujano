@@ -99,9 +99,12 @@
                         <p><b>{{ bankAccount }}</b></p>
                         {% endif %}
                     {% else %}
+                        {% if order.payment.expressCheckoutDone %}
                         <p>{{ 'Este pedido fue pagado el' | trans }} <b>{{ order.payment.created | date('d-m-y') }}</b> {{ 'mediante PayPal.'  | trans }}</p>
+                        {% endif %}
                     {% endif %}
-                {% else %}
+                {% endif %}
+                {% if order.payment is null or not order.payment.expressCheckoutDone %}
                     <p>{{ 'Este pedido aún no ha sido pagado. Si deseas cancelar este pedido, ponte en contacto con nosotros enviando un correo electrónico a la siguiente dirección: ' | trans }}<a class="red-link" href="mailto:{{ cartujano_email }}" title="{{ 'Enviar email' | trans }}">{{ cartujano_email }}</a></p>
                     <form action="" method="post">
                         <div class="table-responsive">

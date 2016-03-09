@@ -29,7 +29,7 @@ class DataBilling
     protected $corporateName;
 
     /**
-     * @ORM\OneToOne(targetEntity="Ecommerce\LocationBundle\Entity\Address")
+     * @ORM\ManyToOne(targetEntity="Ecommerce\LocationBundle\Entity\Address")
      */
     protected $address;
 

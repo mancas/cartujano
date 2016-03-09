@@ -23,6 +23,11 @@ class PaypalPayment extends Payment
      */
     private $payerId;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true, options={"default" = 0})
+     */
+    private $expressCheckoutDone = false;
+
     public function getTokenPayPal()
     {
         return $this->tokenPayPal;
@@ -41,6 +46,22 @@ class PaypalPayment extends Payment
     public function setPayerId($payerId)
     {
         $this->payerId = $payerId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpressCheckoutDone()
+    {
+        return $this->expressCheckoutDone;
+    }
+
+    /**
+     * @param mixed $expressCheckoutDone
+     */
+    public function setExpressCheckoutDone($expressCheckoutDone)
+    {
+        $this->expressCheckoutDone = $expressCheckoutDone;
     }
 
 }

@@ -15,10 +15,10 @@ parameters:
     noreply_email: noreply@elcartujano.es
     direction_email: mancas.91@gmail.com
     direction_contact_email: elcartujano@distribucioneselcartujano.es
-    paypal.api_name: elcartujano.develop_api1.gmail.com
-    paypal.api_key: MJELF6SCAR4QH8A3
-    paypal.api_certificate: AFcWxV21C7fd0v3bYYYRCpSSRl31A7R8goyJWT3PdmF55ndSlaynjutN
-    paypal.environment: paypal
+    paypal.api_name: elcartujano.develop-facilitator_api1.gmail.com
+    paypal.api_key: DX378NV2W7R97TG3
+    paypal.api_certificate: A9VbhRHGOzRF9S2tbkNmqY.pthdaAicX-Up3P5lA606o.t1yZJLG2Kgh
+    paypal.environment: sandbox.paypal
     paypal.moneda: EUR
     paypal.tipo_pago: Sale
     paypal.envio: 1

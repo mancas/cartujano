@@ -32,7 +32,7 @@ class Order
 
     const DELIVERY_COST = 2.99;
 
-    const PAYPAL_DESC = 'Pedido realizado en Clop';
+    const PAYPAL_DESC = 'Pedido realizado en El Cartujano';
 
     /**
      * @ORM\Id
@@ -288,7 +288,7 @@ class Order
             $cost += $this->extra->getCost();
         }
 
-        return $cost;
+        return round($cost, 2);
     }
 
     /**

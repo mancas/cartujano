@@ -54,6 +54,19 @@ class Paypal
         return array('ok' => true, 'url' => $payPalURL);
     }
 
+    public function doExpressCheckoutPayment($token, $payerId, $totalAmount)
+    {
+        $nvpStr = $this->getDoExpressCheckoutPaymentNvpStr($token, $payerId, $totalAmount);
+
+        $httpParsedResponseAr = $this->PPHttpPost('DoExpressCheckoutPayment', $nvpStr);
+        if ("SUCCESS" == strtoupper($httpParsedResponseAr["ACK"]) || "SUCCESSWITHWARNING" == strtoupper($httpParsedResponseAr["ACK"])) {
+            $token = urldecode($httpParsedResponseAr["TOKEN"]);
+            $payPalURL = "https://www." . $this->environment . ".com/webscr&cmd=_express-checkout&token=$token";
+        }
+
+        return array('ok' => true, 'response' => $httpParsedResponseAr);
+    }
+
     /**
      * public for testing :(
      *
@@ -84,6 +97,15 @@ class Paypal
         } else {
             $nvpStr = "&PAYMENTREQUEST_0_AMT=$paymentTotal&L_PAYMENTREQUEST_0_DESC0=$desc&PAYMENTREQUEST_0_ITEMAMT=$paymentAmount&L_PAYMENTREQUEST_0_AMT0=$paymentAmount&PAYMENTREQUEST_0_TAXAMT=$paymentTaxes&L_PAYMENTREQUEST_0_QTY0=1&ReturnUrl=$urlAccept&CANCELURL=$urlCancel&PAYMENTACTION=$paymentType&PAYMENTREQUEST_0_CURRENCYCODE=$currencyID&NOSHIPPING=$noShipping&SOLUTIONTYPE=$sole&LOCALECODE=$localeCode";
         }
+
+        return $nvpStr;
+    }
+
+    private function getDoExpressCheckoutPaymentNvpStr($token, $payerId, $paymentAmount)
+    {
+        $currencyID = urlencode($this->currency);
+        $localeCode = urlencode($this->localeCode);
+        $nvpStr = "&TOKEN=$token&PAYERID=$payerId&PAYMENTREQUEST_0_AMT=$paymentAmount&PAYMENTREQUEST_0_CURRENCYCODE=$currencyID&ReturnUrl=http://elcartujano.es&LOCALECODE=$localeCode";
 
         return $nvpStr;
     }

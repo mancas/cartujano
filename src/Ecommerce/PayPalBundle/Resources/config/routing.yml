@@ -4,6 +4,10 @@ pay_paypal:
 
 paypal_pay_correct:
     pattern: /pago-correcto/{id}
+    defaults: { _controller: PayPalBundle:PayPal:prePayCorrect }
+
+paypal_do_payment:
+    pattern: /hacer-pago/{id}/{token}/{payerId}
     defaults: { _controller: PayPalBundle:PayPal:payCorrect }
 
 paypal_pay_denied:
