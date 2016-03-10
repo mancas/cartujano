@@ -87,7 +87,7 @@
                             <td>{{ order.totalAmountWithShipment }} <i class="fa fa-euro"></i></td>
                             <td class="text-center">
                                 {% if order.payment is not null %}
-                                    {% if order.address is not null and order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_IN_PROCESS') %}
+                                    {% if order.address is not null and order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_READY') %}
                                         <a title="{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}" class="btn btn-dark-green btn-xs" href="{{ path('admin_order_send', {'id':order.id}) }}"><i class="fa fa-truck"></i>{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}</a>
                                         <a title="{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') | trans }}" class="btn btn-dark-red btn-xs" href="{{ path('admin_order_out_of_stock', {'id':order.id}) }}"><i class="fa fa-warning"></i>{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') | trans }}</a>
                                     {% else %}
