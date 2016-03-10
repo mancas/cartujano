@@ -27,21 +27,24 @@
                                 <h5>{{ 'Datos personales de ' | trans }} {{ user.name }} {{ user.lastName }}</h5>
                             </div>
 
-                            <h5>{{ 'Email' | trans }}</h5>
-                            <p>{{ user.email }}</p>
+                            <div class="widget-content">
+                                <h5>{{ 'Email' | trans }}</h5>
+                                <p>{{ user.email }}</p>
 
-                            {% if user.nif %}
-                                <h5>{{ 'NIF' | trans }}</h5>
-                                <p>{{ user.nif }}</p>
-                            {% endif %}
+                                {% if user.nif %}
+                                    <h5>{{ 'NIF' | trans }}</h5>
+                                    <p>{{ user.nif }}</p>
+                                {% endif %}
 
-                            {% if user.phone %}
-                                <h5>{{ 'Teléfono' | trans }}</h5>
-                                <p>{{ user.phone }}</p>
-                            {% endif %}
+                                {% if user.phone %}
+                                    <h5>{{ 'Teléfono' | trans }}</h5>
+                                    <p>{{ user.phone }}</p>
+                                {% endif %}
+                            </div>
 
                             <div class="widget-content">
                                 {% if user.addresses | length > 0 %}
+                                    <h5>{{ 'Direcciones' | trans }}</h5>
                                     {{ render(controller("UserBundle:User:adressList", {'user' : user, 'admin' : true})) }}
                                 {% else %}
                                     <div class="alert alert-block alert-warning" style="margin-bottom: 0">
