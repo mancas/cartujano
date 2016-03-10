@@ -53,3 +53,7 @@ forgot_password:
 new_password:
     pattern: /cambiar-password/{salt}
     defaults: { _controller: UserBundle:Access:changePassword }
+
+forbidden_user:
+    pattern: /usuario-eliminado/{id}
+    defaults: { _controller: UserBundle:Access:forbidden }

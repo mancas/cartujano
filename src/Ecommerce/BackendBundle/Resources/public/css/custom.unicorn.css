@@ -153,3 +153,12 @@ i {
     margin-bottom: 0px;
     display: inline-block;
 }
+
+.tr-deleted > td {
+  background: #cd3e3d !important;
+  color: #fff !important;
+}
+
+.tr-deleted > td > a {
+  color: #fff !important;
+}

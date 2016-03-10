@@ -175,4 +175,12 @@ class AccessController extends CustomController
         }
 
     }
+
+    /**
+     * @ParamConverter("user", class="UserBundle:User")
+     */
+    public function forbiddenAction(User $user, Request $request)
+    {
+        return $this->render('UserBundle:Access:forbidden.html.twig', array('user' => $user));
+    }
 }

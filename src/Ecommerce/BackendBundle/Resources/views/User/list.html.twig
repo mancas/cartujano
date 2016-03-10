@@ -25,19 +25,21 @@
                     <th>{{ "Apellidos"|trans }}</th>
                     <th>{{ "Nif"|trans }}</th>
                     <th>{{ "Email"|trans }}</th>
+                    <th>{{ "Eliminado"|trans }}</th>
                     <th>{{ "Acciones"|trans }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
-                    <tr {% if user.deletedDate %} style="background-color: #A8A8A8 "{% endif %}>
+                    <tr {% if user.deletedDate %} class="tr-deleted" {% endif %}>
                         <td><a title="Modificar" href="{{ path('admin_user_view', { 'id': user.id }) }}">{{ user.name }}</a></td>
                         <td>{{ user.lastName }}</td>
                         <td>{{ user.nif }}</td>
                         <td>{{ user.email }}</td>
+                        <td>{% if user.deletedDate %}{{ 'ELIMINADO' | trans }}{% else %}--{% endif %}</td>
                         <td class="text-center">
-                            {% if user.deletedDate %}
-                                {{ "Eliminado"|trans }}
+                            {% if user.deletedDate is not null %}
+                                <a title="{{ 'Reactivar' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_user_reactivate', { 'id': user.id }) }}"><i class="fa fa-check"></i>{{ 'Reactivar' | trans }}</a>
                             {% else %}
                                 {% if not user.validated %}
                                     <a title="{{ 'Validar' | trans }}" class="btn btn-dark-green btn-xs" href="{{ path('admin_user_validate', { 'id': user.id }) }}"><i class="fa fa-check"></i>{{ 'Validar' | trans }}</a>

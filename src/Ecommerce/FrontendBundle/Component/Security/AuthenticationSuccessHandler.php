@@ -38,6 +38,10 @@ class AuthenticationSuccessHandler implements AuthenticationSuccessHandlerInterf
     {
         $user = $token->getUser();
 
+        if ($user->getDeletedDate()) {
+            return new RedirectResponse($this->router->generate('forbidden_user', array('id' => $user->getId())));
+        }
+
         if (!in_array('ROLE_USER_NOT_VALIDATED', $user->getRoles())) {
             $cart = $request->getSession()->get(CartStorageManager::KEY);
             if (count($cart->getCartItems())) {

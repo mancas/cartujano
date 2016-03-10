@@ -1,0 +1,39 @@
+{% extends "FrontendBundle:Layouts:1column-simple.html.twig" %}
+
+{% block title %}{{ "Usuario eliminado - El Cartujano"|trans }}{% endblock %}
+{% block description %}{{""|trans}}{% endblock %}
+{% block sectionclass %}user-page page{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <h2 class="title">{{ 'Ooops!' | trans }}</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                {{ 'Tu usuario ha sido eliminado de nuestro sitio web. Es posible que sea debido a que lo hayas solicitado via email o el personal de El Cartujano haya considerado que has hecho un mal uso de tu cuenta. ' | trans }}
+            </p>
+            <p>
+
+            </p>
+            <p class="mb20">
+                {{ 'Si crees que puede ser un error, por favor, evíanos un mail a nuestra dirección de correo a ' | trans }}
+                <a class="red-link" title="{{ 'Enviar email' | trans }}" href="mailto:{{ cartujano_email }}">{{ cartujano_email }}</a>.
+            </p>
+        </div><!-- .col-md-12 -->
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
