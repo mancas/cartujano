@@ -80,9 +80,12 @@ class PayPalController extends CustomController
     public function payCorrectAction(Order $order, $token, $payerId, Request $request)
     {
         $paypal = $this->get('paypal');
-        $paymentAmount = urlencode($order->getTotalAmount());
+        $paymentAmount = urlencode($order->getTotalAmountWithoutTaxes());
+        $paymentTaxes = urlencode($order->getTotalTaxes());
 
-        $response = $paypal->doExpressCheckoutPayment($token, $payerId, $paymentAmount);
+        $deliveryAmount = urlencode($order->getShipmentCost());
+
+        $response = $paypal->doExpressCheckoutPayment($token, $payerId, $paymentAmount, $paymentTaxes, $deliveryAmount);
 
         if ($response['ok']) {
             $em = $this->getEntityManager();
