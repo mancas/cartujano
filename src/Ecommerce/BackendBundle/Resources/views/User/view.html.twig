@@ -24,10 +24,23 @@
                             <span class="icon">
                                 <i class="fa fa-user"></i>
                             </span>
-                                <h5>{{ 'Direcciones de' | trans }} {{ user.name }} {{ user.lastName }}</h5>
+                                <h5>{{ 'Datos personales de ' | trans }} {{ user.name }} {{ user.lastName }}</h5>
                             </div>
 
-                            <div class="widget-content nopadding">
+                            <h5>{{ 'Email' | trans }}</h5>
+                            <p>{{ user.email }}</p>
+
+                            {% if user.nif %}
+                                <h5>{{ 'NIF' | trans }}</h5>
+                                <p>{{ user.nif }}</p>
+                            {% endif %}
+
+                            {% if user.phone %}
+                                <h5>{{ 'Teléfono' | trans }}</h5>
+                                <p>{{ user.phone }}</p>
+                            {% endif %}
+
+                            <div class="widget-content">
                                 {% if user.addresses | length > 0 %}
                                     {{ render(controller("UserBundle:User:adressList", {'user' : user, 'admin' : true})) }}
                                 {% else %}
