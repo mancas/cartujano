@@ -24,6 +24,7 @@ class SubcategoryRepository extends CustomEntityRepository
         $and = $qb->expr()->andx();
 
         $and->add($qb->expr()->eq('c.id', $category));
+        $and->add($qb->expr()->isNull('s.deleted'));
 
         $qb->where($and);
 

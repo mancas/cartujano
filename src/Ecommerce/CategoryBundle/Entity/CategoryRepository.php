@@ -20,6 +20,12 @@ class CategoryRepository extends CustomEntityRepository
         $qb->leftJoin('c.subcategories', 's');
         $qb->addOrderBy('c.id','ASC');
 
+        $and = $qb->expr()->andx();
+
+        $and->add($qb->expr()->isNull('c.deleted'));
+
+        $qb->where($and);
+
         if (isset($limit)) {
             $qb->setMaxResults($limit);
         }

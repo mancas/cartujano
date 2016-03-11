@@ -42,7 +42,18 @@ class CategoryController extends CustomController
     public function deleteAction(Category $category)
     {
         $em = $this->getEntityManager();
-        $em->remove($category);
+        $now = new \DateTime('now');
+        $category->setDeleted($now);
+        foreach ($category->getSubcategories() as $subcategory) {
+            foreach ($subcategory->getItems() as $item) {
+                $item->setDeleted($now);
+                $em->persist($item);
+            }
+
+            $subcategory->setDeleted($now);
+            $em->persist($subcategory);
+        }
+        $em->persist($category);
         $em->flush();
 
         $this->setTranslatedFlashMessage('Se ha eliminado la categoría');
