@@ -24,7 +24,15 @@ class ItemType extends AbstractType
                         array(
                             'class' => 'CategoryBundle:Subcategory',
                             'query_builder' => function (EntityRepository $er) {
-                                    return $er->createQueryBuilder('c')->orderBy('c.name', 'ASC');
+                                    $qb = $er->createQueryBuilder('c')
+                                        ->orderBy('c.name', 'ASC');
+                                    $and = $qb->expr()->andx();
+
+                                    $and->add($qb->expr()->isNull('c.deleted'));
+
+                                    $qb->where($and);
+
+                                    return $qb;
                                 }, 'expanded' => false,
                             'required' => true
                         )

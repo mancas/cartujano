@@ -33,13 +33,15 @@
                     </thead>
                     <tbody>
                     {% for category in categories %}
-                        <tr>
+                        <tr{% if category.deleted is not null %} class="tr-deleted"{% endif %}>
                             <td><a title="Ver detalles" href="{{ path('admin_category_view', { 'slug': category.slug }) }}">{{ category }}</a></td>
                             <td>{{ category.subcategories | length }}</td>
                             <td class="text-center">
                                 <a title="{{ 'Ver subcategorías' | trans }}" class="btn btn-dark-blue btn-xs" href="{{ path('admin_category_view', { 'slug': category.slug }) }}"><i class="fa fa-eye"></i>{{ 'Ver subcategorías' | trans }}</a>
-                                <a title="{{ 'Modificar' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_category_edit', { 'slug': category.slug }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
-                                <a title="{{ 'Eliminar' | trans }}" class="delete btn btn-danger btn-xs" href="{{ path('admin_category_delete', { 'slug': category.slug }) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
+                                {% if category.deleted is null %}
+                                    <a title="{{ 'Modificar' | trans }}" class="btn btn-primary btn-xs" href="{{ path('admin_category_edit', { 'slug': category.slug }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
+                                    <a title="{{ 'Eliminar' | trans }}" class="delete btn btn-danger btn-xs" href="{{ path('admin_category_delete', { 'slug': category.slug }) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

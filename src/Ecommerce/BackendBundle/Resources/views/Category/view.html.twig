@@ -32,12 +32,14 @@
                     </thead>
                     <tbody>
                     {% for subcategory in category.subcategories %}
-                        <tr>
-                            <td><a title="Modificar" href="{{ path('admin_subcategory_edit', { 'slug': subcategory.slug }) }}">{{ subcategory }}</a></td>
+                        <tr{% if subcategory.deleted is not null %} class="tr-deleted"{% endif %}>
+                            <td>{% if subcategory.deleted is null %}<a title="Modificar" href="{{ path('admin_subcategory_edit', { 'slug': subcategory.slug }) }}">{{ subcategory }}</a>{% else %}{{ subcategory }}{% endif %}</td>
                             <td class="text-center">
+                            {% if subcategory.deleted is null %}
                                 <a title="Modificar" class="btn btn-primary btn-xs" href="{{ path('admin_subcategory_edit', { 'slug': subcategory.slug }) }}"><i class="fa fa-pencil"></i>{{ 'Editar' | trans }}</a>
                                 <a title="Borrar" class="delete btn btn-danger btn-xs" href="{{ path('admin_subcategory_delete', { 'slug': subcategory.slug }) }}"><i class="fa fa-trash-o"></i>{{ 'Eliminar' | trans }}</a>
                             </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
