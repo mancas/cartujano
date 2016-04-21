@@ -25,7 +25,7 @@ class UserHandler
                 if (isset($nif) && !$user->checkNIF($nif)) {
                     $user->setNif(null);
                     $this->userManager->saveUser($user);
-                    return false;
+                    return true;
                 }
 
                 $this->userManager->saveUser($user);

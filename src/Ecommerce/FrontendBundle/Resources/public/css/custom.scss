@@ -304,7 +304,6 @@ body.order-details {
   p {
     line-height: 2.4rem;
     margin-bottom: 2rem;
-    text-align: justify;
   }
 
   .polaroid {
@@ -332,6 +331,7 @@ body.order-details {
   .dtable {
     display: table;
     height: 100%;
+    table-layout: fixed;
     .wrap {
       display: table-cell;
       vertical-align: middle;
@@ -603,6 +603,22 @@ body.order-details {
   background-color: $white;
   thead {
     color: $cartujano-red;
+  }
+}
+
+.cart-table {
+  .item-quantity {
+    width: 50px;
+  }
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .item-name {
+    display: inline-block;
+    margin: 0 0 0 10px;
   }
 }
 

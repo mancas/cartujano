@@ -17,6 +17,7 @@
 
                 elem.addEventListener('mouseenter', this.onMouseEnterHandler.bind(this));
                 elem.addEventListener('mouseleave', this.onMouseLeaveHandler.bind(this));
+                elem.addEventListener('click', this.onClick);
                 dropdownMenuElement.addEventListener('mouseenter', this.onMouseEnterHandler.bind(this));
                 dropdownMenuElement.addEventListener('mouseleave', this.onMouseLeaveHandler.bind(this));
             }.bind(this));
@@ -52,6 +53,9 @@
                 evt.target.parentNode.classList.remove('open');
                 img.src = this.originalImages[img.id];
             }
+        },
+        onClick: function(evt) {
+            evt.preventDefault();
         }
     };
 

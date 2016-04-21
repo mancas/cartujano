@@ -64,6 +64,10 @@ class UserController extends CustomController
         $bankAccount = $this->getEntityManager()->getRepository('PaymentBundle:BankAccount')->findBankAccount();
         $bankAccountAvailable = isset($bankAccount);
 
+        if ($bankAccountAvailable) {
+            $bankAccount = $bankAccount[0];
+        }
+
         return $this->render('UserBundle:User:view-order.html.twig', array('order' => $order, 'user'=> $user, 'bankAccountAvailable' => $bankAccountAvailable, 'bankAccount' => $bankAccount));
     }
 

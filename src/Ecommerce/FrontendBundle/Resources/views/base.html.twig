@@ -16,7 +16,8 @@
         <link rel="stylesheet" href="{{ asset('bundles/frontend/css/colorbox.css') }}">
         {% stylesheets filter='cssrewrite, sass' output='css/main.css'
         'bundles/frontend/css/font-awesome.min.css'
-        'bundles/frontend/css/custom.scss'%}
+        'bundles/frontend/css/custom.scss'
+        'bundles/frontend/css/responsive.scss'%}
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
     {% endblock %}
@@ -73,8 +74,8 @@
             href: function() {
                 return $(this).attr('data-img');
             },
-            maxWidth: window.innerWidth,
-            maxHeight: window.innerHeight,
+            maxWidth: window.innerWidth - 200,
+            maxHeight: window.innerHeight - 50,
             scalePhotos: true,
             fixed: true
         });

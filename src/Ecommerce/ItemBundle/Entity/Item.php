@@ -93,7 +93,6 @@ class Item
 
     /**
      * @ORM\Column(name="deleted", type="date", nullable=true)
-     * @Assert\Date()
      */
     protected $deleted;
 

@@ -1,5 +1,5 @@
 {% if item.imageMain %}
-<div class="col-md-6">
+<div class="col-md-6 col-sm-6">
     <div class="item-box">
         <div class="item-wrap">
             <div class="img-wrap">
@@ -9,7 +9,7 @@
             </div>
             <div class="item-info">
                 <h5 class="item-title">
-                    {{ item.name|length > 40 ? item.name|slice(0, 40) ~ '...' : item.name  }}
+                    {{ item.name|length > 55 ? item.name|slice(0, 55) ~ '...' : item.name  }}
                 </h5>
                 {% if item.reference %}
                 <p>
@@ -33,7 +33,7 @@
                 {% endif %}
                 {% if item.description %}
                     <p>
-                        {{ 'Descripción:' | trans }} {{ item.description }}
+                        {{ 'Descripción:' | trans }} {{ item.description|length > 20 ? item.description|slice(0, 20) ~ '...' : item.description }}
                     </p>
                 {% endif %}
             </div>

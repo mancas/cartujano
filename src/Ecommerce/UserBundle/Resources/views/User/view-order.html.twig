@@ -95,8 +95,9 @@
                         <p>{{ 'Este pedido fue pagado el' | trans }} <b>{{ order.payment.created | date('d-m-y') }}</b> {{ 'mediante transferencia bancaria.'  | trans }}</p>
                         {% else %}
                         <p>{{ 'Este pedido esta pendiente de la recepción de la transferencia bancaria. Si tienes cualquier duda, por favor, ponte en contacto con nosotros enviando un correo electrónico a la siguiente dirección: ' | trans }}<a class="red-link" href="mailto:{{ cartujano_email }}" title="{{ 'Enviar email' | trans }}">{{ cartujano_email }}</a></p>
-                        <p>{{ 'Tienes que abonar la cantidad de' | trans }} {{ order.totalAmount + order.shipment.cost }} <i class="fa fa-euro"></i> {{ ' a la sigueinte cuenta bancaria:' }}</p>
+                        <p>{{ 'Tienes que abonar la cantidad de' | trans }} {{ order.totalAmount + order.shipment.cost }} <i class="fa fa-euro"></i> {{ ' a la siguiente cuenta bancaria:' }}</p>
                         <p><b>{{ bankAccount }}</b></p>
+                        <p>{{ 'Si ya has realizado la transferencia, recuerda que la recibiremos en los siguientes 3-4 días' | trans }}</p>
                         {% endif %}
                     {% else %}
                         {% if order.payment.expressCheckoutDone %}
@@ -107,7 +108,7 @@
                 {% if order.payment is null or not order.payment.expressCheckoutDone %}
                     <p>{{ 'Este pedido aún no ha sido pagado. Si deseas cancelar este pedido, ponte en contacto con nosotros enviando un correo electrónico a la siguiente dirección: ' | trans }}<a class="red-link" href="mailto:{{ cartujano_email }}" title="{{ 'Enviar email' | trans }}">{{ cartujano_email }}</a></p>
                     <form action="" method="post">
-                        <div class="table-responsive">
+                        <div class="table-responsive payment-type">
                             <table class="table table-bordered payment-table">
                                 <tbody>
                                 <tr>
@@ -125,11 +126,11 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input id="payment_option_0" checked="checked" type="radio" name="payment_option" value="0">
+                                        <input id="payment_option_0" checked="checked" type="radio" name="payment_option" value="paypal">
                                     </td>
                                     {% if bankAccountAvailable %}
                                         <td>
-                                            <input id="payment_option_1" type="radio" name="payment_option" value="1">
+                                            <input id="payment_option_1" type="radio" name="payment_option" value="transfer">
                                         </td>
                                     {% endif %}
                                 </tr>
@@ -137,7 +138,7 @@
                             </table>
                         </div><!-- .table-responsive -->
                     </form>
-                    <a href="{{ path('pay_paypal', {'id' : order.id}) }}" class="btn btn-success" title="{{ 'Pagar' | trans }}">{{ 'Pagar ahora' | trans }}</a>
+                    <a href="#" data-paypal="{{ path('pay_paypal', {'id' : order.id}) }}" data-transfer="{{ path('pay_transfer', {'id' : order.id}) }}" class="btn btn-success pay-now" title="{{ 'Pagar' | trans }}">{{ 'Pagar ahora' | trans }}</a>
                 {% endif %}
             </div>
 
@@ -190,4 +191,15 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {% if order.payment is null or not order.payment.expressCheckoutDone %}
+    <script>
+        var a = document.querySelector('.pay-now');
+        a.addEventListener('click', function(event) {
+            event.preventDefault();
+            var type = document.querySelector('input[name="payment_option"]:checked').value;
+            var href = a.dataset[type];
+            window.location.href = href;
+        });
+    </script>
+    {% endif %}
 {% endblock %}

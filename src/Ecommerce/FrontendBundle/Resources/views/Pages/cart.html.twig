@@ -17,7 +17,7 @@
                     <thead>
                     <tr>
                         <th class="text-left">{{ 'Descripción' | trans }}</th>
-                        <th>{{ 'Cantidad' | trans }}</th>
+                        <th style="width: 125px;">{{ 'Cantidad' | trans }}</th>
                         <th>{{ 'Subtotal' | trans }}</th>
                     </tr>
                     </thead>
@@ -70,9 +70,11 @@
                 </table>
             </div>
 
+            {% if cart and cart.cartItems | length > 0 %}
             <div class="pull-right">
                 <a href="{{ path('new_order') }}" title="{{ 'Pagar ahora' | trans }}" class="btn btn-blue">{{ 'Pagar' }}</a>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
