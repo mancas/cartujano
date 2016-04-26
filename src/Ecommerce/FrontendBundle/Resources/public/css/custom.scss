@@ -400,6 +400,8 @@ body.order-details {
 
     .item-info {
       margin-left: 1.5rem;
+      overflow-y: scroll;
+      max-height: 27rem;
 
       .item-title {
         font-weight: bold;
@@ -722,7 +724,7 @@ footer.container {
   background-color: $cartujano-red;
   border-top: solid 1rem $blue;
   color: $white;
-  height: 28.5rem;
+  height: 320px;
   margin-top: 5rem;
   padding-bottom: 2rem;
   font-size: 1.3rem;
@@ -775,6 +777,31 @@ footer.container {
   /* This gets Facebook to fall into place */
   iframe {
     vertical-align: middle;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+
+    li {
+      float: left;
+      margin-right: 8px;
+      font-size: 12px;
+
+      &:after {
+        content: "|";
+        margin-left: 8px;
+        display: inline-block;
+      }
+
+      &:last-of-type {
+        &:after {
+          content: "";
+        }
+      }
+    }
   }
 }
 

@@ -1,3 +1,4 @@
+/** COLORS **/
 @media (min-width: 980px) {
   .container {
     width: 100%; } }
@@ -93,10 +94,100 @@
   nav.cartujano-nav form input {
     width: 100%; }
 
+  #categories {
+    text-align: center; }
+
+  .category-nav-container {
+    padding-top: 48px; }
+
+  body.categories-page .category-nav-container {
+    display: none; }
+
   .navbar .navbar-form {
     padding: 10px 15px;
     width: 100%; }
   .navbar .navbar-form.navbar-right:last-child {
-    margin-right: 0; } }
+    margin-right: 0; }
+
+  header {
+    height: 150px;
+    background-size: 520px 150px; }
+    header a.brand {
+      margin-left: 15px; }
+      header a.brand img {
+        max-width: 140px;
+        margin-top: 8px; }
+
+  .category-block a {
+    max-width: initial; }
+    .category-block a img {
+      margin-bottom: 10px; }
+
+  .shopping-cart {
+    right: 5px; }
+    .shopping-cart .cart-items {
+      width: auto;
+      padding-left: 15px; }
+      .shopping-cart .cart-items .empty-cart {
+        margin-left: 10px; }
+
+  nav.cartujano-nav .user-access {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #00409C;
+    z-index: 999;
+    height: 40px; }
+    nav.cartujano-nav .user-access li.login {
+      width: 100%; }
+      nav.cartujano-nav .user-access li.login a {
+        font-size: inherit; }
+    nav.cartujano-nav .user-access li {
+      width: 50%;
+      float: left;
+      height: 100%; }
+    nav.cartujano-nav .user-access a {
+      text-align: center;
+      font-size: 20px;
+      padding: 0;
+      height: 100%;
+      line-height: 40px; }
+      nav.cartujano-nav .user-access a:hover {
+        color: #3FA9F5; }
+      nav.cartujano-nav .user-access a:after {
+        display: none; }
+
+  body.ecommerce, body.user {
+    padding-bottom: 40px; }
+
+  .cart-table img {
+    display: block; }
+  .cart-table .item-name {
+    margin: 10px 0 0 0 !important; }
+
+  .payment-table img {
+    max-width: 142px; }
+
+  #remember_me {
+    margin-top: 0; }
+
+  form#register-user input[type="checkbox"] {
+    margin-top: 5px; }
+
+  .login-form {
+    width: initial;
+    height: initial;
+    display: block; }
+    .login-form .login-wrap {
+      display: block; }
+      .login-form .login-wrap .login {
+        border-right: none; }
+        .login-form .login-wrap .login:after {
+          content: "";
+          display: block;
+          width: 100%;
+          border-bottom: solid 0.2rem #00409C; }
+      .login-form .login-wrap .register {
+        margin-top: 20px; } }
 
 /*# sourceMappingURL=responsive.css.map */

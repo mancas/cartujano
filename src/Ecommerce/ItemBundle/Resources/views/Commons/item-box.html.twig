@@ -33,7 +33,7 @@
                 {% endif %}
                 {% if item.description %}
                     <p>
-                        {{ 'Descripción:' | trans }} {{ item.description|length > 20 ? item.description|slice(0, 20) ~ '...' : item.description }}
+                        {{ 'Descripción:' | trans }} {{ item.description }}
                     </p>
                 {% endif %}
             </div>

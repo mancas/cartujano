@@ -72,13 +72,14 @@
                                         </div>
                                     {% endfor %}
                                 {% endif %}
-
+                                {% if item.images is defined and item.images | length == 0%}
                                 <div class="wrap-upload image-box-item">
                                     <div class="image-item upload-image">
                                         <i class="fa fa-plus"></i>
                                     </div>
                                     <span class="msg-upload hidden"></span>
                                 </div>
+                                {% endif %}
                             </div>
                         {% endif %}
                         <div class="form-group">

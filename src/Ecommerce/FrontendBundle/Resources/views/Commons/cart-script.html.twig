@@ -37,7 +37,7 @@
 
         function updateCart(data)
         {
-            $('.items-count').html(data.items == 1 ? '{{ '1 producto' | trans }}' : data.items + '{{ ' productos' | trans }}');
+            $('.items-count').html(data.items == 1 ? '{{ '1' | trans }} <span class="hidden-xs">{{ 'producto' | trans }}</span>' : data.items + ' <span class="hidden-xs">{{ 'productos' | trans }}</span>');
         }
 
         function openCartAlert(data)

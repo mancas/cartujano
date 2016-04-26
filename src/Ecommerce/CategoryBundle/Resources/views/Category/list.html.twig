@@ -2,13 +2,13 @@
 
 {% block title %}{{ "El Cartujano"|trans }}{% endblock %}
 {% block description %}{{"Productos El Cartujano. Una amplia variedad de picos y productos artesanales, hechos en España con los mejores ingredientes"|trans}}{% endblock %}
-{% block sectionclass %}page{% endblock %}
+{% block sectionclass %}page categories-page{% endblock %}
 
 {% block content %}
     {% for category in categories %}
     <div class="col-md-12">
         <div class="row category-block">
-            <div class="col-md-3 col-sm-3 col-xs-3 text-center dtable">
+            <div class="col-md-3 col-sm-3 col-xs-12 text-center dtable">
                 <div class="wrap">
                     <a href="{{ path('view_subcategories', {slug: category.slug}) }}" alt="{{ 'Ver categoría' | trans }} {{ category }}">
                         <img src="{{ asset('bundles/frontend/img/' ~ category.slug ~ '-hover.png') }}" alt="{{ category }}">
@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="col-md-9 col-sm-9 col-xs-9 dtable">
+            <div class="col-md-9 col-sm-9 hidden-xs dtable">
                 <div class="wrap">
                 <img class="img-responsive" src="{{ asset('bundles/frontend/img/' ~ category.slug ~ '-banner.png') }}" alt="{{ category }}">
             </div>

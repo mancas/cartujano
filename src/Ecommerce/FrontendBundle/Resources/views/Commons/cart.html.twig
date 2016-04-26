@@ -1,7 +1,7 @@
 <div class="shopping-cart">
-    <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
+    <a class="cart-icon" href="{{ path('cart_details') }}" title="{{ 'Ver productos' }}"><i class="fa fa-shopping-cart"></i></a>
     <div class="cart-items">
-        <a href="{{ path('cart_details') }}" title="{{ 'Ver productos' }}" class="items-count">{% if cart.cartItems | length == 1 %}{{ '1 producto' | trans }}{% else %}{{ cart.cartItems | length ~ ' productos' | trans }}{% endif %}</a>
+        <a href="{{ path('cart_details') }}" title="{{ 'Ver productos' }}" class="items-count">{% if cart.cartItems | length == 1 %}{{ '1' | trans }} <span class="hidden-xs">{{ 'producto' }}</span>{% else %}{{ cart.cartItems | length | trans }} <span class="hidden-xs">{{ 'productos' }}</span>{% endif %}</>
 
         <a href="{{ path('empty_cart') }}" title="{{ 'Vaciar el carrito' | trans }}" class="empty-cart pull-right"><i class="fa fa-times-circle"></i></a>
     </div>
