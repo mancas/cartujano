@@ -246,11 +246,13 @@ class Item
      */
     public function getPrice()
     {
-        if (!isset($this->tax)) {
-            return $this->_getPrice();
-        }
+        return $this->price;
+    }
 
-        return round(($this->price + $this->price * ($this->tax->getTaxes()/100)) * $this->quantity, 2);
+    public function getPriceWithTaxes() {
+        $taxes = ($this->tax->getTaxes()/100) * $this->price;
+
+        return round(($this->price + $taxes) * $this->quantity, 2);
     }
 
     public function getPriceWithoutTaxes()
@@ -270,7 +272,7 @@ class Item
 
     public function pricePerUnitWithTaxes()
     {
-        return round($this->price + $this->price * ($this->tax->getTaxes()/100), 2);
+        return round($this->price + ($this->price * ($this->tax->getTaxes()/100)), 3);
     }
 
     public function getTaxApplied()
