@@ -83,7 +83,17 @@
                             <td>{{ order.items | length }}</td>
                             <td>{% if order.address is not null %}{{ 'Envío a domicilio' | trans }}{% else %}{{ 'Recogida en tienda' | trans }}{% endif %}</td>
                             <td>{{ order.status }}</td>
-                            <td>{% if order.payment is not null %}{{ 'Sí' | trans }}{% else %}{{ 'No' | trans }}{% endif %}</td>
+                            <td>
+                                {% if order.payment is not null %}
+                                    {% if order.payment.isPaid %}
+                                        {{ 'Sí' | trans }}
+                                    {% else %}
+                                        {{ 'No' | trans }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ 'No' | trans }}
+                                {% endif %}
+                            </td>
                             <td>{{ order.totalAmountWithShipment }} <i class="fa fa-euro"></i></td>
                             <td class="text-center">
                                 {% if order.payment is not null %}
@@ -91,12 +101,8 @@
                                         <a title="{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}" class="btn btn-dark-green btn-xs" href="{{ path('admin_order_send', {'id':order.id}) }}"><i class="fa fa-truck"></i>{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}</a>
                                         <a title="{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') | trans }}" class="btn btn-dark-red btn-xs" href="{{ path('admin_order_out_of_stock', {'id':order.id}) }}"><i class="fa fa-warning"></i>{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') | trans }}</a>
                                     {% else %}
-                                        {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_IN_PROCESS') %}
-                                            <a title="{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_READY_TO_TAKE') | trans }}" class="btn btn-dark-green btn-xs" href="{{ path('admin_order_ready_to_take', {'id':order.id}) }}"><i class="fa fa-archive"></i>{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_READY_TO_TAKE') | trans }}</a>
-                                        {% else %}
-                                            {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') %}
-                                                <a title="{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}" class="btn btn-dark-green btn-xs" href="{{ path('admin_order_send', {'id':order.id}) }}"><i class="fa fa-truck"></i>{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}</a>
-                                            {% endif %}
+                                        {% if order.status == constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_OUT_OF_STOCK') %}
+                                            <a title="{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}" class="btn btn-dark-green btn-xs" href="{{ path('admin_order_send', {'id':order.id}) }}"><i class="fa fa-truck"></i>{{ constant('Ecommerce\\OrderBundle\\Entity\\Order::STATUS_SEND') | trans }}</a>
                                         {% endif %}
                                     {% endif %}
                                 {% endif %}

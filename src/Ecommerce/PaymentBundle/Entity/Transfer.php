@@ -28,4 +28,8 @@ class Transfer extends Payment
     {
         $this->state = $state;
     }
+
+    public function isPaid() {
+        return $this->state == self::PAID;
+    }
 }

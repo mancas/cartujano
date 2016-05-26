@@ -64,4 +64,7 @@ class PaypalPayment extends Payment
         $this->expressCheckoutDone = $expressCheckoutDone;
     }
 
+    public function isPaid() {
+        return $this->expressCheckoutDone;
+    }
 }

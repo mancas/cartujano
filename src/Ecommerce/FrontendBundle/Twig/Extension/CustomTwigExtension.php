@@ -2,6 +2,10 @@
 
 namespace Ecommerce\FrontendBundle\Twig\Extension;
 
+use Ecommerce\PaymentBundle\Entity\Payment;
+use Ecommerce\PaymentBundle\Entity\Transfer;
+use Ecommerce\PayPalBundle\Entity\PaypalPayment;
+
 class CustomTwigExtension extends \Twig_Extension
 {
     protected $environment;
@@ -17,6 +21,14 @@ class CustomTwigExtension extends \Twig_Extension
 
     public function getName()
     {
+    }
+
+    public function getTests ()
+    {
+        return [
+            new \Twig_SimpleTest('transfer', function (Payment $payment) { return $payment instanceof Transfer; }),
+            new \Twig_SimpleTest('paypal', function (Payment $payment) { return $payment instanceof PaypalPayment; })
+        ];
     }
 
     protected function printScript($script, $printDocumentReady=false)
