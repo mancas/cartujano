@@ -41,10 +41,6 @@
                 <div class="form-group">
                     {{ form_widget(form.shipment, { 'attr': { 'class': 'form-control'} }) }}
                 </div>
-                <div class="checkbox mr15">
-                    {{ form_widget(form.payment, { 'attr': { 'class': 'form-control'} }) }}
-                    <label for="form_search_order_payment">{{ 'Pagado' | trans }}</label>
-                </div>
                 {{ form_rest(form) }}
                 <button type="submit" class="btn btn-default">{{ 'Buscar' | trans }}</button>
             </form>
