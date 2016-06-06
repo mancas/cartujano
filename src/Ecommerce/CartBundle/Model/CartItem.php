@@ -52,6 +52,14 @@ class CartItem implements \Serializable
     }
 
     /**
+     * @return mixed
+     */
+    public function getSinglePrice()
+    {
+        return $this->price;
+    }
+
+    /**
      * @param mixed $quantity
      */
     public function setQuantity($quantity)

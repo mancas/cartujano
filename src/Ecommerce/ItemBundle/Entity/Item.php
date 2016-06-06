@@ -250,9 +250,9 @@ class Item
     }
 
     public function getPriceWithTaxes() {
-        $taxes = ($this->tax->getTaxes()/100) * $this->price;
+        $pricePerUnitWithTaxes = $this->pricePerUnitWithTaxes();
 
-        return round(($this->price + $taxes) * $this->quantity, 2);
+        return round($pricePerUnitWithTaxes * $this->quantity, 3);
     }
 
     public function getPriceWithoutTaxes()
@@ -272,7 +272,7 @@ class Item
 
     public function pricePerUnitWithTaxes()
     {
-        return round($this->price + ($this->price * ($this->tax->getTaxes()/100)), 3);
+        return round($this->price + ($this->price * ($this->tax->getTaxes()/100)), 2);
     }
 
     public function getTaxApplied()

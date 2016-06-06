@@ -69,7 +69,7 @@ class NewOrderFormHandler
                 $orderItem->setItem($item);
                 $orderItem->setOrder($order);
                 $orderItem->setQuantity($cartItem->getQuantity());
-                $orderItem->setPrice($cartItem->getPrice());
+                $orderItem->setPrice($cartItem->getSinglePrice());
                 $order->addItem($orderItem);
                 //$item->setStock($item->getStock() - $cartItem->getQuantity());
                 $this->em->persist($orderItem);
