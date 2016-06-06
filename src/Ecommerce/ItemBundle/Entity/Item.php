@@ -272,7 +272,7 @@ class Item
 
     public function pricePerUnitWithTaxes()
     {
-        return round($this->price + ($this->price * ($this->tax->getTaxes()/100)), 2);
+        return round($this->price + ($this->price * ($this->tax->getTaxes()/100)), 3);
     }
 
     public function getTaxApplied()
