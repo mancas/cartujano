@@ -10,11 +10,12 @@
 
 {% block header %}
     {{ parent() }}
+    <script> fbq('track', 'CompleteRegistration'); </script>
 {% endblock %}
 
 {% block content %}
-    <h2 class="title">{{ 'Te has registrado correctamente' | trans }}</h2>
-    <div class="row">
+    <h2 class="title">{{ 'Te has registrado correctamente' | trans }}</h2>    
+	<div class="row">
         <div class="col-md-12">
             <p>
                 {{ 'Ya formas parte de Ecommerce, ahora solo falta que valides tu cuenta. Te hemos enviado un email a ' | trans }} <i class="blue">{{ user.email }}</i>.

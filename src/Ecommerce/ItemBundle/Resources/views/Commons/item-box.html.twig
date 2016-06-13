@@ -5,8 +5,10 @@
             <div class="img-wrap">
                 {% set imagePath= item.imageMain.ImageThumbnail.getWebFilePath ~ '?' ~ random() %}
                 {% set imageColorboxPath= item.imageMain.getWebFilePath ~ '?' ~ random() %}
-                <img class="img-responsive img-product" src="{{ asset(imagePath) }}" data-img="{{ asset(imageColorboxPath) }}">
-            </div>
+                <img class="img-responsive img-product" src="{{ asset(imagePath) }}" data-id="{{ item.id }}" data-category="{{ item.subcategory }}" data-img="{{ asset(imageColorboxPath) }}">
+		 {% if item.isCommercialItem and isEcommerceAction %}	         
+		 {% endif %}		
+	</div>
             <div class="item-info">
                 <h5 class="item-title">
                     {{ item.name|length > 55 ? item.name|slice(0, 55) ~ '...' : item.name  }}
@@ -56,13 +58,16 @@
                             {% endif %}
                         </span>
                     </li>
-                    <li>
-                        {% if item.stock > 0 %}
-                            <a class="btn btn-blue add-to-cart" title="{{ 'Añadir al carrito' | trans }}" href="{{ path('add_to_cart', {'slug':item.slug}) }}"><i class="fa fa-shopping-cart"></i>{{ 'Añadir' | trans }}</a>
-                        {% else %}
+                    
+                    <li>			 
+                    {% if item.stock > 0 %}
+
+                        <a data-id="{{ item.id }}" data-price="{{ item.getPriceWithTaxes }}" data-category="{{ item.subcategory }}" class="btn btn-blue add-to-cart" title="{{ 'Añadir al carrito' | trans }}" href="{{ path('add_to_cart', {'slug':item.slug})}}"><i class="fa fa-shopping-cart"></i>{{ 'Añadir' | trans }} </a>
+               	            
+                	{% else %}
                             <a class="btn btn-disabled" title="{{ 'Agotado' | trans }}" href="">{{ 'Agotado' | trans }}</a>
-                        {% endif %}
-                    </li>
+                    {% endif %}                    
+		          </li>
                 </ul>
             </div>
         {% endif %}

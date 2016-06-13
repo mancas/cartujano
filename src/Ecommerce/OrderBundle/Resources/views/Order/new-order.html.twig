@@ -6,6 +6,7 @@
 
 {% block header %}
     {{ parent() }}
+<script> fbq('track', 'InitiateCheckout'); </script>
 {% endblock %}
 
 {% block stylesheets %}
@@ -27,6 +28,9 @@
                     </tr>
                     </thead>
                     <tbody>
+
+                    {% set ids = "" %}
+                    
                     {% if cart and cart.cartItems | length > 0 %}
                         {% for item in cart.cartItems %}
                             <tr>
@@ -38,9 +42,16 @@
                                 </td>
                                 <td>{{ item.price / item.quantity }} <i class="fa fa-euro"></i></td>
                                 <td>{{ item.price }} <i class="fa fa-euro"></i></td>
-                            </tr>
+                                
+                                {% if ids== "" %}
+                                    {% set ids = item.id  %} 
+                                {% else %}        
+                                    {% set ids = ids ~ " , " ~ item.id  %}
+                                {% endif %}
+                                                                
+                </tr>
                         {% endfor %}
-                    {% else %}
+            {% else %}
                         <tr>
                             <td colspan="4" class="text-center">{{ 'Tu carrito está vacio' | trans }}</td>
                         </tr>
@@ -49,7 +60,6 @@
                 </table>
             </div>
         </div>
-
 
         <form action="{{ path('new_order') }}" novalidate="novalidate" method="POST">
             <div id="address_delivery_block" class="col-md-12">
@@ -222,9 +232,8 @@
                 <input name="shipment_option" type="hidden" value="{{ shipment.id }}">
                 {% if extra is not null %}
                 <input name="extra_option" type="hidden" value="{{ extra.id }}">
-                {% endif %}
-
-                <button type="submit" class="btn btn-success pull-right">{{ 'Pagar ahora' }}</button>
+                {% endif %}   
+                <button id="pagarAhora" type="submit" class="btn btn-success pull-right" data-ids="{{ ids }}" data-price="{{ cart.cartTotal }}">{{ 'Pagar ahora' }}</button>
             </div>
         </form>
     </div><!-- .row -->

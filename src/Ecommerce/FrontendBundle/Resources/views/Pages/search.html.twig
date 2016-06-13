@@ -4,12 +4,13 @@
 {% block description %}{{"Nuestros productos son elaborados con los mejores ingredientes."|trans}}{% endblock %}
 {% block sectionclass %}page{% endblock %}
 
-{% block stylesheets %}
+{% block stylesheets %}	
     {{ parent() }}
 {% endblock %}
 
 {% block header %}
-    {{ parent() }}
+    	<script>fbq('track', 'Search');</script>
+	{{ parent() }}
 {% endblock %}
 
 {% set action = app.request.attributes.get('_route') %}
