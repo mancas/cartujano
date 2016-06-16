@@ -25,6 +25,9 @@
     <script src="{{ asset('bundles/frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/jquery.colorbox-min.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/bootstrap.min.js') }}"></script>
+    
+    <!-- Start Google Anlaytics -->
+
     <script>
 
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -40,19 +43,46 @@
         ga('send', 'pageview');
 
     </script>
-    <!-- start Mixpanel -->
+    
+<!-- start Mixpanel -->
+
     <script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
             for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
         mixpanel.init("fd970c09f16a11c76b7489561be6af10");
-    </script><!-- end Mixpanel -->
-
-    <script>
-        mixpanel.track("Inicio");
     </script>
 
+<!-- end Mixpanel -->
+	
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '645503795599637');
+fbq('track', "PageView");</script>
+
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=645503795599637&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+ 
+<!-- tracking events -- >
+
+<!-- <script>
+        mixpanel.track("Inicio");
+</script> -->
+
+
 </head>
+
+
 <body class="{% block sectionclass %}{% endblock %}">
-    {% include 'FrontendBundle:Commons:cookies-banner.html.twig' %}
+    
+{% include 'FrontendBundle:Commons:cookies-banner.html.twig' %}
 
 {% block header %}
     {% include 'FrontendBundle:Commons:nav-top.html.twig' %}
@@ -67,19 +97,112 @@
         {% include 'FrontendBundle:Commons:footer.html.twig' %}
     {% endblock %}
 </div>
+
 {% block javascripts %}
     {% include 'FrontendBundle:Commons:category-nav-script.html.twig' %}
+    
     <script>
+
+        dataLayer = [];
+
         $('.img-product').colorbox({
             href: function() {
+               
+            /*  
+                fbq('track', 'ViewContent', {
+                    content_ids: $(this).data('id'),
+                    content_type: 'product',
+                    content_category: $(this).data('category')
+                }); 
+            */
+                
+                dataLayer.push({
+                    'event': 'gtm.load',
+                    'productId': $(this).data('id'),
+                    'productType': 'product',
+                    'productFunnel': 'productPage',
+                    'productCategory': $(this).data('category'),
+                    'productValue': $(this).data('price'),  
+                    'productCurrency': 'EUR'
+
+                });
+
                 return $(this).attr('data-img');
             },
+
             maxWidth: window.innerWidth - 200,
             maxHeight: window.innerHeight - 50,
             scalePhotos: true,
             fixed: true
+        });   
+
+        
+        $('.add-to-cart').click(function() {
+            
+         /*    
+            fbq('track', 'AddToCart', {
+                content_ids: $(this).data('id'),
+                content_type: 'product',   
+                value: $(this).data('price'), //OPTIONAL, but highly recommended
+                currency: 'EUR',
+                content_category: $(this).data('category')
+            }); 
+        */
+          
+            dataLayer.push({
+                'event': 'gtm.load',
+                'productId': $(this).data('id'),
+                'productType': 'product',
+                'productValue': $(this).data('price'),  
+                'productCurrency': 'EUR',
+                'productFunnel': 'addToCartPage',
+                'productCategory': $(this).data('category')
+            });
+
+
+         });    
+            
+
+        $("#pagarAhora").click(function() {
+                
+            var ids = $(this).data('ids').split(",");  
+              
+        /* 
+            fbq('track', 'Purchase', {
+                content_ids: ids,
+                content_type: 'product',   
+                value: $(this).data('price'), //OPTIONAL, but highly recommended
+                currency: 'EUR'
+            }); 
+
+        */
+                    
+            dataLayer.push({
+                'event': 'gtm.dom',
+                'productId': ids,
+                'productType': 'product',
+                'productValue': $(this).data('price'),  
+                'productCurrency': 'EUR',
+                'productFunnel': 'purchasePage'
+            });
+
         });
+
     </script>
+
+<!-- Google Tag Manager -->
+
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TMHPST"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TMHPST');</script>
+
+<!-- End Google Tag Manager -->
+
 {% endblock %}
 </body>
 </html>
