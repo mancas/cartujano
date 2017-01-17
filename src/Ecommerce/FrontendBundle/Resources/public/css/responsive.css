@@ -76,8 +76,8 @@
   .order-details .payment-type {
     border: 0; }
     .order-details .payment-type .payment-table {
-      border: 1px solid #ddd; } }
-@media (max-width: 360px) {
+      border: 1px solid #ddd; }
+
   .navbar-nav {
     margin: 0;
     float: none;

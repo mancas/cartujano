@@ -583,11 +583,12 @@ footer.container {
   top: 0;
   z-index: 999999;
   padding: 0 15px;
-  height: 60px;
   background: rgba(0, 0, 0, 0.6); }
   .cookies-banner p, .cookies-banner a {
     color: white;
-    line-height: 60px; }
+    line-height: 40px; }
+  .cookies-banner p {
+    margin: 0; }
   .cookies-banner a {
     text-decoration: underline; }
 
