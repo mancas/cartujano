@@ -3,6 +3,8 @@
 namespace Ecommerce\BackendBundle\Controller;
 
 use Ecommerce\OrderBundle\Entity\Order;
+use Ecommerce\OrderBundle\Event\OrderEvent;
+use Ecommerce\OrderBundle\Event\OrderEvents;
 use Ecommerce\PaymentBundle\Entity\Transfer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
