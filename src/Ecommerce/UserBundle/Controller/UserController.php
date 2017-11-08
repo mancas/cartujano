@@ -25,6 +25,14 @@ class UserController extends CustomController
         $addressForm = $this->createForm(new AddressType());
         $provinces = $em->getRepository('LocationBundle:Province')->findAll();
 
+        $filteredProvinces = array();
+        foreach ($provinces as $province) {
+            if ($province->getId() == 7 || $province->getId() == 35 || $province->getId() == 38 || $province->getId() == 51 || $province->getId() == 52) {
+                continue;
+            }
+            $filteredProvinces[] = $province;
+        }
+
         if (!$user->isProfileComplete()) {
             $this->setTranslatedFlashMessage('Recuerda rellenar tus datos personales para poder realizar compras');
         }
@@ -32,7 +40,7 @@ class UserController extends CustomController
         return $this->render('UserBundle:User:profile.html.twig', array('user' => $user,
                                                                         'form' => $form->createView(),
                                                                         'addressForm' => $addressForm->createView(),
-                                                                        'provinces' => $provinces));
+                                                                        'provinces' => $filteredProvinces));
     }
 
     public function ordersAction()
